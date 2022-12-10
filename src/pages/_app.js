@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
               bgImage=""
               bgImageOpacity={1}
               description="AI-powered real estate listing descriptions"
-              copyright={`© ${new Date().getFullYear()} Company`}
+              copyright={`© ${new Date().getFullYear()} Listingify`}
               logo="https://uploads.divjoy.com/logo.svg"
               logoInverted="https://uploads.divjoy.com/logo-white.svg"
               sticky={true}
