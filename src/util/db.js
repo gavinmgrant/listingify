@@ -53,6 +53,18 @@ export async function updateUser(uid, data) {
   return response;
 }
 
+// Update an existing customer
+export async function updateCustomer(uid, data) {
+  const response = await supabase
+    .from("customers")
+    .update(data)
+    .eq("id", uid)
+    .then(handle);
+  // Invalidate and refetch queries that could have old data
+  await client.invalidateQueries(["customers", { uid }]);
+  return response;
+}
+
 /**** ITEMS ****/
 /* Example query functions (modify to your needs) */
 

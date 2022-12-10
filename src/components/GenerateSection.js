@@ -19,7 +19,7 @@ import { interiorOptions } from "lib/interior-options";
 import { exteriorOptions } from "lib/exterior-options";
 import { landOptions } from "lib/land-options";
 import { useAuth } from "util/auth";
-import { updateUser, useUser } from "util/db";
+import { useUser, updateCustomer, updateUser } from "util/db";
 import { useRouter } from "next/router";
 
 function GenerateSection(props) {
@@ -28,7 +28,7 @@ function GenerateSection(props) {
   const descriptionRef = useRef(null);
 
   const uid = auth.user ? auth.user.uid : undefined;
-  const { data } = useUser(uid)
+  const { data } = useUser(uid);
   const noTokens = data?.customers.tokens < 1;
 
   const isUser = !!auth.user;
@@ -56,7 +56,9 @@ function GenerateSection(props) {
   const [copied, setCopied] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  const callGenerateEndpoint = async () => {
+  const canGenerate = address && propertyType;
+
+  const callGenerateEndpoint = async (currentTokens) => {
     setIsGenerating(true);
 
     const body = isLand
@@ -94,9 +96,12 @@ function GenerateSection(props) {
     const data = await response.json();
     const { output } = data;
 
-    await updateUser(auth.user.id, { tokens: auth.user.tokens - 1 });
-
     setApiOutput(`${output.text}`);
+
+    await updateCustomer(auth.user.id, {
+      tokens: currentTokens - 1,
+    });
+
     setIsGenerating(false);
   };
 
@@ -186,6 +191,7 @@ function GenerateSection(props) {
                 onChange={handleAddress}
                 fullWidth
                 style={{ margin: 1 }}
+                required
               />
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
@@ -214,6 +220,7 @@ function GenerateSection(props) {
                 onChange={handlePropertyType}
                 fullWidth
                 style={{ margin: 1 }}
+                required
               >
                 {typeOptions.map((option) => (
                   <MenuItem key={option} value={option}>
@@ -419,13 +426,13 @@ function GenerateSection(props) {
               variant="contained"
               size="large"
               color="primary"
-              onClick={callGenerateEndpoint}
+              onClick={() => callGenerateEndpoint(data?.customers.tokens)}
               style={{ marginTop: "1rem" }}
-              disabled={noTokens || !isUser}
+              disabled={noTokens || !isUser || !canGenerate}
             >
               {isUser ? (
                 isGenerating ? (
-                  <CircularProgress size={28} />
+                  <CircularProgress size={28} color="inherit" />
                 ) : noTokens ? (
                   "Buy More Tokens to Generate"
                 ) : (
@@ -450,48 +457,56 @@ function GenerateSection(props) {
             )}
           </Box>
         </FormControl>
-        {apiOutput && (
-          <Container
-            ref={descriptionRef}
-            style={{ marginTop: "5rem", padding: 0 }}
-          >
-            <SectionHeader
-              title={
-                address ? `Your Description for ${address}` : "Your Description"
-              }
-              subtitle="Review the text below and confirm the information is accurate. Make any edits, then copy it to your clipboard and use!"
-              size={4}
-              textAlign="center"
-            />
-            <TextField
-              variant="outlined"
-              type="text"
-              label="Description"
-              name="description"
-              margin="normal"
-              value={apiOutput}
-              onChange={handleApiOutput}
-              fullWidth
-              multiline
-              rows={14}
-              onClick={() => {
-                if (copied) setCopied(false);
-              }}
-            />
+        <Container
+          ref={descriptionRef}
+          style={{ marginTop: "5rem", padding: 0 }}
+        >
+          <SectionHeader
+            title={
+              address ? `Your Description for ${address}` : "Your Description"
+            }
+            subtitle={
+              apiOutput
+                ? "Review the text below and confirm the information is accurate. Make any edits, then copy it to your clipboard and use!"
+                : "Your description will appear below after pressing the generate button."
+            }
+            size={4}
+            textAlign="center"
+          />
+          <TextField
+            variant="outlined"
+            type="text"
+            label="Description"
+            name="description"
+            margin="normal"
+            value={apiOutput}
+            onChange={handleApiOutput}
+            fullWidth
+            multiline
+            rows={14}
+            disabled={!apiOutput}
+            onClick={() => {
+              if (copied) setCopied(false);
+            }}
+          />
+          <Box textAlign="center" style={{ marginTop: "1.5rem" }}>
             <Button
               variant="contained"
               size="large"
               color="primary"
+              disabled={!apiOutput}
               onClick={() => {
                 navigator.clipboard.writeText(apiOutput);
                 setCopied(true);
+                setTimeout(() => {
+                  setCopied(false);
+                }, 5000);
               }}
-              style={{ marginTop: "1.5rem" }}
             >
               {copied ? "Copied!" : "Copy to clipboard"}
             </Button>
-          </Container>
-        )}
+          </Box>
+        </Container>
       </Container>
     </Section>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import AppBar from "@material-ui/core/AppBar";
 import Container from "@material-ui/core/Container";
@@ -44,16 +44,18 @@ function Navbar(props) {
 
   const auth = useAuth();
   const darkMode = useDarkMode();
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [menuState, setMenuState] = useState(null);
 
   const uid = auth.user ? auth.user.uid : undefined;
-  const { data } = useUser(uid)
+  const { data } = useUser(uid);
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [menuState, setMenuState] = useState(null);
+  const [displayTokens, setDisplayToken] = useState(data?.customers.tokens);
 
   // Use inverted logo if specified
   // and we are in dark mode
-  const logo =
-    props.logoInverted && darkMode.value ? props.logoInverted : props.logo;
+  // const logo =
+  //   props.logoInverted && darkMode.value ? props.logoInverted : props.logo;
 
   const handleOpenMenu = (event, id) => {
     // Store clicked element (to anchor the menu to)
@@ -64,6 +66,11 @@ function Navbar(props) {
   const handleCloseMenu = () => {
     setMenuState(null);
   };
+
+  useEffect(() => {
+    if (!data) return;
+    setDisplayToken(data?.customers.tokens);
+  }, [data]);
 
   return (
     <Section bgColor={props.color} size="auto">
@@ -109,7 +116,7 @@ function Navbar(props) {
                     style={{ marginRight: "1rem" }}
                     onClick={(e) => router.push("/pricing")}
                   >
-                    Tokens: {data?.customers.tokens}
+                    Tokens: {displayTokens}
                   </Button>
                   <Link href="/generate" passHref={true}>
                     <Button component="a" color="inherit">
@@ -203,7 +210,7 @@ function Navbar(props) {
                 style={{ marginLeft: "1rem", marginBottom: "0.5rem" }}
                 onClick={(e) => router.push("/pricing")}
               >
-                Tokens: {data?.customers.tokens}
+                Tokens: {displayTokens}
               </Button>
               <Link href="/generate" passHref={true}>
                 <ListItem component="a" button={true}>

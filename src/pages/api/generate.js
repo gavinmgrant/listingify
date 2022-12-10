@@ -7,10 +7,10 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const basePromptPrefix = `
-​​Write a detailed MLS real estate listing description that is at least 150 words and no more than 200 words.
+​​Write a detailed MLS real estate listing description that is at least 200 words and no more than 250 words.
 Start with an opening statement that will encourage people to keep reading.
 Appeal to the reader's emotions with useful verbs that communicate a strong sense of action.
-Use the exact numbers provided for number of bedrooms, baths, floor area, and lot size. 
+Use the exact numbers provided for number of bedrooms, baths, floor area, and lot size.
 Use the list of features below to write a compelling story to a potential buyer as to why they would buy this property.
 If any of the values are 0 or empty ignore that feature in the description.
 Highlight the unique features early in the description.
@@ -44,7 +44,6 @@ const generateAction = async (req, res) => {
     Exterior Features: ${req.body.exteriorFeatures}
     Unique Features: ${req.body.uniqueFeatures}
   `;
-  console.log("### prompt", prompt);
 
   const baseCompletion = await openai.createCompletion({
     model: "text-davinci-003",

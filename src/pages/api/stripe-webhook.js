@@ -65,7 +65,6 @@ export default async (req, res) => {
 
     // Get the object from stripeEvent
     const object = stripeEvent.data.object;
-    console.log("### stripeEvent.data", stripeEvent.data)
 
     switch (stripeEvent.type) {
       case "checkout.session.completed":

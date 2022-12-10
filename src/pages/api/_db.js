@@ -44,7 +44,7 @@ function updateCustomerByStripeCid(id, data) {
     .then(handle);
 }
 
-// Update customer by Stripe customer ID
+// Update user by ID
 function updateUser(uid, data) {
   return supabase
     .from("users")
