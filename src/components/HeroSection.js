@@ -20,6 +20,7 @@ function HeroSection(props) {
             title={props.title}
             subtitle={props.subtitle}
             size={3}
+            typewriter={props.typewriter}
           />
           <Link href={props.buttonPath} passHref={true}>
             <Button variant="contained" size="large" color={props.buttonColor}>

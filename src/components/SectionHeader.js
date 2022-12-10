@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Typewriter from "typewriter-effect";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 function SectionHeader(props) {
   const classes = useStyles();
 
-  const { subtitle, title, size, className, ...otherProps } = props;
+  const { typewriter, subtitle, title, size, className, ...otherProps } = props;
 
   // Render nothing if no title or subtitle
   if (!title && !subtitle) {
@@ -45,11 +46,22 @@ function SectionHeader(props) {
         </Typography>
       )}
 
-      {subtitle && (
-        <Typography variant="subtitle1" className={classes.subtitle}>
-          {subtitle}
-        </Typography>
-      )}
+      {subtitle &&
+        (typewriter ? (
+          <Typography variant="subtitle1" className={classes.subtitle}>
+            <Typewriter
+              options={{
+                strings: subtitle,
+                autoStart: true,
+                delay: 25,
+              }}
+            />
+          </Typography>
+        ) : (
+          <Typography variant="subtitle1" className={classes.subtitle}>
+            {subtitle}
+          </Typography>
+        ))}
     </Box>
   );
 }

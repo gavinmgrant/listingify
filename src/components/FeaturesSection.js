@@ -36,13 +36,13 @@ function FeaturesSection(props) {
 
   const items = [
     {
-      title: "Writing a description sucks!",
+      title: "Writing descriptions sucks!",
       body: "Listing agents are experts at selling, but writing can be a challenge. It takes time thinking of what features to write about and gather your thoughts. Use our system to quickly select the highlights and we take care of the rest.",
       icon: "thumb",
     },
     {
-      title: "Your time is valuable.",
-      body: "Writing a 250-word essay can take 50 minutes. Spend a few minutes completing our unique form and get a well-written description in seconds. Review and tweak the copy and you're done. Go find your next listing!",
+      title: "You have better things to do.",
+      body: "Writing a 250-word description can take 50 minutes. Spend a few minutes completing our unique form and get a well-written description in seconds. Review and tweak the copy and you're done. Go find your next listing!",
       icon: "time",
     },
     {

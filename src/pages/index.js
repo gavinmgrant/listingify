@@ -2,9 +2,9 @@ import React from "react";
 import Meta from "components/Meta";
 import HeroSection from "components/HeroSection";
 import FeaturesSection from "components/FeaturesSection";
-import ClientsSection from "components/ClientsSection";
-import TestimonialsSection from "components/TestimonialsSection";
-import NewsletterSection from "components/NewsletterSection";
+// import ClientsSection from "components/ClientsSection";
+// import TestimonialsSection from "components/TestimonialsSection";
+// import NewsletterSection from "components/NewsletterSection";
 import CtaSection from "components/CtaSection";
 
 function IndexPage(props) {
@@ -17,10 +17,11 @@ function IndexPage(props) {
         bgImage="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1600&h=800&q=80"
         bgImageOpacity={0.2}
         title="AI-powered real estate listing descriptions"
-        subtitle="Don't waste your time writing property descriptions. Let us write it for you! Tell us a bit about the property and we'll take care of the rest, in seconds."
+        subtitle="Don't waste your time writing property descriptions. Let us write it for you!"
         buttonText="Get Started"
         buttonColor="default"
         buttonPath="/generate"
+        typewriter
       />
       <FeaturesSection
         bgColor="default"

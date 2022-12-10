@@ -60,7 +60,7 @@ function FaqSection(props) {
     {
       question: "What AI technology do you use?",
       answer:
-        "We use Generative Pre-trained Transformer 3, or GPT-3 which is an autoregressive language model that uses deep learning to produce human-like text. We use the latest model text-davinci-003 that produces higher-quality writing, can handle more complex instructions, and generates longer text results.",
+        "We use Generative Pre-trained Transformer 3, or GPT-3, which is an autoregressive language model that uses deep learning to produce human-like text. We use the latest model text-davinci-003 that produces higher-quality writing, can handle more complex instructions, and generates longer text results.",
     },
   ];
 
