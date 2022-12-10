@@ -23,6 +23,7 @@ import Section from "components/Section";
 import { useAuth } from "util/auth";
 import { useDarkMode } from "util/theme";
 import { Logo } from "./Logo";
+import { useUser } from "util/db";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -45,6 +46,9 @@ function Navbar(props) {
   const darkMode = useDarkMode();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [menuState, setMenuState] = useState(null);
+
+  const uid = auth.user ? auth.user.uid : undefined;
+  const { data } = useUser(uid)
 
   // Use inverted logo if specified
   // and we are in dark mode
@@ -105,7 +109,7 @@ function Navbar(props) {
                     style={{ marginRight: "1rem" }}
                     onClick={(e) => router.push("/pricing")}
                   >
-                    Tokens: {auth.user?.tokens}
+                    Tokens: {data?.customers.tokens}
                   </Button>
                   <Link href="/generate" passHref={true}>
                     <Button component="a" color="inherit">
@@ -199,7 +203,7 @@ function Navbar(props) {
                 style={{ marginLeft: "1rem", marginBottom: "0.5rem" }}
                 onClick={(e) => router.push("/pricing")}
               >
-                Tokens: {auth.user?.tokens}
+                Tokens: {data?.customers.tokens}
               </Button>
               <Link href="/generate" passHref={true}>
                 <ListItem component="a" button={true}>

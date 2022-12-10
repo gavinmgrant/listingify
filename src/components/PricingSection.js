@@ -155,6 +155,7 @@ function PricingSection(props) {
                         color="primary"
                         size="large"
                         fullWidth={true}
+                        disabled
                       >
                         {/* Buy */}
                         Coming Soon

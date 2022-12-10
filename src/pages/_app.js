@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
 import "util/analytics";
-import Chat from "components/Chat";
+// import Chat from "components/Chat";
 import { AuthProvider } from "util/auth";
 import { ThemeProvider } from "util/theme";
 import { QueryClientProvider } from "util/db";
@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
     <QueryClientProvider>
       <ThemeProvider>
         <AuthProvider>
-          <Chat />
+          {/* <Chat /> */}
           <>
             <Navbar
               color="default"

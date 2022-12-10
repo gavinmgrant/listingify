@@ -19,14 +19,18 @@ import { interiorOptions } from "lib/interior-options";
 import { exteriorOptions } from "lib/exterior-options";
 import { landOptions } from "lib/land-options";
 import { useAuth } from "util/auth";
-import { updateUser } from "util/db";
+import { updateUser, useUser } from "util/db";
 import { useRouter } from "next/router";
 
 function GenerateSection(props) {
   const router = useRouter();
   const auth = useAuth();
   const descriptionRef = useRef(null);
-  const noTokens = auth.user?.tokens === 0;
+
+  const uid = auth.user ? auth.user.uid : undefined;
+  const { data } = useUser(uid)
+  const noTokens = data?.customers.tokens < 1;
+
   const isUser = !!auth.user;
 
   const currentYear = new Date().getFullYear();
