@@ -444,7 +444,7 @@ function GenerateSection(props) {
             </Button>
             {!isUser && (
               <>
-                <p>Don't have an account? Make a one and get 1 free token!</p>
+                <p>Don't have an account? Sign up and get a free token!</p>
                 <Button
                   variant="contained"
                   size="large"
