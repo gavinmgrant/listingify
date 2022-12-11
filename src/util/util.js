@@ -10,8 +10,6 @@ export function apiRequest(path, method = "GET", data) {
     method: method,
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": true,
       Authorization: `Bearer ${accessToken}`,
     },
     body: data ? JSON.stringify(data) : undefined,
