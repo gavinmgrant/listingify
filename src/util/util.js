@@ -20,8 +20,7 @@ export function apiRequest(path, method = "GET", data) {
     })
     .then((response) => {
       console.log("### response 2", response)
-      if (!response) return
-      if (response.status === "error") {
+      if (response?.status === "error") {
         // Automatically signout user if accessToken is no longer valid
         if (response.code === "auth/invalid-user-token") {
           supabase.auth.signOut();
