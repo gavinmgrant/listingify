@@ -40,7 +40,7 @@ function GenerateSection(props) {
 
   const uid = auth.user ? auth.user.uid : undefined;
   const { data } = useUser(uid);
-  const noTokens = data?.customers.tokens < 1;
+  const noTokens = data?.customers?.tokens < 1;
 
   const isUser = !!auth.user;
 
@@ -451,7 +451,7 @@ function GenerateSection(props) {
               variant="contained"
               size="large"
               color="primary"
-              onClick={() => callGenerateEndpoint(data?.customers.tokens)}
+              onClick={() => callGenerateEndpoint(data?.customers?.tokens)}
               style={{ marginTop: "1rem" }}
               disabled={noTokens || !isUser || !canGenerate}
             >

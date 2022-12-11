@@ -50,7 +50,7 @@ function Navbar(props) {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [menuState, setMenuState] = useState(null);
-  const [displayTokens, setDisplayToken] = useState(data?.customers.tokens);
+  const [displayTokens, setDisplayToken] = useState(data?.customers?.tokens || 0);
 
   const handleOpenMenu = (event, id) => {
     // Store clicked element (to anchor the menu to)
@@ -63,9 +63,9 @@ function Navbar(props) {
   };
 
   useEffect(() => {
-    if (!data) return;
-    setDisplayToken(data?.customers.tokens);
-  }, [data?.customers.tokens]);
+    if (!data?.customers?.tokens) return;
+    setDisplayToken(data?.customers?.tokens);
+  }, [data?.customers?.tokens]);
 
   return (
     <Section bgColor={props.color} size="auto">
