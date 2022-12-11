@@ -67,8 +67,6 @@ function GenerateSection(props) {
   const [copied, setCopied] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  const canGenerate = address && propertyType;
-
   const callGenerateEndpoint = async (currentTokens) => {
     setIsGenerating(true);
 
@@ -457,7 +455,7 @@ function GenerateSection(props) {
                   : callGenerateEndpoint(data?.customers?.tokens);
               }}
               style={{ marginTop: "1rem" }}
-              disabled={!isUser || !canGenerate}
+              disabled={!isUser}
             >
               {isUser ? (
                 isGenerating ? (
