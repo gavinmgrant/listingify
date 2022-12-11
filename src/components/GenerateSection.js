@@ -40,7 +40,7 @@ function GenerateSection(props) {
 
   const uid = auth.user ? auth.user.uid : undefined;
   const { data } = useUser(uid);
-  const noTokens = data?.customers?.tokens < 1;
+  const noTokens = !data?.customers?.tokens || data?.customers?.tokens < 1;
 
   const isUser = !!auth.user;
 
