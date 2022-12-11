@@ -5,7 +5,7 @@ const stripe = require("./_stripe.js");
 export default requireAuth(async (req, res) => {
   const body = req.body;
   const user = req.user;
-
+  console.log("### body, user", body, user)
   if (!body.priceId) {
     return res.status(400).send({
       status: "error",
@@ -14,8 +14,8 @@ export default requireAuth(async (req, res) => {
   }
 
   try {
-    const { email } = await getUser(user.id);
-    let { stripeCustomerId } = (await getCustomer(user.id)) || {};
+    const { email } = await getUser(user?.id);
+    let { stripeCustomerId } = (await getCustomer(user?.id)) || {};
 
     // If user is not a customer then create a customer in Stripe
     if (!stripeCustomerId) {

@@ -4,6 +4,7 @@ import supabase from "./supabase";
 // Make an API request to `/api/{path}`
 export function apiRequest(path, method = "GET", data) {
   const session = supabase.auth.session();
+  console.log("### session", session)
   const accessToken = session ? session.access_token : undefined;
   return fetch(`/api/${path}`, {
     method: method,
