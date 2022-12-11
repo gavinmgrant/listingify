@@ -25,6 +25,7 @@ export function apiRequest(path, method = "GET", data) {
 
         throw new CustomError(response?.code, response?.message);
       } else {
+        console.log("### response?.data", response?.data)
         return response?.data;
       }
     });

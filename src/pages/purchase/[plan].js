@@ -12,6 +12,7 @@ function PurchasePage(props) {
 
   useEffect(() => {
     redirectToCheckout(router.query.plan).catch((error) => {
+      console.log("### error")
       setFormAlert({
         type: "error",
         message: error.message,
