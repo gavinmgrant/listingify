@@ -7,7 +7,6 @@ import ReauthModal from "components/ReauthModal";
 import SettingsNav from "components/SettingsNav";
 import SettingsGeneral from "components/SettingsGeneral";
 import SettingsPassword from "components/SettingsPassword";
-import SettingsBilling from "components/SettingsBilling";
 import { useAuth } from "util/auth";
 
 function SettingsSection(props) {
@@ -23,7 +22,6 @@ function SettingsSection(props) {
   const validSections = {
     general: true,
     password: true,
-    billing: true,
   };
 
   const section = validSections[props.section] ? props.section : "general";

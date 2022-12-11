@@ -3,7 +3,7 @@ import Box from "@material-ui/core/Box";
 import Alert from "@material-ui/lab/Alert";
 import { useRouter } from "next/router";
 import AuthForm from "components/AuthForm";
-import AuthSocial from "components/AuthSocial";
+// import AuthSocial from "components/AuthSocial";
 
 function Auth(props) {
   const router = useRouter();
