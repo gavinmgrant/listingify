@@ -23,7 +23,7 @@ import Section from "components/Section";
 import { useAuth } from "util/auth";
 import { useDarkMode } from "util/theme";
 import { Logo } from "./Logo";
-// import { useUser } from "util/db";
+import { useUser } from "util/db";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -45,13 +45,14 @@ function Navbar(props) {
   const auth = useAuth();
   const darkMode = useDarkMode();
 
-  // const uid = auth.user ? auth.user.uid : undefined;
-  // const { data } = useUser(uid);
+  const uid = auth.user ? auth.user.uid : undefined;
+  const { data } = useUser(uid);
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [menuState, setMenuState] = useState(null);
-  // const [displayTokens, setDisplayToken] = useState(data?.customers?.tokens || 0);
-  const displayTokens = 23;
+  const [displayTokens, setDisplayToken] = useState(
+    data?.customers?.tokens || 0
+  );
 
   const handleOpenMenu = (event, id) => {
     // Store clicked element (to anchor the menu to)
@@ -63,10 +64,10 @@ function Navbar(props) {
     setMenuState(null);
   };
 
-  // useEffect(() => {
-  //   if (!data?.customers?.tokens) return;
-  //   setDisplayToken(data?.customers?.tokens);
-  // }, [data?.customers?.tokens]);
+  useEffect(() => {
+    if (!data?.customers?.tokens) return;
+    setDisplayToken(data?.customers?.tokens);
+  }, [data?.customers?.tokens]);
 
   return (
     <Section bgColor={props.color} size="auto">
@@ -109,7 +110,7 @@ function Navbar(props) {
                 <>
                   <Button
                     variant="outlined"
-                    style={{ marginRight: "1rem" }}
+                    style={{ marginRight: "0.5rem" }}
                     onClick={(e) => router.push("/pricing")}
                   >
                     Tokens: {displayTokens}
@@ -203,7 +204,11 @@ function Navbar(props) {
             <>
               <Button
                 variant="outlined"
-                style={{ marginLeft: "1rem", marginBottom: "0.5rem" }}
+                style={{
+                  marginLeft: "1rem",
+                  marginBottom: "0.5rem",
+                  marginTop: "0.5rem",
+                }}
                 onClick={(e) => router.push("/pricing")}
               >
                 Tokens: {displayTokens}

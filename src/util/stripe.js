@@ -13,7 +13,6 @@ loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY, {
 });
 
 export async function redirectToCheckout(planId) {
-  console.log("### plan id in redirecttocheckout", planId)
   // Create a checkout session
   const session = await apiRequest("stripe-create-checkout-session", "POST", {
     priceId: getStripePriceId(planId),
@@ -21,7 +20,6 @@ export async function redirectToCheckout(planId) {
     cancelUrl: `${window.location.origin}/pricing`,
   });
 
-  console.log("### session in redirect", session)
   // Ensure if user clicks browser back button from checkout they go to /pricing
   // instead of this page or they'll redirect right back to checkout.
   window.history.replaceState({}, "", "/pricing");

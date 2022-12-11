@@ -28,8 +28,6 @@ export default requireAuth(async (req, res) => {
       stripeCustomerId = customer.id;
     }
 
-    console.log("### stripe cust id", stripeCustomerId)
-
     // Create a checkout session
     const session = await stripe.checkout.sessions.create({
       customer: stripeCustomerId,
