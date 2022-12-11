@@ -21,5 +21,5 @@ export function getFriendlyPlanId(stripePriceId) {
   const id = Object.keys(stripePriceIds).find(
     (key) => stripePriceIds[key] === stripePriceId
   )
-  return Number(id.slice(6));
+  return id;
 }
