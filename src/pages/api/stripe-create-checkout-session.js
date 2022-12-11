@@ -7,8 +7,7 @@ export default requireAuth(async (req, res) => {
   const user = req.user;
 
   if (!body.priceId) {
-    console.log("### res", res)
-    return res?.status(400).send({
+    return res.status(400).send({
       status: "error",
       message: "No priceId is defined in request body",
     });
@@ -29,6 +28,8 @@ export default requireAuth(async (req, res) => {
       stripeCustomerId = customer.id;
     }
 
+    console.log("### stripe cust id", stripeCustomerId)
+
     // Create a checkout session
     const session = await stripe.checkout.sessions.create({
       customer: stripeCustomerId,
@@ -43,7 +44,7 @@ export default requireAuth(async (req, res) => {
       success_url: body.successUrl,
       cancel_url: body.cancelUrl,
     });
-    console.log("### session", session)
+
     // Return success response
     res.send({ status: "success", data: session });
   } catch (error) {
