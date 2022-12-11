@@ -5,7 +5,7 @@ import supabase from "./supabase";
 export function apiRequest(path, method = "GET", data) {
   const session = supabase.auth.session();
   const accessToken = session ? session.access_token : undefined;
-
+  console.log("### api data", JSON.stringify(data));
   return fetch(`/api/${path}`, {
     method: method,
     headers: {
@@ -14,8 +14,12 @@ export function apiRequest(path, method = "GET", data) {
     },
     body: data ? JSON.stringify(data) : undefined,
   })
-    .then((response) => response.json())
     .then((response) => {
+      console.log("### response 1", response);
+      response.json();
+    })
+    .then((response) => {
+      console.log("### response 2", response);
       if (response.status === "error") {
         // Automatically signout user if accessToken is no longer valid
         if (response.code === "auth/invalid-user-token") {
