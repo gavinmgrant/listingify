@@ -141,13 +141,12 @@ function PricingSection(props) {
 
                   <Box mt="auto" pt={3}>
                     <Link
-                      // href={
-                      //   auth.user
-                      //     ? `/purchase/${plan.id}`
-                      //     : `/auth/signup?next=/purchase/${plan.id}`
-                      // }
-                      // passHref={true}
-                      href={""}
+                      href={
+                        auth.user
+                          ? `/purchase/${plan.id}`
+                          : `/auth/signup?next=/purchase/${plan.id}`
+                      }
+                      passHref={true}
                     >
                       <Button
                         component="a"
@@ -155,10 +154,8 @@ function PricingSection(props) {
                         color="primary"
                         size="large"
                         fullWidth={true}
-                        disabled
                       >
-                        {/* Buy */}
-                        Coming Soon
+                        Buy
                       </Button>
                     </Link>
                   </Box>

@@ -16,7 +16,6 @@ export async function redirectToCheckout(planId) {
   // Create a checkout session
   const session = await apiRequest("stripe-create-checkout-session", "POST", {
     priceId: getStripePriceId(planId),
-    numTokens: Number(planId.slice(6)),
     successUrl: `${window.location.origin}/generate?paid=true`,
     cancelUrl: `${window.location.origin}/pricing`,
   });

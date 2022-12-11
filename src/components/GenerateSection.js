@@ -9,6 +9,8 @@ import {
   Grid,
   CircularProgress,
   Box,
+  Typography,
+  Modal,
 } from "@material-ui/core";
 import { Autocomplete, Skeleton } from "@material-ui/lab";
 import Section from "components/Section";
@@ -21,6 +23,15 @@ import { landOptions } from "lib/land-options";
 import { useAuth } from "util/auth";
 import { useUser, updateCustomer, updateUser } from "util/db";
 import { useRouter } from "next/router";
+
+const modalStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "white",
+  p: 4,
+};
 
 function GenerateSection(props) {
   const router = useRouter();
@@ -171,6 +182,20 @@ function GenerateSection(props) {
       bgImageOpacity={props.bgImageOpacity}
     >
       <Container>
+        <Modal
+          open={!!router.query.paid}
+          onClose={() => router.push("/generate")}
+        >
+          <Box sx={modalStyle}>
+            <Typography variant="h5" component="h5" style={{ marginBottom: 8 }}>
+              Success!
+            </Typography>
+            <Typography padding="1rem 0">
+              Tokens have been added to your balance.
+            </Typography>
+          </Box>
+        </Modal>
+
         <SectionHeader
           title={props.title}
           subtitle={props.subtitle}

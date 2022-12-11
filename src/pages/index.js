@@ -17,7 +17,7 @@ function IndexPage(props) {
         bgImage="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1600&h=800&q=80"
         bgImageOpacity={0.2}
         title="AI-powered real estate listing descriptions"
-        subtitle="Don't waste your time writing property descriptions. Let us write it for you!"
+        subtitle="Don't waste time writing property descriptions. Let us write them for you!"
         buttonText="Get Started"
         buttonColor="default"
         buttonPath="/generate"

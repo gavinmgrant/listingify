@@ -52,11 +52,6 @@ function Navbar(props) {
   const [menuState, setMenuState] = useState(null);
   const [displayTokens, setDisplayToken] = useState(data?.customers.tokens);
 
-  // Use inverted logo if specified
-  // and we are in dark mode
-  // const logo =
-  //   props.logoInverted && darkMode.value ? props.logoInverted : props.logo;
-
   const handleOpenMenu = (event, id) => {
     // Store clicked element (to anchor the menu to)
     // and the menu id so we can tell which menu is open.
@@ -70,7 +65,7 @@ function Navbar(props) {
   useEffect(() => {
     if (!data) return;
     setDisplayToken(data?.customers.tokens);
-  }, [data]);
+  }, [data?.customers.tokens]);
 
   return (
     <Section bgColor={props.color} size="auto">
