@@ -6,12 +6,6 @@ export default requireAuth(async (req, res) => {
   const body = req.body;
   const user = req.user;
 
-  res.set({
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": true,
-  });
-
   if (!body.priceId) {
     return res.status(400).send({
       status: "error",
