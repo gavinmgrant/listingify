@@ -15,6 +15,7 @@ export function apiRequest(path, method = "GET", data) {
     body: data ? JSON.stringify(data) : undefined,
   })
     .then((response) => {
+      console.log("### response 1", response.json())
       response.json();
     })
     .then((response) => {
