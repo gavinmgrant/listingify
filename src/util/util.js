@@ -13,21 +13,21 @@ export function apiRequest(path, method = "GET", data) {
       Authorization: `Bearer ${accessToken}`,
     },
     body: data ? JSON.stringify(data) : undefined,
-  }).then((res) => {
-    const response = res?.json();
-    console.log("### res", res);
-    console.log("### response", response)
-    if (response?.status === "error") {
-      // Automatically signout user if accessToken is no longer valid
-      if (response?.code === "auth/invalid-user-token") {
-        supabase.auth.signOut();
-      }
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      console.log("### response", response);
+      if (response?.status === "error") {
+        // Automatically signout user if accessToken is no longer valid
+        if (response?.code === "auth/invalid-user-token") {
+          supabase.auth.signOut();
+        }
 
-      throw new CustomError(response?.code, response?.message);
-    }
-    console.log("### response.data", response?.data);
-    return response?.data;
-  });
+        throw new CustomError(response?.code, response?.message);
+      }
+      console.log("### response.data", response?.data);
+      return response?.data;
+    });
 }
 
 // Make an API request to any external URL
