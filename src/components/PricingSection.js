@@ -154,10 +154,10 @@ function PricingSection(props) {
                         color="primary"
                         size="large"
                         fullWidth={true}
-                        disabled
+                        // disabled
                       >
-                        {/* Buy */}
-                        Coming Soon
+                        Buy
+                        {/* Coming Soon */}
                       </Button>
                     </Link>
                   </Box>
