@@ -3,12 +3,11 @@ import Alert from "@material-ui/lab/Alert";
 import { useRouter } from "next/router";
 import Meta from "components/Meta";
 import PageLoader from "components/PageLoader";
-import { useAuth, requireAuth } from "util/auth";
+import { requireAuth } from "util/auth";
 import { redirectToCheckout } from "util/stripe";
 
 function PurchasePage(props) {
   const router = useRouter();
-  const auth = useAuth();
   const [formAlert, setFormAlert] = useState();
 
   useEffect(() => {

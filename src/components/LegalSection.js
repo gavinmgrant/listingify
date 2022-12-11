@@ -19,8 +19,8 @@ function LegalSection(props) {
     : "terms-of-service";
 
   const data = {
-    domain: "company.com",
-    companyName: "Company",
+    domain: "listingify.com",
+    companyName: "Listingify",
   };
 
   return (
