@@ -20,6 +20,12 @@ export default class MyDocument extends Document {
           */}
 
           {/* Google Fonts */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
+          />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:wght@300;400;500;600;700&display=swap"
