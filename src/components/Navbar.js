@@ -62,10 +62,10 @@ function Navbar(props) {
     setMenuState(null);
   };
 
-  useEffect(() => {
-    if (!data?.customers?.tokens) return;
-    setDisplayToken(data?.customers?.tokens);
-  }, [data?.customers?.tokens]);
+  // useEffect(() => {
+  //   if (!data?.customers?.tokens) return;
+  //   setDisplayToken(data?.customers?.tokens);
+  // }, [data?.customers?.tokens]);
 
   return (
     <Section bgColor={props.color} size="auto">
