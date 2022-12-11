@@ -24,7 +24,7 @@ export default async (req, res) => {
       process.env.STRIPE_WEBHOOK_SECRET
     );
 
-    console.log(`stripeEvent: ${stripeEvent.type}`);
+    // console.log(`stripeEvent: ${stripeEvent.type}`);
 
     // Get the object from stripeEvent
     const object = stripeEvent.data.object;
