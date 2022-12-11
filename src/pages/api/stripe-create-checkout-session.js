@@ -7,7 +7,8 @@ export default requireAuth(async (req, res) => {
   const user = req.user;
 
   if (!body.priceId) {
-    return res.status(400).send({
+    console.log("### res", res)
+    return res?.status(400).send({
       status: "error",
       message: "No priceId is defined in request body",
     });
@@ -42,7 +43,7 @@ export default requireAuth(async (req, res) => {
       success_url: body.successUrl,
       cancel_url: body.cancelUrl,
     });
-
+    console.log("### session", session)
     // Return success response
     res.send({ status: "success", data: session });
   } catch (error) {
