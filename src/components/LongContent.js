@@ -9,15 +9,15 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.body1,
     "& h1": {
       ...theme.typography.h4,
-      fontWeight: 700,
+      fontWeight: "bold",
     },
     "& h2": {
       ...theme.typography.h5,
-      fontWeight: 700,
+      fontWeight: "bold",
     },
     "& h3": {
       ...theme.typography.h6,
-      fontWeight: 700,
+      fontWeight: "bold",
     },
     "& a": {
       color: theme.palette.primary.main,

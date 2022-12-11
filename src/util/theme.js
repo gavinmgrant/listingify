@@ -65,23 +65,23 @@ const themeConfig = {
       // button: { textTransform: "none" },
       h1: {
         fontFamily: '"Alata", "Helvetica", "Arial", sans-serif',
-        fontWeight: 600,
+        fontWeight: "bold",
       },
       h2: {
         fontFamily: '"Alata", "Helvetica", "Arial", sans-serif',
-        fontWeight: 600,
+        fontWeight: "bold",
       },
       h3: {
         fontFamily: '"Alata", "Helvetica", "Arial", sans-serif',
-        fontWeight: 600,
+        fontWeight: "bold",
       },
       h4: {
         fontFamily: '"Alata", "Helvetica", "Arial", sans-serif',
-        fontWeight: 600,
+        fontWeight: "bold",
       },
       h5: {
         fontFamily: '"Alata", "Helvetica", "Arial", sans-serif',
-        fontWeight: 600,
+        fontWeight: "bold",
       },
     },
     breakpoints: {
