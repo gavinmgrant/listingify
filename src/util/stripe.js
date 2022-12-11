@@ -21,6 +21,7 @@ export async function redirectToCheckout(planId) {
     cancelUrl: `${window.location.origin}/pricing`,
   });
 
+  console.log("### session in redirect", session)
   // Ensure if user clicks browser back button from checkout they go to /pricing
   // instead of this page or they'll redirect right back to checkout.
   window.history.replaceState({}, "", "/pricing");
