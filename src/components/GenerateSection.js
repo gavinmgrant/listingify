@@ -451,9 +451,13 @@ function GenerateSection(props) {
               variant="contained"
               size="large"
               color="primary"
-              onClick={() => callGenerateEndpoint(data?.customers?.tokens)}
+              onClick={() => {
+                noTokens
+                  ? router.push("/pricing")
+                  : callGenerateEndpoint(data?.customers?.tokens);
+              }}
               style={{ marginTop: "1rem" }}
-              disabled={noTokens || !isUser || !canGenerate}
+              disabled={!isUser || !canGenerate}
             >
               {isUser ? (
                 isGenerating ? (
