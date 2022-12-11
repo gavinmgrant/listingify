@@ -3,7 +3,6 @@ import supabase from "./supabase";
 
 // Make an API request to `/api/{path}`
 export function apiRequest(path, method = "GET", data) {
-  console.log("### data", data)
   const session = supabase.auth.session();
   const accessToken = session ? session.access_token : undefined;
   return fetch(`/api/${path}`, {
@@ -15,20 +14,18 @@ export function apiRequest(path, method = "GET", data) {
     body: data ? JSON.stringify(data) : undefined,
   })
     .then((response) => {
-      console.log("### response 1", response)
       response.json();
     })
     .then((response) => {
-      console.log("### response 2", response)
       if (response?.status === "error") {
         // Automatically signout user if accessToken is no longer valid
-        if (response.code === "auth/invalid-user-token") {
+        if (response?.code === "auth/invalid-user-token") {
           supabase.auth.signOut();
         }
 
-        throw new CustomError(response.code, response.message);
+        throw new CustomError(response?.code, response?.message);
       } else {
-        return response.data;
+        return response?.data;
       }
     });
 }
