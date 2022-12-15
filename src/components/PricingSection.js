@@ -24,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
   },
+  cardBorder: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+    border: "2px solid #000000",
+  },
   cardContent: {
     display: "flex",
     flexDirection: "column",
@@ -127,7 +133,9 @@ function PricingSection(props) {
         <Grid container={true} justifyContent="center" spacing={4}>
           {plans.map((plan, index) => (
             <Grid item={true} xs={12} md={isCustomer ? 4 : 3} key={index}>
-              <Card className={classes.card}>
+              <Card
+                className={plan.id === "1" ? classes.cardBorder : classes.card}
+              >
                 <CardContent className={classes.cardContent}>
                   <Typography variant="h6" component="h2">
                     {plan.name}

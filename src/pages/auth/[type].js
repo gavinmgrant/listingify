@@ -16,7 +16,11 @@ function AuthPage(props) {
         bgImageOpacity={1}
         type={router.query.type}
         providers={["google"]}
-        afterAuthPath={router.query.next || "/generate"}
+        afterAuthPath={
+          router.query.next || router.query.type === "signup"
+            ? "/pricing"
+            : "/generate"
+        }
       />
     </>
   );
