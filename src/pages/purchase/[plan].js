@@ -11,12 +11,16 @@ function PurchasePage(props) {
   const [formAlert, setFormAlert] = useState();
 
   useEffect(() => {
-    redirectToCheckout(router.query.plan).catch((error) => {
-      setFormAlert({
-        type: "error",
-        message: error.message,
-      });
-    });
+    redirectToCheckout(router.query.plan)
+      .catch((error) => {
+        if (router.query.plan !== "1") {
+          setFormAlert({
+            type: "error",
+            message: error.message,
+          });
+        }
+      })
+      .finally(() => router.push("/generate"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

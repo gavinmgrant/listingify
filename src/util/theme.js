@@ -59,7 +59,7 @@ const themeConfig = {
   // Values for both themes
   common: {
     typography: {
-      fontSize: 16,
+      fontSize: 15,
       fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
       // Uncomment to make button lowercase
       // button: { textTransform: "none" },

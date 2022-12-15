@@ -1,5 +1,11 @@
 const requireAuth = require("./_require-auth.js");
-const { getUser, getCustomer, createCustomer } = require("./_db.js");
+const {
+  getUser,
+  getCustomer,
+  createCustomer,
+  getCustomerByStripeCid,
+  updateCustomerByStripeCid,
+} = require("./_db.js");
 const stripe = require("./_stripe.js");
 
 export default requireAuth(async (req, res) => {
@@ -26,6 +32,20 @@ export default requireAuth(async (req, res) => {
       });
 
       stripeCustomerId = customer.id;
+    }
+
+    // If new customer is using the free token
+    if (body.priceId === "free") {
+      const cust = await getCustomerByStripeCid(stripeCustomerId);
+
+      // Add free token
+      await updateCustomerByStripeCid(stripeCustomerId, {
+        tokens: cust.tokens + 1,
+      });
+
+      return res
+        .status(200)
+        .send({ status: "success", message: "Free token sent!" });
     }
 
     // Create a checkout session

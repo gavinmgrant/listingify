@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -16,6 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import { useAuth } from "util/auth";
+import { useUser } from "util/db";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -44,11 +45,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function PricingSection(props) {
-  const classes = useStyles();
-
-  const auth = useAuth();
-
-  const plans = [
+  const allPlans = [
+    {
+      id: "1",
+      name: "1 Free Token",
+      price: "0",
+      perks: [
+        "1 real estate listing descriptions",
+        "Try our generator out for free!",
+        "For new customers only",
+      ],
+    },
     {
       id: "5",
       name: "5 Tokens",
@@ -86,6 +93,23 @@ function PricingSection(props) {
     },
   ];
 
+  const [plans, setPlans] = useState([]);
+  const classes = useStyles();
+
+  const auth = useAuth();
+
+  const uid = auth.user ? auth.user.uid : undefined;
+  const { data } = useUser(uid);
+  const isCustomer = !!data?.customers;
+
+  useEffect(() => {
+    if (!isCustomer) {
+      setPlans(allPlans);
+    } else {
+      setPlans(allPlans.splice(1));
+    }
+  }, [isCustomer]);
+
   return (
     <Section
       bgColor={props.bgColor}
@@ -102,7 +126,7 @@ function PricingSection(props) {
         />
         <Grid container={true} justifyContent="center" spacing={4}>
           {plans.map((plan, index) => (
-            <Grid item={true} xs={12} md={4} key={index}>
+            <Grid item={true} xs={12} md={isCustomer ? 4 : 3} key={index}>
               <Card className={classes.card}>
                 <CardContent className={classes.cardContent}>
                   <Typography variant="h6" component="h2">
@@ -154,10 +178,8 @@ function PricingSection(props) {
                         color="primary"
                         size="large"
                         fullWidth={true}
-                        // disabled
                       >
-                        Buy
-                        {/* Coming Soon */}
+                        {plan.id === "1" ? "Get" : "Buy"}
                       </Button>
                     </Link>
                   </Box>
