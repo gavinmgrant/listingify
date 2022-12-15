@@ -29,7 +29,7 @@ function IndexPage(props) {
         bgImage=""
         bgImageOpacity={1}
         title="Why use Listingfy?"
-        subtitle="We're here to help listing agents!"
+        subtitle="We're here to help listing agents. Try us out for free!"
       />
       {/* <ClientsSection
         bgColor="light"
