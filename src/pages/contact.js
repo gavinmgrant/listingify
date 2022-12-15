@@ -12,7 +12,7 @@ function ContactPage(props) {
         bgImage=""
         bgImageOpacity={1}
         title="Contact Us"
-        subtitle=""
+        subtitle="Drop us an email anytime."
         buttonText="Send message"
         buttonColor="primary"
         showNameField={true}

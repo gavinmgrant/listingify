@@ -1,8 +1,9 @@
 import React from "react";
+import Link from "next/link";
+import { Button, Box } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
-import Contact from "components/Contact";
 
 function ContactSection(props) {
   return (
@@ -19,11 +20,13 @@ function ContactSection(props) {
           size={4}
           textAlign="center"
         />
-        <Contact
-          showNameField={props.showNameField}
-          buttonText={props.buttonText}
-          buttonColor={props.buttonColor}
-        />
+        <Box textAlign="center">
+          <Link href="mailto:hello@listingify.com">
+            <Button variant="outlined">
+              <a>hello@listingify.com</a>
+            </Button>
+          </Link>
+        </Box>
       </Container>
     </Section>
   );

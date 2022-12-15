@@ -119,6 +119,15 @@ function Footer(props) {
                   <ListItemText>FAQ</ListItemText>
                 </ListItem>
               </Link>
+              <Link href="/contact" passHref={true}>
+                <ListItem
+                  component="a"
+                  button={true}
+                  className={classes.listItem}
+                >
+                  <ListItemText>Contact</ListItemText>
+                </ListItem>
+              </Link>
             </List>
           </Grid>
           {/* <Grid item={true} xs={12} md={4}>
@@ -140,15 +149,7 @@ function Footer(props) {
                       <ListItemText>About</ListItemText>
                     </ListItem>
                   </Link>
-                  <Link href="/contact" passHref={true}>
-                    <ListItem
-                      component="a"
-                      button={true}
-                      className={classes.listItem}
-                    >
-                      <ListItemText>Contact</ListItemText>
-                    </ListItem>
-                  </Link>
+                  
                   <ListItem
                     button={true}
                     component="a"
