@@ -9,7 +9,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { createLocalStorageStateHook } from "use-local-storage-state";
 
-const fontAlata =  "'Alata', sans-serif";
+const headingFont =  "'Poppins', sans-serif";
 
 const themeConfig = {
   // Light theme
@@ -66,24 +66,24 @@ const themeConfig = {
       // Uncomment to make button lowercase
       // button: { textTransform: "none" },
       h1: {
-        fontFamily: fontAlata,
-        fontWeight: 600,
+        fontFamily: headingFont,
+        fontWeight: 700,
       },
       h2: {
-        fontFamily: fontAlata,
-        fontWeight: 600,
+        fontFamily: headingFont,
+        fontWeight: 700,
       },
       h3: {
-        fontFamily: fontAlata,
-        fontWeight: 600,
+        fontFamily: headingFont,
+        fontWeight: 700,
       },
       h4: {
-        fontFamily: fontAlata,
-        fontWeight: 600,
+        fontFamily: headingFont,
+        fontWeight: 700,
       },
       h5: {
-        fontFamily: fontAlata,
-        fontWeight: 600,
+        fontFamily: headingFont,
+        fontWeight: 700,
       },
     },
     breakpoints: {
