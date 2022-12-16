@@ -23,6 +23,7 @@ import { landOptions } from "lib/land-options";
 import { useAuth } from "util/auth";
 import { useUser, updateCustomer, updateUser } from "util/db";
 import { useRouter } from "next/router";
+import Typewriter from "typewriter-effect";
 
 const modalStyle = {
   position: "absolute",
@@ -59,6 +60,7 @@ function GenerateSection(props) {
   const [exteriorFeatures, setExteriorFeatures] = useState([]);
   const [landFeatures, setLandFeatures] = useState([]);
   const [uniqueFeatures, setUniqueFeatures] = useState("");
+  const [editText, setEditText] = useState(false);
 
   const [isLand, setIsLand] = useState(false);
   const [landUnits, setLandUnits] = useState("sf");
@@ -214,7 +216,6 @@ function GenerateSection(props) {
                 onChange={handleAddress}
                 fullWidth
                 style={{ margin: 1 }}
-                required
               />
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
@@ -243,7 +244,6 @@ function GenerateSection(props) {
                 onChange={handlePropertyType}
                 fullWidth
                 style={{ margin: 1 }}
-                required
               >
                 {typeOptions.map((option) => (
                   <MenuItem key={option} value={option}>
@@ -463,7 +463,7 @@ function GenerateSection(props) {
                   : callGenerateEndpoint(data?.customers?.tokens);
               }}
               style={{ marginTop: "1rem" }}
-              disabled={!isUser}
+              disabled={!isUser || !address}
             >
               {isUser ? (
                 isGenerating ? (
@@ -502,28 +502,46 @@ function GenerateSection(props) {
             }
             subtitle={
               apiOutput
-                ? "Review the text below and confirm the information is accurate. Make any edits, then copy it to your clipboard and use!"
-                : "Your description will appear below after pressing the generate button."
+                ? "Review the text below and confirm the information is accurate. Click text to make edits, then copy it to your clipboard and use!"
+                : "Text will appear below after pressing the generate button."
             }
             size={4}
             textAlign="center"
           />
-          <TextField
-            variant="outlined"
-            type="text"
-            label="Description"
-            name="description"
-            margin="normal"
-            value={apiOutput}
-            onChange={handleApiOutput}
-            fullWidth
-            multiline
-            rows={14}
-            disabled={!apiOutput}
-            onClick={() => {
-              if (copied) setCopied(false);
-            }}
-          />
+          <Box>
+            {editText ? (
+              <TextField
+                variant="outlined"
+                type="text"
+                label="Description"
+                name="description"
+                margin="normal"
+                value={apiOutput}
+                onChange={handleApiOutput}
+                fullWidth
+                multiline
+                minRows={14}
+                disabled={!apiOutput}
+                onClick={() => {
+                  if (copied) setCopied(false);
+                }}
+              />
+            ) : (
+              <Typography
+                variant="subtitle1"
+                onClick={() => apiOutput && setEditText(true)}
+                style={{ cursor: "pointer" }}
+              >
+                <Typewriter
+                  options={{
+                    strings: apiOutput,
+                    autoStart: true,
+                    delay: 15,
+                  }}
+                />
+              </Typography>
+            )}
+          </Box>
           <Box textAlign="center" style={{ marginTop: "1.5rem" }}>
             <Button
               variant="contained"
