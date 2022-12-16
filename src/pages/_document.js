@@ -43,8 +43,8 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;900&display=swap"
           />
           <link
+            href="https://fonts.googleapis.com/css2?family=Alata&display=swap"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Alata:wght@300;400;500;600;700&display=swap"
           />
         </Head>
         <body>
