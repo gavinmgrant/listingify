@@ -9,15 +9,27 @@ export default class MyDocument extends Document {
         <Head>
           <link href="/favicon.ico" rel="shortcut icon" />
 
-          {/* Uncomment to add favicons for other platforms */}
-          {/* These files can be generated with realfavicongenerator.net */}
-          {/*
-          <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
-          <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
-          <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
-          <link href="/safari-pinned-tab.svg" rel="mask-icon" color="#4a9885" />
-          <link href="/site.webmanifest" rel="manifest" />
-          */}
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
+          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#546e7a" />
+          <meta name="msapplication-TileColor" content="#cfd8dc" />
+          <meta name="theme-color" content="#cfd8dc" />
 
           {/* Google Fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
