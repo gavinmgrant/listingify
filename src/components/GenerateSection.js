@@ -354,11 +354,18 @@ function GenerateSection(props) {
                 name="lot-size"
                 placeholder="Enter lot size"
                 margin="normal"
+                helperText="Click the button on the right to toggle units"
                 InputProps={{
                   inputProps: { min: 0 },
                   endAdornment: (
                     <InputAdornment
-                      style={{ cursor: "pointer" }}
+                      style={{
+                        cursor: "pointer",
+                        padding: "16px 12px",
+                        border: "1px solid rgb(118, 118, 118)",
+                        color: "rgb(118, 118, 118)",
+                        borderRadius: "32px",
+                      }}
                       position="end"
                       onClick={() => {
                         if (landUnits === "sf") {
@@ -442,6 +449,7 @@ function GenerateSection(props) {
             margin="normal"
             value={uniqueFeatures}
             onChange={handleUniqueFeatures}
+            helperText="Write any other features of the property not listed above. Separate features with commas."
             fullWidth
           />
           <Box textAlign="center" style={{ marginTop: "1rem" }}>

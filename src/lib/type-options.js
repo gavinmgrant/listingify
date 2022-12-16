@@ -1,5 +1,5 @@
 export const typeOptions = [
-  "house",
+  "single family house",
   "townhouse",
   "condo",
   "vacant land",

@@ -15,11 +15,11 @@ function IndexPage(props) {
         bgColor="primary"
         size="large"
         bgImage="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1600&h=800&q=80"
-        bgImageOpacity={0.2}
+        bgImageOpacity={0.3}
         title="AI-powered real estate listing descriptions"
         subtitle="Don't waste time writing property descriptions. Let us write them for you!"
         buttonText="Get Started"
-        buttonColor="default"
+        buttonColor="secondary"
         buttonPath="/generate"
         typewriter
       />
@@ -67,7 +67,7 @@ function IndexPage(props) {
         title="Ready to get started?"
         subtitle=""
         buttonText="Get Started"
-        buttonColor="default"
+        buttonColor="secondary"
         buttonPath="/generate"
       />
     </>

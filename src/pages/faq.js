@@ -23,7 +23,7 @@ function FaqPage(props) {
         title="Ready to get started?"
         subtitle=""
         buttonText="Get Started"
-        buttonColor="default"
+        buttonColor="secondary"
         buttonPath="/pricing"
       />
     </>
