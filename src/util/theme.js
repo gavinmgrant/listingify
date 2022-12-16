@@ -9,7 +9,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { createLocalStorageStateHook } from "use-local-storage-state";
 
-const headingFont =  "'Poppins', sans-serif";
+const headingFont =  "'Roboto', sans-serif";
 
 const themeConfig = {
   // Light theme
