@@ -9,7 +9,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { createLocalStorageStateHook } from "use-local-storage-state";
 
-const headingFont =  "'Roboto', sans-serif";
+const headingFont =  "'Alata', sans-serif";
 
 const themeConfig = {
   // Light theme
@@ -67,15 +67,15 @@ const themeConfig = {
       // button: { textTransform: "none" },
       h1: {
         fontFamily: headingFont,
-        fontWeight: 900,
+        fontWeight: 700,
       },
       h2: {
         fontFamily: headingFont,
-        fontWeight: 900,
+        fontWeight: 700,
       },
       h3: {
         fontFamily: headingFont,
-        fontWeight: 900,
+        fontWeight: 600,
       },
       h4: {
         fontFamily: headingFont,
