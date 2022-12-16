@@ -67,15 +67,15 @@ const themeConfig = {
       // button: { textTransform: "none" },
       h1: {
         fontFamily: headingFont,
-        fontWeight: 700,
+        fontWeight: 900,
       },
       h2: {
         fontFamily: headingFont,
-        fontWeight: 700,
+        fontWeight: 900,
       },
       h3: {
         fontFamily: headingFont,
-        fontWeight: 700,
+        fontWeight: 900,
       },
       h4: {
         fontFamily: headingFont,

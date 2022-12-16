@@ -15,7 +15,7 @@ function HeroSection(props) {
       bgImageOpacity={props.bgImageOpacity}
     >
       <Container>
-        <Box textAlign="center" p={12}>
+        <Box textAlign="center" py={12}>
           <SectionHeader
             title={props.title}
             subtitle={props.subtitle}
