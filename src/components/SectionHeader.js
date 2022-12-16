@@ -53,7 +53,7 @@ function SectionHeader(props) {
               options={{
                 strings: subtitle,
                 autoStart: true,
-                delay: 40,
+                delay: 16,
               }}
             />
           </Typography>
