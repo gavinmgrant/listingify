@@ -50,12 +50,12 @@ function GenerateSection(props) {
   const [address, setAddress] = useState("");
   const [neighborhood, setNeighborhood] = useState("");
   const [propertyType, setPropertyType] = useState("");
-  const [bedrooms, setBedrooms] = useState(0);
-  const [baths, setBaths] = useState(0);
+  const [bedrooms, setBedrooms] = useState(undefined);
+  const [baths, setBaths] = useState(undefined);
   const [parking, setParking] = useState("");
   const [yearBuilt, setYearBuilt] = useState(currentYear);
-  const [floorArea, setFloorArea] = useState(0);
-  const [lotSize, setLotSize] = useState(0);
+  const [floorArea, setFloorArea] = useState(undefined);
+  const [lotSize, setLotSize] = useState(undefined);
   const [interiorFeatures, setInteriorFeatures] = useState([]);
   const [exteriorFeatures, setExteriorFeatures] = useState([]);
   const [landFeatures, setLandFeatures] = useState([]);
@@ -77,8 +77,8 @@ function GenerateSection(props) {
           address,
           neighborhood,
           propertyType,
-          lotSize: lotSize.toString() + " " + landUnits,
-          landFeatures: landFeatures.join(", "),
+          lotSize: lotSize ? lotSize.toString() + " " + landUnits : "",
+          landFeatures: landFeatures ? landFeatures.join(", ") : "",
           uniqueFeatures,
         })
       : JSON.stringify({
@@ -89,10 +89,10 @@ function GenerateSection(props) {
           baths,
           parking,
           yearBuilt,
-          floorArea: floorArea.toString() + " sf",
-          lotSize: lotSize.toString() + " " + landUnits,
-          interiorFeatures: interiorFeatures.join(", "),
-          exteriorFeatures: exteriorFeatures.join(", "),
+          floorArea: floorArea ? floorArea.toString() + " sf" : "",
+          lotSize: lotSize ? lotSize.toString() + " " + landUnits : "",
+          interiorFeatures: interiorFeatures ? interiorFeatures.join(", ") : "",
+          exteriorFeatures: exteriorFeatures ? exteriorFeatures.join(", ") : "",
           uniqueFeatures,
         });
 
@@ -174,6 +174,34 @@ function GenerateSection(props) {
     }
   }, [descriptionRef.current, apiOutput]);
 
+  useEffect(() => {
+    const confirmationMessage =
+      "Are you sure you want to leave? Remember to copy your description!";
+    const beforeUnloadHandler = (e) => {
+      (e || window.event).returnValue = confirmationMessage;
+      return confirmationMessage;
+    };
+    const beforeRouteHandler = (url) => {
+      if (router.pathname !== url && !confirm(confirmationMessage)) {
+        // to inform NProgress or something ...
+        router.events.emit("routeChangeError");
+        // tslint:disable-next-line: no-string-throw
+        throw `Route change to "${url}" was aborted (this error can be safely ignored). See https://github.com/zeit/next.js/issues/2476.`;
+      }
+    };
+    if (apiOutput) {
+      window.addEventListener("beforeunload", beforeUnloadHandler);
+      router.events.on("routeChangeStart", beforeRouteHandler);
+    } else {
+      window.removeEventListener("beforeunload", beforeUnloadHandler);
+      router.events.off("routeChangeStart", beforeRouteHandler);
+    }
+    return () => {
+      window.removeEventListener("beforeunload", beforeUnloadHandler);
+      router.events.off("routeChangeStart", beforeRouteHandler);
+    };
+  }, [apiOutput]);
+
   return (
     <Section
       bgColor={props.bgColor}
@@ -216,6 +244,7 @@ function GenerateSection(props) {
                 onChange={handleAddress}
                 fullWidth
                 style={{ margin: 1 }}
+                helperText="Enter street number, name, city and state"
               />
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
@@ -230,6 +259,7 @@ function GenerateSection(props) {
                 onChange={handleNeighborhood}
                 fullWidth
                 style={{ margin: 1 }}
+                helperText="Enter the community or neighborhood name"
               />
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
@@ -278,7 +308,7 @@ function GenerateSection(props) {
                     name="baths"
                     placeholder="Enter number of baths"
                     margin="normal"
-                    InputProps={{ inputProps: { min: 0 } }}
+                    InputProps={{ inputProps: { min: 0, step: 0.25 } }}
                     value={baths}
                     onChange={handleBaths}
                     fullWidth
@@ -397,11 +427,15 @@ function GenerateSection(props) {
               groupBy={(option) => option.charAt(0)}
               filterSelectedOptions
               renderInput={(params) => (
-                <TextField {...params} label="Vacant Land Features" />
+                <TextField
+                  {...params}
+                  label="Vacant Land Features, type to autocomplete"
+                />
               )}
               value={landFeatures}
               onChange={handleLandFeatures}
               style={{ margin: "1rem 0" }}
+              helperText="Test"
             />
           ) : (
             <>
@@ -415,7 +449,10 @@ function GenerateSection(props) {
                 groupBy={(option) => option.charAt(0)}
                 filterSelectedOptions
                 renderInput={(params) => (
-                  <TextField {...params} label="Interior Features" />
+                  <TextField
+                    {...params}
+                    label="Interior Features, type to autocomplete"
+                  />
                 )}
                 value={interiorFeatures}
                 onChange={handleInteriorFeatures}
@@ -431,7 +468,10 @@ function GenerateSection(props) {
                 groupBy={(option) => option.charAt(0)}
                 filterSelectedOptions
                 renderInput={(params) => (
-                  <TextField {...params} label="Exterior Features" />
+                  <TextField
+                    {...params}
+                    label="Exterior Features, type to autocomplete"
+                  />
                 )}
                 value={exteriorFeatures}
                 onChange={handleExteriorFeatures}

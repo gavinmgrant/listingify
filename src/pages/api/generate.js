@@ -7,7 +7,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const basePromptPrefix = `
-​​Write a detailed MLS real estate listing description that is at least 200 words and no more than 250 words.
+​​Write a detailed MLS real estate listing description that is at least 175 words and no more than 300 words.
 Start with an opening statement that will encourage people to keep reading.
 Appeal to the reader's emotions with useful verbs that communicate a strong sense of action.
 Use the exact numbers provided for number of bedrooms, baths, floor area, and lot size.

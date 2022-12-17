@@ -55,7 +55,7 @@ function FaqSection(props) {
     {
       question: "How long are your listing descriptions?",
       answer:
-        "It varies depending on the information provided, but typically they fall in the 200 to 300 word range.",
+        "It varies depending on the amount of information provided, but typically they fall in the 175 to 300 word range.",
     },
     {
       question: "What AI technology do you use?",
