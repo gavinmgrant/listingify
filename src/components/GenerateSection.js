@@ -456,7 +456,7 @@ function GenerateSection(props) {
                   <TextField
                     {...params}
                     label="Interior Features"
-                    placeholder="start typing to find feature"
+                    placeholder="Start typing to find feature"
                   />
                 )}
                 filterSelectedOptions
@@ -476,7 +476,7 @@ function GenerateSection(props) {
                   <TextField
                     {...params}
                     label="Exterior Features"
-                    placeholder="start typing to find feature"
+                    placeholder="Start typing to find feature"
                   />
                 )}
                 filterSelectedOptions
