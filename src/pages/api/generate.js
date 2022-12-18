@@ -12,6 +12,7 @@ Start with an opening statement that will encourage people to keep reading.
 Appeal to the reader's emotions with useful verbs that communicate a strong sense of action.
 Use the exact numbers provided for number of bedrooms, baths, floor area, and lot size.
 Use the list of features below to write a compelling story to a potential buyer as to why they would buy this property.
+Explain the benefits of the features for a home.
 If any of the values are 0 or empty ignore that feature in the description.
 Highlight the unique features early in the description.
 At the end, include why you'd want to live in the neighborhood provided below, such as any notable landmarks nearby or if it's walkable.

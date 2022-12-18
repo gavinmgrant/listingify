@@ -53,7 +53,7 @@ function GenerateSection(props) {
   const [bedrooms, setBedrooms] = useState(undefined);
   const [baths, setBaths] = useState(undefined);
   const [parking, setParking] = useState("");
-  const [yearBuilt, setYearBuilt] = useState(currentYear);
+  const [yearBuilt, setYearBuilt] = useState(undefined);
   const [floorArea, setFloorArea] = useState(undefined);
   const [lotSize, setLotSize] = useState(undefined);
   const [interiorFeatures, setInteriorFeatures] = useState([]);
@@ -116,9 +116,9 @@ function GenerateSection(props) {
     setIsGenerating(false);
   };
 
-  const interiorOptionsArray = interiorOptions.map(opt => opt.option)
-  const exteriorOptionsArray = exteriorOptions.map(opt => opt.option)
-  const landOptionsArray = landOptions.map(opt => opt.option)
+  const interiorOptionsArray = interiorOptions.map((opt) => opt.option);
+  const exteriorOptionsArray = exteriorOptions.map((opt) => opt.option);
+  const landOptionsArray = landOptions.map((opt) => opt.option);
 
   const handleAddress = (event) => {
     setAddress(event.target.value);
@@ -427,8 +427,7 @@ function GenerateSection(props) {
               variant="outlined"
               multiple
               options={landOptionsArray.sort(
-                (a, b) =>
-                  -b.charAt(0).localeCompare(a.charAt(0))
+                (a, b) => -b.charAt(0).localeCompare(a.charAt(0))
               )}
               renderInput={(params) => (
                 <TextField
@@ -449,8 +448,7 @@ function GenerateSection(props) {
                 variant="outlined"
                 multiple
                 options={interiorOptionsArray.sort(
-                  (a, b) =>
-                    -b.charAt(0).localeCompare(a.charAt(0))
+                  (a, b) => -b.charAt(0).localeCompare(a.charAt(0))
                 )}
                 renderInput={(params) => (
                   <TextField
@@ -469,8 +467,7 @@ function GenerateSection(props) {
                 variant="outlined"
                 multiple
                 options={exteriorOptionsArray.sort(
-                  (a, b) =>
-                    -b.charAt(0).localeCompare(a.charAt(0))
+                  (a, b) => -b.charAt(0).localeCompare(a.charAt(0))
                 )}
                 renderInput={(params) => (
                   <TextField
@@ -512,7 +509,7 @@ function GenerateSection(props) {
                   : callGenerateEndpoint(data?.customers?.tokens);
               }}
               style={{ marginTop: "1rem" }}
-              disabled={!isUser || !address}
+              disabled={!isUser || !address || apiOutput}
             >
               {isUser ? (
                 isGenerating ? (
@@ -557,6 +554,24 @@ function GenerateSection(props) {
             size={4}
             textAlign="center"
           />
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="flex-end"
+            direction="row"
+          >
+            <Button
+              variant="outlined"
+              disabled={!apiOutput}
+              onClick={() => {
+                setApiOutput("");
+                setEditText(false)
+              }}
+              style={{ marginLeft: "1rem", marginBottom: "1rem" }}
+            >
+              Clear Description
+            </Button>
+          </Box>
           <Box>
             {editText ? (
               <TextField
