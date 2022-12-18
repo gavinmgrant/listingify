@@ -149,13 +149,13 @@ function GenerateSection(props) {
     setLotSize(event.target.value);
   };
   const handleInteriorFeatures = (event, value) => {
-    setInteriorFeatures(value);
+    setInteriorFeatures(value.option);
   };
   const handleExteriorFeatures = (event, value) => {
-    setExteriorFeatures(value);
+    setExteriorFeatures(value.option);
   };
   const handleLandFeatures = (event, value) => {
-    setLandFeatures(value);
+    setLandFeatures(value.option);
   };
   const handleUniqueFeatures = (event) => {
     setUniqueFeatures(event.target.value);
@@ -230,7 +230,7 @@ function GenerateSection(props) {
           size={4}
           textAlign="center"
         />
-        <FormControl fullWidth>
+        <FormControl fullWidth autoComplete="off">
           <Grid container spacing={2} columns={12}>
             <Grid item xs={12} sm={6} md={4}>
               <TextField
@@ -245,6 +245,7 @@ function GenerateSection(props) {
                 fullWidth
                 style={{ margin: 1 }}
                 helperText="Enter street number, name, city and state"
+                autoComplete="off"
               />
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
@@ -260,6 +261,7 @@ function GenerateSection(props) {
                 fullWidth
                 style={{ margin: 1 }}
                 helperText="Enter the community or neighborhood name"
+                autoComplete="off"
               />
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
@@ -421,10 +423,11 @@ function GenerateSection(props) {
               variant="outlined"
               multiple
               options={landOptions.sort(
-                (a, b) => -b.charAt(0).localeCompare(a.charAt(0))
+                (a, b) =>
+                  -b.category.charAt(0).localeCompare(a.category.charAt(0))
               )}
-              getOptionLabel={(option) => option}
-              groupBy={(option) => option.charAt(0)}
+              getOptionLabel={(option) => option.option}
+              groupBy={(option) => option.category}
               filterSelectedOptions
               renderInput={(params) => (
                 <TextField
@@ -436,6 +439,7 @@ function GenerateSection(props) {
               onChange={handleLandFeatures}
               style={{ margin: "1rem 0" }}
               helperText="Test"
+              autoComplete="off"
             />
           ) : (
             <>
@@ -443,10 +447,11 @@ function GenerateSection(props) {
                 variant="outlined"
                 multiple
                 options={interiorOptions.sort(
-                  (a, b) => -b.charAt(0).localeCompare(a.charAt(0))
+                  (a, b) =>
+                    -b.category.charAt(0).localeCompare(a.category.charAt(0))
                 )}
-                getOptionLabel={(option) => option}
-                groupBy={(option) => option.charAt(0)}
+                getOptionLabel={(option) => option.option}
+                groupBy={(option) => option.category}
                 filterSelectedOptions
                 renderInput={(params) => (
                   <TextField
@@ -457,15 +462,17 @@ function GenerateSection(props) {
                 value={interiorFeatures}
                 onChange={handleInteriorFeatures}
                 style={{ margin: "1rem 0" }}
+                autoComplete="off"
               />
               <Autocomplete
                 variant="outlined"
                 multiple
                 options={exteriorOptions.sort(
-                  (a, b) => -b.charAt(0).localeCompare(a.charAt(0))
+                  (a, b) =>
+                    -b.category.charAt(0).localeCompare(a.category.charAt(0))
                 )}
-                getOptionLabel={(option) => option}
-                groupBy={(option) => option.charAt(0)}
+                getOptionLabel={(option) => option.option}
+                groupBy={(option) => option.category}
                 filterSelectedOptions
                 renderInput={(params) => (
                   <TextField
@@ -476,6 +483,7 @@ function GenerateSection(props) {
                 value={exteriorFeatures}
                 onChange={handleExteriorFeatures}
                 style={{ margin: "1rem 0" }}
+                autoComplete="off"
               />
             </>
           )}
@@ -491,6 +499,7 @@ function GenerateSection(props) {
             onChange={handleUniqueFeatures}
             helperText="Write any other features of the property not listed above. Separate features with commas."
             fullWidth
+            autoComplete="off"
           />
           <Box textAlign="center" style={{ marginTop: "1rem" }}>
             <Button

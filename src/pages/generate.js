@@ -12,7 +12,7 @@ function GeneratePage(props) {
         bgImage=""
         bgImageOpacity={1}
         title="Generate your listing description"
-        subtitle="We'll write a detailed real estate listing description based on the information below."
+        subtitle="We'll write a detailed real estate listing description based on the information below. Focus on the key features you want in the description. This does not need to be an exhaustive list of every feature."
       />
     </>
   );
