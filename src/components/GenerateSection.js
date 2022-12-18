@@ -116,6 +116,10 @@ function GenerateSection(props) {
     setIsGenerating(false);
   };
 
+  const interiorOptionsArray = interiorOptions.map(opt => opt.option)
+  const exteriorOptionsArray = exteriorOptions.map(opt => opt.option)
+  const landOptionsArray = landOptions.map(opt => opt.option)
+
   const handleAddress = (event) => {
     setAddress(event.target.value);
   };
@@ -149,13 +153,13 @@ function GenerateSection(props) {
     setLotSize(event.target.value);
   };
   const handleInteriorFeatures = (event, value) => {
-    setInteriorFeatures(value.option);
+    setInteriorFeatures(value);
   };
   const handleExteriorFeatures = (event, value) => {
-    setExteriorFeatures(value.option);
+    setExteriorFeatures(value);
   };
   const handleLandFeatures = (event, value) => {
-    setLandFeatures(value.option);
+    setLandrFeatures(value);
   };
   const handleUniqueFeatures = (event) => {
     setUniqueFeatures(event.target.value);
@@ -422,68 +426,64 @@ function GenerateSection(props) {
             <Autocomplete
               variant="outlined"
               multiple
-              options={landOptions.sort(
+              options={landOptionsArray.sort(
                 (a, b) =>
-                  -b.category.charAt(0).localeCompare(a.category.charAt(0))
+                  -b.charAt(0).localeCompare(a.charAt(0))
               )}
-              getOptionLabel={(option) => option.option}
-              groupBy={(option) => option.category}
-              filterSelectedOptions
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Vacant Land Features, type to autocomplete"
                 />
               )}
+              filterSelectedOptions
               value={landFeatures}
               onChange={handleLandFeatures}
               style={{ margin: "1rem 0" }}
               helperText="Test"
-              autoComplete="off"
+              autoComplete={false}
             />
           ) : (
             <>
               <Autocomplete
                 variant="outlined"
                 multiple
-                options={interiorOptions.sort(
+                options={interiorOptionsArray.sort(
                   (a, b) =>
-                    -b.category.charAt(0).localeCompare(a.category.charAt(0))
+                    -b.charAt(0).localeCompare(a.charAt(0))
                 )}
-                getOptionLabel={(option) => option.option}
-                groupBy={(option) => option.category}
-                filterSelectedOptions
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="Interior Features, type to autocomplete"
+                    label="Interior Features"
+                    placeholder="start typing to find feature"
                   />
                 )}
+                filterSelectedOptions
                 value={interiorFeatures}
                 onChange={handleInteriorFeatures}
                 style={{ margin: "1rem 0" }}
-                autoComplete="off"
+                autoComplete={false}
               />
               <Autocomplete
                 variant="outlined"
                 multiple
-                options={exteriorOptions.sort(
+                options={exteriorOptionsArray.sort(
                   (a, b) =>
-                    -b.category.charAt(0).localeCompare(a.category.charAt(0))
+                    -b.charAt(0).localeCompare(a.charAt(0))
                 )}
-                getOptionLabel={(option) => option.option}
-                groupBy={(option) => option.category}
-                filterSelectedOptions
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="Exterior Features, type to autocomplete"
+                    label="Exterior Features"
+                    placeholder="start typing to find feature"
                   />
                 )}
+                filterSelectedOptions
                 value={exteriorFeatures}
                 onChange={handleExteriorFeatures}
                 style={{ margin: "1rem 0" }}
-                autoComplete="off"
+                autoComplete={false}
               />
             </>
           )}
