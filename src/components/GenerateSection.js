@@ -234,6 +234,19 @@ function GenerateSection(props) {
           size={4}
           textAlign="center"
         />
+        {!isUser && (
+          <Box textAlign="center" marginY="2rem" marginBottom="3rem">
+            <p>Don't have an account? Sign up and get a free token!</p>
+            <Button
+              variant="contained"
+              size="large"
+              color="primary"
+              onClick={() => router.push("/auth/signup")}
+            >
+              Create an account
+            </Button>
+          </Box>
+        )}
         <FormControl fullWidth autoComplete="off">
           <Grid container spacing={2} columns={12}>
             <Grid item xs={12} sm={6} md={4}>
@@ -523,19 +536,6 @@ function GenerateSection(props) {
                 "Sign in to Generate"
               )}
             </Button>
-            {!isUser && (
-              <>
-                <p>Don't have an account? Sign up and get a free token!</p>
-                <Button
-                  variant="contained"
-                  size="large"
-                  color="primary"
-                  onClick={() => router.push("/auth/signup")}
-                >
-                  Create an account
-                </Button>
-              </>
-            )}
           </Box>
         </FormControl>
         <Container
@@ -565,7 +565,7 @@ function GenerateSection(props) {
               disabled={!apiOutput}
               onClick={() => {
                 setApiOutput("");
-                setEditText(false)
+                setEditText(false);
               }}
               style={{ marginLeft: "1rem", marginBottom: "1rem" }}
             >

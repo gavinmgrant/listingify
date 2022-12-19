@@ -2,6 +2,7 @@ import React from "react";
 import Meta from "components/Meta";
 import HeroSection from "components/HeroSection";
 import FeaturesSection from "components/FeaturesSection";
+import CompareSection from "components/CompareSection";
 // import ClientsSection from "components/ClientsSection";
 // import TestimonialsSection from "components/TestimonialsSection";
 // import NewsletterSection from "components/NewsletterSection";
@@ -30,6 +31,14 @@ function IndexPage(props) {
         bgImageOpacity={1}
         title="Why use Listingfy?"
         subtitle="We're here to help listing agents. Try us out for free!"
+      />
+      <CompareSection
+        bgColor="default"
+        size="medium"
+        bgImage=""
+        bgImageOpacity={1}
+        title="Compare what we wrote vs. the typical description."
+        subtitle="Using the same property address, this is what Listingify wrote compared to what was on the MLS."
       />
       {/* <ClientsSection
         bgColor="light"
