@@ -12,7 +12,7 @@ import {
   Typography,
   Modal,
 } from "@material-ui/core";
-import { Autocomplete, Skeleton } from "@material-ui/lab";
+import { Autocomplete } from "@material-ui/lab";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import { typeOptions } from "lib/type-options";
@@ -21,7 +21,7 @@ import { interiorOptions } from "lib/interior-options";
 import { exteriorOptions } from "lib/exterior-options";
 import { landOptions } from "lib/land-options";
 import { useAuth } from "util/auth";
-import { useUser, updateCustomer, updateUser } from "util/db";
+import { useUser, updateCustomer } from "util/db";
 import { useRouter } from "next/router";
 import Typewriter from "typewriter-effect";
 
@@ -159,7 +159,7 @@ function GenerateSection(props) {
     setExteriorFeatures(value);
   };
   const handleLandFeatures = (event, value) => {
-    setLandrFeatures(value);
+    setLandFeatures(value);
   };
   const handleUniqueFeatures = (event) => {
     setUniqueFeatures(event.target.value);
