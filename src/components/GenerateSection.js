@@ -600,7 +600,7 @@ function GenerateSection(props) {
                   options={{
                     strings: apiOutput,
                     autoStart: true,
-                    delay: 16,
+                    delay: 10,
                   }}
                 />
               </Typography>
