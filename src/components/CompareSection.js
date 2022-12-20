@@ -10,6 +10,8 @@ import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
@@ -31,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
 
 function CompareSection(props) {
   const classes = useStyles();
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   const items = [
     {
@@ -71,7 +75,7 @@ function CompareSection(props) {
                 className={classes.gridItem}
                 key={index}
               >
-                <Box p={6}>
+                <Box p={isSmall ? 3 : 6}>
                   {item.icon === "no" && (
                     <CancelIcon style={{ fontSize: 64 }} />
                   )}

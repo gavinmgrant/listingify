@@ -8,10 +8,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { emphasize } from "@material-ui/core/styles/colorManipulator";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
-import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import PaymentsIcon from '@mui/icons-material/Payments';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import PaymentsIcon from "@mui/icons-material/Payments";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
@@ -33,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
 
 function FeaturesSection(props) {
   const classes = useStyles();
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   const items = [
     {
@@ -81,11 +85,19 @@ function FeaturesSection(props) {
                 className={classes.gridItem}
                 key={index}
               >
-                <Box p={6}>
-                  {item.icon === "thumb" && <ThumbDownOffAltIcon style={{ fontSize: 64 }} />}
-                  {item.icon === "time" && <AccessTimeIcon style={{ fontSize: 64 }} />}
-                  {item.icon === "money" && <PaymentsIcon style={{ fontSize: 64 }} />}
-                  {item.icon === "social" && <TwitterIcon style={{ fontSize: 64 }} />}
+                <Box p={isSmall ? 3 : 6}>
+                  {item.icon === "thumb" && (
+                    <ThumbDownOffAltIcon style={{ fontSize: 64 }} />
+                  )}
+                  {item.icon === "time" && (
+                    <AccessTimeIcon style={{ fontSize: 64 }} />
+                  )}
+                  {item.icon === "money" && (
+                    <PaymentsIcon style={{ fontSize: 64 }} />
+                  )}
+                  {item.icon === "social" && (
+                    <TwitterIcon style={{ fontSize: 64 }} />
+                  )}
                   <Typography variant="h5" gutterBottom={true}>
                     {item.title}
                   </Typography>
