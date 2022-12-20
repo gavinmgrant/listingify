@@ -22,7 +22,7 @@ function ContactSection(props) {
         />
         <Box textAlign="center">
           <Link href="mailto:hello@listingify.com">
-            <Button variant="outlined">
+            <Button variant="contained" size="large" color="primary">
               <a>hello@listingify.com</a>
             </Button>
           </Link>
