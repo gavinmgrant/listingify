@@ -65,7 +65,7 @@ function GenerateSection(props) {
   const [isLand, setIsLand] = useState(false);
   const [landUnits, setLandUnits] = useState("sf");
 
-  const [apiOutput, setApiOutput] = useState("");
+  const [apiOutput, setApiOutput] = useState("dafdasfads");
   const [copied, setCopied] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -180,7 +180,7 @@ function GenerateSection(props) {
 
   useEffect(() => {
     const confirmationMessage =
-      "Are you sure you want to leave? Remember to copy your description!";
+      "Are you sure you want to leave? When you leave this page the description will be deleted. Remember to copy your description!";
     const beforeUnloadHandler = (e) => {
       (e || window.event).returnValue = confirmationMessage;
       return confirmationMessage;
