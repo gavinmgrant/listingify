@@ -65,7 +65,7 @@ function GenerateSection(props) {
   const [isLand, setIsLand] = useState(false);
   const [landUnits, setLandUnits] = useState("sf");
 
-  const [apiOutput, setApiOutput] = useState("dafdasfads");
+  const [apiOutput, setApiOutput] = useState("");
   const [copied, setCopied] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
