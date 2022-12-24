@@ -81,6 +81,9 @@ function Footer(props) {
 
             <div className={classes.legal}>
               {props.copyright}
+              <Link href="https://www.gavingrant.co/" passHref={true}>
+                <LinkMui>Gavin Grant</LinkMui>
+              </Link>
               <Link href="/legal/terms-of-service" passHref={true}>
                 <LinkMui>Terms</LinkMui>
               </Link>
