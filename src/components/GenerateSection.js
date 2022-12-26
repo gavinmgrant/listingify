@@ -72,13 +72,17 @@ function GenerateSection(props) {
   const callGenerateEndpoint = async (currentTokens) => {
     setIsGenerating(true);
 
+    const interiorFeaturesArray = interiorFeatures.map((feat) => feat.option);
+    const exteriorFeaturesArray = exteriorFeatures.map((feat) => feat.option);
+    const landFeaturesArray = landFeatures.map((feat) => feat.option);
+
     const body = isLand
       ? JSON.stringify({
           address,
           neighborhood,
           propertyType,
           lotSize: lotSize ? lotSize.toString() + " " + landUnits : "",
-          landFeatures: landFeatures ? landFeatures.join(", ") : "",
+          landFeatures: landFeaturesArray ? landFeaturesArray.join(", ") : "",
           uniqueFeatures,
         })
       : JSON.stringify({
@@ -91,8 +95,12 @@ function GenerateSection(props) {
           yearBuilt,
           floorArea: floorArea ? floorArea.toString() + " sf" : "",
           lotSize: lotSize ? lotSize.toString() + " " + landUnits : "",
-          interiorFeatures: interiorFeatures ? interiorFeatures.join(", ") : "",
-          exteriorFeatures: exteriorFeatures ? exteriorFeatures.join(", ") : "",
+          interiorFeatures: interiorFeaturesArray
+            ? interiorFeaturesArray.join(", ")
+            : "",
+          exteriorFeatures: exteriorFeaturesArray
+            ? exteriorFeaturesArray.join(", ")
+            : "",
           uniqueFeatures,
         });
 
@@ -115,10 +123,6 @@ function GenerateSection(props) {
 
     setIsGenerating(false);
   };
-
-  const interiorOptionsArray = interiorOptions.map((opt) => opt.option);
-  const exteriorOptionsArray = exteriorOptions.map((opt) => opt.option);
-  const landOptionsArray = landOptions.map((opt) => opt.option);
 
   const handleAddress = (event) => {
     setAddress(event.target.value);
@@ -439,9 +443,11 @@ function GenerateSection(props) {
             <Autocomplete
               variant="outlined"
               multiple
-              options={landOptionsArray.sort(
-                (a, b) => -b.charAt(0).localeCompare(a.charAt(0))
+              options={landOptions.sort(
+                (a, b) => -b.category.localeCompare(a.category)
               )}
+              getOptionLabel={(option) => option.option}
+              groupBy={(option) => option.category}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -460,9 +466,11 @@ function GenerateSection(props) {
               <Autocomplete
                 variant="outlined"
                 multiple
-                options={interiorOptionsArray.sort(
-                  (a, b) => -b.charAt(0).localeCompare(a.charAt(0))
+                options={interiorOptions.sort(
+                  (a, b) => -b.category.localeCompare(a.category)
                 )}
+                getOptionLabel={(option) => option.option}
+                groupBy={(option) => option.category}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -479,9 +487,11 @@ function GenerateSection(props) {
               <Autocomplete
                 variant="outlined"
                 multiple
-                options={exteriorOptionsArray.sort(
-                  (a, b) => -b.charAt(0).localeCompare(a.charAt(0))
+                options={exteriorOptions.sort(
+                  (a, b) => -b.category.localeCompare(a.category)
                 )}
+                getOptionLabel={(option) => option.option}
+                groupBy={(option) => option.category}
                 renderInput={(params) => (
                   <TextField
                     {...params}

@@ -85,4 +85,7 @@ export const exteriorOptions = [
   { category: "Views", option: "lake views" },
   { category: "Views", option: "mountain views" },
   { category: "Views", option: "ocean views" },
+  { category: "Outdoor Spaces", option: "back porch" },
+  { category: "Outdoor Spaces", option: "courtyard" },
+  { category: "Outdoor Spaces", option: "front porch" },
 ];

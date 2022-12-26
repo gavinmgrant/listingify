@@ -6,7 +6,7 @@ import CtaSection from "components/CtaSection";
 function FaqPage(props) {
   return (
     <>
-      <Meta title="Faq" />
+      <Meta title="FAQ" />
       <FaqSection
         bgColor="default"
         size="medium"
