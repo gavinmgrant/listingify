@@ -23,7 +23,7 @@ function Meta(props) {
     // Page description
     description: "AI-powered real estate listing descriptions",
     // Social share image (create this file in /public/images/)
-    image: "/images/social.png",
+    image: "/images/listingify-og.png",
     // Page type (see https://ogp.me/#types)
     type: "website",
   };

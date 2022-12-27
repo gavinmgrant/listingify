@@ -15,7 +15,7 @@ function IndexPage(props) {
       <HeroSection
         bgColor="primary"
         size="large"
-        bgImage="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1600&h=800&q=80"
+        bgImage="/images/kitchen.png"
         bgImageOpacity={0.3}
         title="AI-powered real estate listing descriptions"
         subtitle="Don't waste time writing property descriptions. Let us write them for you!"
