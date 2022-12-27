@@ -1,5 +1,4 @@
 import React from "react";
-import Meta from "components/Meta";
 import HeroSection from "components/HeroSection";
 import FeaturesSection from "components/FeaturesSection";
 import CompareSection from "components/CompareSection";
@@ -11,7 +10,6 @@ import CtaSection from "components/CtaSection";
 function IndexPage(props) {
   return (
     <>
-      <Meta />
       <HeroSection
         bgColor="primary"
         size="large"

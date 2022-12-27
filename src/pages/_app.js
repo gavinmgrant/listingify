@@ -6,12 +6,14 @@ import "util/analytics";
 import { AuthProvider } from "util/auth";
 import { ThemeProvider } from "util/theme";
 import { QueryClientProvider } from "util/db";
+import Meta from "components/Meta";
 
 function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider>
       <ThemeProvider>
         <AuthProvider>
+          <Meta />
           {/* <Chat /> */}
           <>
             <Navbar
