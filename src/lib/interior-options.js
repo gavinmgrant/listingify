@@ -20,6 +20,7 @@ export const interiorOptions = [
   { category: "Cooling", option: "ceiling fans" },
   { category: "Cooling", option: "central air conditioning" },
   { category: "Cooling", option: "zoned cooling" },
+  { category: "Flooring", option: "carpet flooring" },
   { category: "Flooring", option: "concrete flooring" },
   { category: "Flooring", option: "engineered wood flooring" },
   { category: "Flooring", option: "hardwood flooring" },

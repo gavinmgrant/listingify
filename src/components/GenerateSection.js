@@ -577,7 +577,7 @@ function GenerateSection(props) {
                 setApiOutput("");
                 setEditText(false);
               }}
-              style={{ marginLeft: "1rem", marginBottom: "1rem" }}
+              style={{ marginLeft: "1rem", marginBottom: "1.5rem" }}
             >
               Clear Description
             </Button>
@@ -604,13 +604,24 @@ function GenerateSection(props) {
               <Typography
                 variant="subtitle1"
                 onClick={() => apiOutput && setEditText(true)}
-                style={{ cursor: "pointer" }}
+                style={{
+                  cursor: "pointer",
+                  border: "1px solid #000000",
+                  borderRadius: "4px",
+                  padding: "13px",
+                }}
               >
                 <Typewriter
                   options={{
-                    strings: apiOutput,
+                    strings:
+                      apiOutput ||
+                      "Waiting for your information above.",
                     autoStart: true,
-                    delay: 10,
+                    delay: apiOutput ? 10 : 40,
+                    loop: apiOutput ? false : true,
+                    style: {
+                      color: "red",
+                    },
                   }}
                 />
               </Typography>
