@@ -19,9 +19,10 @@ In the end, include why you'd want to live in the neighborhood provided below, s
 `;
 
 const generateAction = async (req, res) => {
-  const prompt =
-    req.body.propertyType === "vacant land"
-      ? `
+  try {
+    const prompt =
+      req.body.propertyType === "vacant land"
+        ? `
     ${basePromptPrefix}
     Address: ${req.body.address}
     Neighborhood: ${req.body.neighborhood}
@@ -30,7 +31,7 @@ const generateAction = async (req, res) => {
     Vacant Land Features: ${req.body.landFeatures}
     Unique Features: ${req.body.uniqueFeatures}
   `
-      : `
+        : `
     ${basePromptPrefix}
     Address: ${req.body.address}
     Neighborhood: ${req.body.neighborhood}
@@ -46,16 +47,28 @@ const generateAction = async (req, res) => {
     Unique Features: ${req.body.uniqueFeatures}
   `;
 
-  const baseCompletion = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: `${prompt}\n`,
-    temperature: 0.7,
-    max_tokens: 1500,
-  });
+    const baseCompletion = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: `${prompt}\n`,
+      temperature: 0.5,
+      max_tokens: 1500,
+    });
 
-  const basePromptOutput = baseCompletion.data.choices.pop();
+    const basePromptOutput = baseCompletion.data.choices.pop();
 
-  res.status(200).json({ output: basePromptOutput });
+    res.status(200).json({ output: basePromptOutput });
+  } catch (error) {
+    // TODO Return token if an error occurs
+    // await updateCustomerByStripeCid(stripeCustomerId, {
+    //   tokens: cust.tokens + 1,
+    // });
+
+    if (error.status === 504) {
+      return res.status(504).json({ error: "Gateway Timeout" });
+    } else {
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
 };
 
 export default generateAction;

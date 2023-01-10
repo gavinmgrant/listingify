@@ -125,6 +125,9 @@ function GenerateSection(props) {
   const [landFeatures, setLandFeatures] = useState([]);
   const [uniqueFeatures, setUniqueFeatures] = useState("");
   const [editText, setEditText] = useState(false);
+  console.log("interior", interiorFeatures)
+  console.log("exterior", exteriorFeatures)
+  console.log("land", landFeatures)
 
   const [isLand, setIsLand] = useState(false);
   const [landUnits, setLandUnits] = useState("sf");
@@ -192,6 +195,24 @@ function GenerateSection(props) {
       setInteriorFeatures(interiorFeatures.filter((feat) => feat !== value));
     } else {
       setInteriorFeatures([...interiorFeatures, value]);
+    }
+  };
+
+  const handleExteriorFeatures = (event) => {
+    const value = event.target.value;
+    if (exteriorFeatures.includes(value)) {
+      setExteriorFeatures(exteriorFeatures.filter((feat) => feat !== value));
+    } else {
+      setExteriorFeatures([...exteriorFeatures, value]);
+    }
+  };
+
+  const handleLandFeatures = (event) => {
+    const value = event.target.value;
+    if (landFeatures.includes(value)) {
+      setLandFeatures(landFeatures.filter((feat) => feat !== value));
+    } else {
+      setLandFeatures([...landFeatures, value]);
     }
   };
 
@@ -346,8 +367,13 @@ function GenerateSection(props) {
                       handleInput(e, setPropertyType);
                       if (e.target.value === "vacant land") {
                         setIsLand(true);
+                        setInteriorFeatures([]);
+                        setExteriorFeatures([]);
                       } else {
-                        if (isLand) setIsLand(false);
+                        if (isLand) {
+                          setIsLand(false);
+                          setLandFeatures([]);
+                        }
                       }
                     }}
                     fullWidth
@@ -583,7 +609,7 @@ function GenerateSection(props) {
                                 label={opt.option}
                                 value={opt.option}
                                 style={{ margin: "0.25rem" }}
-                                onChange={handleInteriorFeatures}
+                                onChange={handleExteriorFeatures}
                               />
                             </Box>
                           ))}
@@ -630,7 +656,7 @@ function GenerateSection(props) {
                               label={opt.option}
                               value={opt.option}
                               style={{ margin: "0.25rem" }}
-                              onChange={handleInteriorFeatures}
+                              onChange={handleLandFeatures}
                             />
                           </Box>
                         ))}
