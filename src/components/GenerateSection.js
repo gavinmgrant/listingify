@@ -137,6 +137,7 @@ function GenerateSection(props) {
 
   const callGenerateEndpoint = async (currentTokens) => {
     setIsGenerating(true);
+    setError("");
 
     try {
       const body = isLand
