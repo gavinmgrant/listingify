@@ -125,9 +125,6 @@ function GenerateSection(props) {
   const [landFeatures, setLandFeatures] = useState([]);
   const [uniqueFeatures, setUniqueFeatures] = useState("");
   const [editText, setEditText] = useState(false);
-  console.log("interior", interiorFeatures)
-  console.log("exterior", exteriorFeatures)
-  console.log("land", landFeatures)
 
   const [isLand, setIsLand] = useState(false);
   const [landUnits, setLandUnits] = useState("sf");
