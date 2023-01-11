@@ -193,11 +193,18 @@ function Navbar(props) {
           onClick={() => setDrawerOpen(false)}
         >
           {!auth.user && (
-            <Link href="/auth/signin" passHref={true}>
-              <ListItem component="a" button={true}>
-                <ListItemText>Sign in</ListItemText>
-              </ListItem>
-            </Link>
+            <>
+              <Link href="/generate" passHref={true}>
+                <ListItem component="a" button={true}>
+                  <ListItemText>Generate</ListItemText>
+                </ListItem>
+              </Link>
+              <Link href="/auth/signin" passHref={true}>
+                <ListItem component="a" button={true}>
+                  <ListItemText>Sign in</ListItemText>
+                </ListItem>
+              </Link>
+            </>
           )}
 
           {auth.user && (
