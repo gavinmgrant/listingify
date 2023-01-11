@@ -58,11 +58,6 @@ const generateAction = async (req, res) => {
 
     res.status(200).json({ output: basePromptOutput });
   } catch (error) {
-    // TODO Return token if an error occurs
-    // await updateCustomerByStripeCid(stripeCustomerId, {
-    //   tokens: cust.tokens + 1,
-    // });
-
     if (error.status === 504) {
       return res.status(504).json({ error: "Gateway Timeout" });
     } else {

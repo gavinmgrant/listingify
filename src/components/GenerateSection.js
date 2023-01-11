@@ -15,10 +15,9 @@ import {
   Typography,
   Modal,
 } from "@material-ui/core";
+import { Alert, Checkbox, FormControlLabel } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import { typeOptions } from "lib/type-options";
@@ -126,6 +125,7 @@ function GenerateSection(props) {
   const [uniqueFeatures, setUniqueFeatures] = useState("");
   const [editText, setEditText] = useState(false);
 
+  const [isAttached, setIsAttached] = useState(false);
   const [isLand, setIsLand] = useState(false);
   const [landUnits, setLandUnits] = useState("sf");
 
@@ -133,53 +133,68 @@ function GenerateSection(props) {
   const [copied, setCopied] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
+  const [error, setError] = useState("");
+
   const callGenerateEndpoint = async (currentTokens) => {
     setIsGenerating(true);
 
-    const body = isLand
-      ? JSON.stringify({
-          address,
-          neighborhood,
-          propertyType,
-          lotSize: lotSize ? lotSize.toString() + " " + landUnits : "",
-          landFeatures: landFeatures.length > 0 ? landFeatures.join(", ") : "",
-          uniqueFeatures,
-        })
-      : JSON.stringify({
-          address,
-          neighborhood,
-          propertyType,
-          bedrooms,
-          baths,
-          parking,
-          yearBuilt,
-          floorArea: floorArea ? floorArea.toString() + " sf" : "",
-          lotSize: lotSize ? lotSize.toString() + " " + landUnits : "",
-          interiorFeatures:
-            interiorFeatures.length > 0 ? interiorFeatures.join(", ") : "",
-          exteriorFeatures:
-            exteriorFeatures.length > 0 ? exteriorFeatures.join(", ") : "",
-          uniqueFeatures,
-        });
+    try {
+      const body = isLand
+        ? JSON.stringify({
+            address,
+            neighborhood,
+            propertyType,
+            lotSize: lotSize ? lotSize.toString() + " " + landUnits : "",
+            landFeatures:
+              landFeatures.length > 0 ? landFeatures.join(", ") : "",
+            uniqueFeatures,
+          })
+        : JSON.stringify({
+            address,
+            neighborhood,
+            propertyType,
+            bedrooms,
+            baths,
+            parking,
+            yearBuilt,
+            floorArea: floorArea ? floorArea.toString() + " sf" : "",
+            lotSize: lotSize ? lotSize.toString() + " " + landUnits : "",
+            interiorFeatures:
+              interiorFeatures.length > 0 ? interiorFeatures.join(", ") : "",
+            exteriorFeatures:
+              exteriorFeatures.length > 0 ? exteriorFeatures.join(", ") : "",
+            uniqueFeatures,
+          });
 
-    const response = await fetch("/api/generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body,
-    });
+      const response = await fetch("/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body,
+      });
 
-    const data = await response.json();
-    const { output } = data;
+      const data = await response.json();
+      const { output } = data;
 
-    setApiOutput(`${output.text}`);
+      setApiOutput(`${output.text}`);
 
-    await updateCustomer(auth.user.id, {
-      tokens: currentTokens - 1,
-    });
+      await updateCustomer(auth.user.id, {
+        tokens: currentTokens - 1,
+      });
+    } catch (error) {
+      setError(`
+        Sorry, we're having trouble writing your desciption. Your token has been returned.
+        Error message: ${error}
+      `);
 
-    setIsGenerating(false);
+      // Give token back to user if error's thrown.
+      await updateCustomer(auth.user.id, {
+        tokens: currentTokens + 1,
+      });
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const handleInput = (event, action) => {
@@ -364,12 +379,21 @@ function GenerateSection(props) {
                       handleInput(e, setPropertyType);
                       if (e.target.value === "vacant land") {
                         setIsLand(true);
+                        setIsAttached(false);
                         setInteriorFeatures([]);
                         setExteriorFeatures([]);
                       } else {
                         if (isLand) {
                           setIsLand(false);
                           setLandFeatures([]);
+                        }
+                        if (
+                          e.target.value === "condo" ||
+                          e.target.value === "townhouse"
+                        ) {
+                          setIsAttached(true);
+                        } else if (isAttached) {
+                          setIsAttached(false);
                         }
                       }
                     }}
@@ -479,45 +503,47 @@ function GenerateSection(props) {
                     </Grid>
                   </>
                 )}
-                <Grid item xs={12} sm={6} md={4}>
-                  <TextField
-                    variant="outlined"
-                    type="number"
-                    label="Lot Size"
-                    name="lot-size"
-                    placeholder="Enter lot size"
-                    margin="normal"
-                    helperText="Click the button on the right to toggle units"
-                    InputProps={{
-                      inputProps: { min: 0 },
-                      endAdornment: (
-                        <InputAdornment
-                          style={{
-                            cursor: "pointer",
-                            padding: "16px 12px",
-                            border: "1px solid rgb(118, 118, 118)",
-                            color: "rgb(118, 118, 118)",
-                            borderRadius: "32px",
-                          }}
-                          position="end"
-                          onClick={() => {
-                            if (landUnits === "sf") {
-                              setLandUnits("acres");
-                            } else {
-                              setLandUnits("sf");
-                            }
-                          }}
-                        >
-                          {landUnits}
-                        </InputAdornment>
-                      ),
-                    }}
-                    value={lotSize}
-                    onChange={(e) => handleInput(e, setLotSize)}
-                    fullWidth
-                    style={{ margin: 1 }}
-                  />
-                </Grid>
+                {!isAttached && (
+                  <Grid item xs={12} sm={6} md={4}>
+                    <TextField
+                      variant="outlined"
+                      type="number"
+                      label="Lot Size"
+                      name="lot-size"
+                      placeholder="Enter lot size"
+                      margin="normal"
+                      helperText="Click the button on the right to toggle units"
+                      InputProps={{
+                        inputProps: { min: 0 },
+                        endAdornment: (
+                          <InputAdornment
+                            style={{
+                              cursor: "pointer",
+                              padding: "16px 12px",
+                              border: "1px solid rgb(118, 118, 118)",
+                              color: "rgb(118, 118, 118)",
+                              borderRadius: "32px",
+                            }}
+                            position="end"
+                            onClick={() => {
+                              if (landUnits === "sf") {
+                                setLandUnits("acres");
+                              } else {
+                                setLandUnits("sf");
+                              }
+                            }}
+                          >
+                            {landUnits}
+                          </InputAdornment>
+                        ),
+                      }}
+                      value={lotSize}
+                      onChange={(e) => handleInput(e, setLotSize)}
+                      fullWidth
+                      style={{ margin: 1 }}
+                    />
+                  </Grid>
+                )}
               </Grid>
             </AccordionDetails>
           </Accordion>
@@ -696,7 +722,13 @@ function GenerateSection(props) {
             </AccordionDetails>
           </Accordion>
 
-          <Box textAlign="center" style={{ marginTop: "1rem" }}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            marginTop="1rem"
+          >
             <Button
               variant="contained"
               size="large"
@@ -721,6 +753,15 @@ function GenerateSection(props) {
                 "Sign in to Generate"
               )}
             </Button>
+            {error && (
+              <Alert
+                variant="outlined"
+                color="error"
+                style={{ marginTop: "2rem", backgroundColor: "#f6eeee" }}
+              >
+                {error}
+              </Alert>
+            )}
           </Box>
         </FormControl>
 
