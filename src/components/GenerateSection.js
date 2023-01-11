@@ -184,10 +184,10 @@ function GenerateSection(props) {
         tokens: currentTokens - 1,
       });
     } catch (error) {
-      setError(`
-        Sorry, we're having trouble writing your desciption. Your token has been returned.
-        Error message: ${error}
-      `);
+      setError(
+        "Sorry, we're having trouble writing your desciption. Try again later."
+      );
+      console.log(`Generate error: ${error}`);
     } finally {
       setIsGenerating(false);
     }
