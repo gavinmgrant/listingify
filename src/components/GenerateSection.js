@@ -188,11 +188,6 @@ function GenerateSection(props) {
         Sorry, we're having trouble writing your desciption. Your token has been returned.
         Error message: ${error}
       `);
-
-      // Give token back to user if error's thrown.
-      await updateCustomer(auth.user.id, {
-        tokens: currentTokens + 1,
-      });
     } finally {
       setIsGenerating(false);
     }
