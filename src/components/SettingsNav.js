@@ -1,7 +1,7 @@
 import React from "react";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Link from "next/link";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import { NextLinkComposed } from "./Link";
 
 function SettingsNav(props) {
   return (
@@ -11,12 +11,22 @@ function SettingsNav(props) {
       textColor="primary"
       centered={true}
     >
-      <Link href="/settings/general" passHref={true} value="general">
-        <Tab component="a" label="General" />
-      </Link>
-      <Link href="/settings/password" passHref={true} value="password">
-        <Tab component="a" label="Password" />
-      </Link>
+      <Tab
+        component={NextLinkComposed}
+        label="General"
+        value="general"
+        to={{
+          pathname: "/settings/general",
+        }}
+      />
+      <Tab
+        component={NextLinkComposed}
+        label="Password"
+        value="password"
+        to={{
+          pathname: "/settings/password",
+        }}
+      />
     </Tabs>
   );
 }

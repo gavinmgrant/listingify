@@ -1,8 +1,6 @@
 import React from "react";
-import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
-import { emphasize } from "@material-ui/core/styles/colorManipulator";
-import capitalize from "@material-ui/core/utils/capitalize";
+import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
 import BackgroundImage from "components/BackgroundImage";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,11 +18,11 @@ const useStyles = makeStyles((theme) => ({
   // Adds the keys colorDefault, colorLight, etc
   ...[
     ["default", theme.palette.background.default],
-    ["light", emphasize(theme.palette.background.default, 0.03)],
+    ["light", theme.palette.background.default],
     ["primary", theme.palette.primary.main],
     ["secondary", theme.palette.secondary.main],
   ].reduce((acc, [name, value]) => {
-    acc[`color${capitalize(name)}`] = {
+    acc[`color${name}`] = {
       backgroundColor: value,
       // Ensure text is legible on background
       color: theme.palette.getContrastText(value),
@@ -33,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
       // We use emphasize to compute border based on background color
       // and make sure it's always lightly visible.
       [`& + &`]: {
-        borderTop: `1px solid ${emphasize(value, 0.09)}`,
+        borderTop: `1px solid ${value}`,
       },
     };
     return acc;
@@ -77,7 +75,7 @@ function Section(props) {
       py={verticalPadding}
       className={
         classes.root +
-        ` ${classes[`color${capitalize(bgColor)}`]}` +
+        ` ${classes[`color${bgColor}`]}` +
         (className ? ` ${className}` : "")
       }
       {...otherProps}

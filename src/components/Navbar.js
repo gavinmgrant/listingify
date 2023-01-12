@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import AppBar from "@material-ui/core/AppBar";
-import Container from "@material-ui/core/Container";
-import Toolbar from "@material-ui/core/Toolbar";
+import Box from "@mui/material/Box";
+import AppBar from "@mui/material/AppBar";
+import Container from "@mui/material/Container";
+import Toolbar from "@mui/material/Toolbar";
 import Link from "next/link";
-import Hidden from "@material-ui/core/Hidden";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import Button from "@material-ui/core/Button";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import Divider from "@material-ui/core/Divider";
-import NightsStayIcon from "@material-ui/icons/NightsStay";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import { makeStyles } from "@material-ui/core/styles";
+import Hidden from "@mui/material/Hidden";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import Button from "@mui/material/Button";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Divider from "@mui/material/Divider";
+import NightsStayIcon from "@mui/icons-material/NightsStay";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import { ListItemButton } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import Section from "components/Section";
 import { useAuth } from "util/auth";
 import { useDarkMode } from "util/theme";
@@ -74,36 +76,39 @@ function Navbar(props) {
       <AppBar position="static" color="transparent" elevation={0}>
         <Container disableGutters={true}>
           <Toolbar>
-            <Link href="/">
-              <a style={{ height: "30px" }}>
-                <Logo color={darkMode.value ? "white" : "black"} />
-              </a>
-            </Link>
+            <Box
+              style={{ height: "30px", cursor: "pointer" }}
+              onClick={() => router.push("/")}
+            >
+              <Logo color={darkMode.value ? "white" : "black"} />
+            </Box>
             <div className={classes.spacer} />
-
             <Hidden smUp={true} implementation="css">
               <IconButton
                 onClick={() => {
                   setDrawerOpen(true);
                 }}
                 color="inherit"
+                size="large"
               >
                 <MenuIcon />
               </IconButton>
             </Hidden>
-            <Hidden xsDown={true} implementation="css">
+            <Hidden smDown={true} implementation="css">
               {!auth.user && (
                 <>
-                  <Link href="/generate" passHref={true}>
-                    <Button component="a" color="inherit">
-                      Generate
-                    </Button>
-                  </Link>
-                  <Link href="/auth/signin" passHref={true}>
-                    <Button component="a" color="inherit">
-                      Sign in
-                    </Button>
-                  </Link>
+                  <Button
+                    color="inherit"
+                    onClick={() => router.push("/generate")}
+                  >
+                    Generate
+                  </Button>
+                  <Button
+                    color="inherit"
+                    onClick={() => router.push("/auth/signin")}
+                  >
+                    Sign in
+                  </Button>
                 </>
               )}
               {auth.user && (
@@ -111,15 +116,16 @@ function Navbar(props) {
                   <Button
                     variant="outlined"
                     style={{ marginRight: "0.5rem" }}
-                    onClick={(e) => router.push("/pricing")}
+                    onClick={() => router.push("/pricing")}
                   >
                     Tokens: {displayTokens}
                   </Button>
-                  <Link href="/generate" passHref={true}>
-                    <Button component="a" color="inherit">
-                      Generate
-                    </Button>
-                  </Link>
+                  <Button
+                    color="inherit"
+                    onClick={() => router.push("/generate")}
+                  >
+                    Generate
+                  </Button>
                   <Button
                     color="inherit"
                     aria-label="Account"
@@ -140,7 +146,6 @@ function Navbar(props) {
                         : false
                     }
                     anchorEl={menuState && menuState.anchor}
-                    getContentAnchorEl={undefined}
                     onClick={handleCloseMenu}
                     onClose={handleCloseMenu}
                     keepMounted={true}
@@ -154,9 +159,11 @@ function Navbar(props) {
                     }}
                   >
                     <div>
-                      <Link href="/settings/general" passHref={true}>
-                        <MenuItem component="a">Settings</MenuItem>
-                      </Link>
+                      <MenuItem
+                        onClick={() => router.push("/settings/general")}
+                      >
+                        Settings
+                      </MenuItem>
                       <Divider />
                       <MenuItem
                         onClick={(event) => {
@@ -174,6 +181,7 @@ function Navbar(props) {
                 color="inherit"
                 onClick={darkMode.toggle}
                 style={{ opacity: 0.6 }}
+                size="large"
               >
                 {darkMode.value && <NightsStayIcon />}
 
@@ -183,6 +191,7 @@ function Navbar(props) {
           </Toolbar>
         </Container>
       </AppBar>
+      <Divider />
       <Drawer
         anchor="right"
         open={drawerOpen}
@@ -194,16 +203,18 @@ function Navbar(props) {
         >
           {!auth.user && (
             <>
-              <Link href="/generate" passHref={true}>
-                <ListItem component="a" button={true}>
-                  <ListItemText>Generate</ListItemText>
-                </ListItem>
-              </Link>
-              <Link href="/auth/signin" passHref={true}>
-                <ListItem component="a" button={true}>
-                  <ListItemText>Sign in</ListItemText>
-                </ListItem>
-              </Link>
+              <ListItemButton
+                component="a"
+                onClick={() => router.push("/generate")}
+              >
+                <ListItemText>Generate</ListItemText>
+              </ListItemButton>
+              <ListItemButton
+                component="a"
+                onClick={() => router.push("/auth/signin")}
+              >
+                <ListItemText>Sign in</ListItemText>
+              </ListItemButton>
             </>
           )}
 
@@ -216,29 +227,30 @@ function Navbar(props) {
                   marginBottom: "0.5rem",
                   marginTop: "0.5rem",
                 }}
-                onClick={(e) => router.push("/pricing")}
+                onClick={() => router.push("/pricing")}
               >
                 Tokens: {displayTokens}
               </Button>
-              <Link href="/generate" passHref={true}>
-                <ListItem component="a" button={true}>
-                  <ListItemText>Generate</ListItemText>
-                </ListItem>
-              </Link>
-              <Link href="/settings/general" passHref={true}>
-                <ListItem component="a" button={true}>
-                  <ListItemText>Settings</ListItemText>
-                </ListItem>
-              </Link>
+              <ListItemButton
+                component="a"
+                onClick={() => router.push("/generate")}
+              >
+                <ListItemText>Generate</ListItemText>
+              </ListItemButton>
+              <ListItemButton
+                component="a"
+                onClick={() => router.push("/settings/general")}
+              >
+                <ListItemText>Settings</ListItemText>
+              </ListItemButton>
               <Divider />
-              <ListItem
-                button={true}
+              <ListItemButton
                 onClick={(event) => {
                   auth.signout();
                 }}
               >
                 <ListItemText>Sign out</ListItemText>
-              </ListItem>
+              </ListItemButton>
             </>
           )}
 
@@ -247,6 +259,7 @@ function Navbar(props) {
               color="inherit"
               onClick={darkMode.toggle}
               style={{ opacity: 0.6 }}
+              size="large"
             >
               {darkMode.value && <NightsStayIcon />}
 

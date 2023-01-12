@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
-import Alert from "@material-ui/lab/Alert";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Alert from "@mui/lab/Alert";
 import Section from "components/Section";
 import ReauthModal from "components/ReauthModal";
 import SettingsNav from "components/SettingsNav";

@@ -14,10 +14,10 @@ import {
   Box,
   Typography,
   Modal,
-} from "@material-ui/core";
+} from "@mui/material";
 import { Alert, Checkbox, FormControlLabel } from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { makeStyles } from "@mui/styles";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import { typeOptions } from "lib/type-options";
@@ -29,6 +29,7 @@ import { useAuth } from "util/auth";
 import { useUser, updateCustomer } from "util/db";
 import { useRouter } from "next/router";
 import Typewriter from "typewriter-effect";
+import { useDarkMode } from "util/theme";
 
 const modalStyle = {
   position: "absolute",
@@ -101,6 +102,7 @@ function GenerateSection(props) {
   const auth = useAuth();
   const descriptionRef = useRef(null);
   const classes = useStyles();
+  const darkMode = useDarkMode();
 
   const uid = auth.user ? auth.user.uid : undefined;
   const { data } = useUser(uid);
@@ -311,7 +313,7 @@ function GenerateSection(props) {
             </Button>
           </Box>
         )}
-        <FormControl fullWidth autoComplete="off">
+        <FormControl variant="standard" fullWidth autoComplete="off">
           <Accordion
             classes={{
               root: classes.accordion,
@@ -819,7 +821,7 @@ function GenerateSection(props) {
                 onClick={() => apiOutput && setEditText(true)}
                 style={{
                   cursor: "pointer",
-                  border: "1px solid #000000",
+                  border: darkMode.value ? "1px solid #fff" : "1px solid #000",
                   borderRadius: "4px",
                   padding: "13px",
                 }}

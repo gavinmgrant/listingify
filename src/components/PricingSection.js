@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import CheckIcon from "@material-ui/icons/Check";
-import ListItemText from "@material-ui/core/ListItemText";
-import Button from "@material-ui/core/Button";
+import { useRouter } from "next/router";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import CheckIcon from "@mui/icons-material/Check";
+import ListItemText from "@mui/material/ListItemText";
+import Button from "@mui/material/Button";
 import Link from "next/link";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import { useAuth } from "util/auth";
@@ -51,6 +52,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function PricingSection(props) {
+  const router = useRouter();
+
   const allPlans = [
     {
       id: "1",
@@ -172,24 +175,21 @@ function PricingSection(props) {
                   )}
 
                   <Box mt="auto" pt={3}>
-                    <Link
-                      href={
-                        auth.user
-                          ? `/purchase/${plan.id}`
-                          : `/auth/signup?next=/purchase/${plan.id}`
+                    <Button
+                      variant="contained"
+                      size="large"
+                      color="primary"
+                      fullWidth
+                      onClick={() =>
+                        router.push(
+                          auth.user
+                            ? `/purchase/${plan.id}`
+                            : `/auth/signup?next=/purchase/${plan.id}`
+                        )
                       }
-                      passHref={true}
                     >
-                      <Button
-                        component="a"
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        fullWidth={true}
-                      >
-                        {plan.id === "1" ? "Get" : "Buy"}
-                      </Button>
-                    </Link>
+                      {plan.id === "1" ? "Get" : "Buy"}
+                    </Button>
                   </Box>
                 </CardContent>
               </Card>

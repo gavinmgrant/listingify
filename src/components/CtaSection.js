@@ -1,9 +1,10 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+import { useRouter } from "next/router";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 import Link from "next/link";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 
@@ -13,13 +14,14 @@ const useStyles = makeStyles((theme) => ({
   // avoid horizontal scroll on mobile.
   // See https://material-ui.com/components/grid/#negative-margin
   container: {
-    padding: `0 ${theme.spacing(3)}px`,
+    padding: `0 ${theme.spacing(3)}`,
     textAlign: "center",
   },
 }));
 
 function CtaSection(props) {
   const classes = useStyles();
+  const router = useRouter();
 
   return (
     <Section
@@ -43,15 +45,14 @@ function CtaSection(props) {
             />
           </Grid>
           <Grid item={true} xs={12} md="auto">
-            <Link href={props.buttonPath} passHref={true}>
-              <Button
-                variant="contained"
-                size="large"
-                color={props.buttonColor}
-              >
-                {props.buttonText}
-              </Button>
-            </Link>
+            <Button
+              variant="contained"
+              size="large"
+              color={props.buttonColor}
+              onClick={() => router.push(props.buttonPath)}
+            >
+              {props.buttonText}
+            </Button>
           </Grid>
         </Grid>
       </Container>

@@ -1,9 +1,9 @@
 import React from "react";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Link from "next/link";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import { NextLinkComposed } from "./Link";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 import Section from "components/Section";
 import LegalTerms from "components/LegalTerms";
 import LegalPrivacy from "components/LegalPrivacy";
@@ -36,20 +36,22 @@ function LegalSection(props) {
         textColor="primary"
         centered={true}
       >
-        <Link
-          href="/legal/terms-of-service"
-          passHref={true}
+        <Tab
+          component={NextLinkComposed}
+          label="Terms of Service"
           value="terms-of-service"
-        >
-          <Tab component="a" label="Terms of Service" />
-        </Link>
-        <Link
-          href="/legal/privacy-policy"
-          passHref={true}
+          to={{
+            pathname: "/legal/terms-of-service",
+          }}
+        />
+        <Tab
+          component={NextLinkComposed}
+          label="Privacy Policy"
           value="privacy-policy"
-        >
-          <Tab component="a" label="Privacy Policy" />
-        </Link>
+          to={{
+            pathname: "/legal/privacy-policy",
+          }}
+        />
       </Tabs>
       <Box mt={5}>
         <Container>

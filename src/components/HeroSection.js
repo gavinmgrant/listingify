@@ -1,12 +1,14 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-import Link from "next/link";
+import { useRouter } from "next/router";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 
 function HeroSection(props) {
+  const router = useRouter();
+
   return (
     <Section
       bgColor={props.bgColor}
@@ -22,11 +24,14 @@ function HeroSection(props) {
             size={3}
             typewriter={props.typewriter}
           />
-          <Link href={props.buttonPath} passHref={true}>
-            <Button variant="contained" size="large" color={props.buttonColor}>
-              {props.buttonText}
-            </Button>
-          </Link>
+          <Button
+            variant="contained"
+            size="large"
+            color={props.buttonColor}
+            onClick={() => router.push(props.buttonPath)}
+          >
+            {props.buttonText}
+          </Button>
         </Box>
       </Container>
     </Section>

@@ -1,26 +1,21 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Card from "@material-ui/core/Card";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import { emphasize } from "@material-ui/core/styles/colorManipulator";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@mui/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
-    // Add border that contrasts lightly with background color.
-    // We use boxShadow so that it's hidden around outer edge
-    // due to container <Card> having overflow: hidden
-    boxShadow: `1px 1px 0 0 ${emphasize(theme.palette.background.paper, 0.08)}`,
     textAlign: "center",
   },
   imageContainer: {
@@ -36,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 function FeaturesSection(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
   const items = [
     {
@@ -75,38 +70,38 @@ function FeaturesSection(props) {
           size={4}
           textAlign="center"
         />
-        <Card raised={false}>
-          <Grid container={true}>
-            {items.map((item, index) => (
-              <Grid
-                item={true}
-                xs={12}
-                md={6}
-                className={classes.gridItem}
-                key={index}
-              >
+        <Grid container spacing={2}>
+          {items.map((item, index) => (
+            <Grid
+              item={true}
+              xs={12}
+              md={6}
+              className={classes.gridItem}
+              key={index}
+            >
+              <Card variant="outlined">
                 <Box p={isSmall ? 3 : 6}>
                   {item.icon === "thumb" && (
-                    <ThumbDownOffAltIcon style={{ fontSize: 64 }} />
+                    <ThumbDownOffAltIcon style={{ fontSize: 64 }} color="primary" />
                   )}
                   {item.icon === "time" && (
-                    <AccessTimeIcon style={{ fontSize: 64 }} />
+                    <AccessTimeIcon style={{ fontSize: 64 }} color="primary" />
                   )}
                   {item.icon === "money" && (
-                    <PaymentsIcon style={{ fontSize: 64 }} />
+                    <PaymentsIcon style={{ fontSize: 64 }} color="primary" />
                   )}
                   {item.icon === "social" && (
-                    <TwitterIcon style={{ fontSize: 64 }} />
+                    <TwitterIcon style={{ fontSize: 64 }} color="primary" />
                   )}
                   <Typography variant="h5" gutterBottom={true}>
                     {item.title}
                   </Typography>
                   <Typography variant="subtitle1">{item.body}</Typography>
                 </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Card>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       </Container>
     </Section>
   );

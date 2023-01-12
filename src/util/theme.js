@@ -1,36 +1,29 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
+import { deepmerge } from "@mui/utils";
 import {
-  useTheme,
   createTheme,
+  useTheme,
   ThemeProvider as MuiThemeProvider,
-} from "@material-ui/core/styles";
-import * as colors from "@material-ui/core/colors";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+} from "@mui/material/styles";
+import * as colors from "@mui/material/colors";
+import CssBaseline from "@mui/material/CssBaseline";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { createLocalStorageStateHook } from "use-local-storage-state";
 
-const headingFont =  "'Alata', sans-serif";
+const headingFont = "'Alata', sans-serif";
 
 const themeConfig = {
   // Light theme
   light: {
     palette: {
-      type: "light",
+      mode: "light",
       primary: {
-        // Use hue from colors or hex
-        main: colors.blueGrey["600"],
-        // Uncomment to specify light/dark
-        // shades instead of automatically
-        // calculating from above value.
-        //light: "#4791db",
-        //dark: "#115293",
+        main: colors.blueGrey[600],
       },
       secondary: {
-        main: colors.orange["800"],
+        main: colors.orange[800],
       },
       background: {
-        // Background for <body>
-        // and <Section color="default">
         default: "#fff",
         // Background for elevated
         // components (<Card>, etc)
@@ -42,18 +35,16 @@ const themeConfig = {
   // Dark theme
   dark: {
     palette: {
-      type: "dark",
+      mode: "dark",
       primary: {
-        // Same as in light but we could
-        // adjust color hue if needed
-        main: colors.blueGrey["600"],
+        main: colors.blueGrey[600],
       },
       secondary: {
-        main: colors.orange["800"],
+        main: colors.orange[800],
       },
       background: {
-        default: colors.grey["900"],
-        paper: colors.grey["800"],
+        default: colors.grey[900],
+        paper: colors.grey[800],
       },
     },
   },
@@ -124,16 +115,18 @@ const themeConfig = {
 
 function getTheme(name) {
   // Create MUI theme from themeConfig
-  return createTheme({
-    ...themeConfig[name],
-    // Merge in common values
-    ...themeConfig.common,
-    overrides: {
-      // Merge overrides
-      ...(themeConfig[name] && themeConfig[name].overrides),
-      ...(themeConfig.common && themeConfig.common.overrides),
-    },
-  });
+  return createTheme(
+    deepmerge({
+      ...themeConfig[name],
+      // Merge in common values
+      ...themeConfig.common,
+      overrides: {
+        // Merge overrides
+        ...(themeConfig[name] && themeConfig[name].overrides),
+        ...(themeConfig.common && themeConfig.common.overrides),
+      },
+    })
+  );
 }
 
 // Create a local storage hook for dark mode preference
@@ -183,12 +176,12 @@ export const ThemeProvider = (props) => {
 };
 
 // Hook for detecting dark mode and toggling between light/dark
-// More convenient than reading theme.palette.type from useTheme
+// More convenient than reading theme.palette.mode from useTheme
 export function useDarkMode() {
   // Get current Material UI theme
   const theme = useTheme();
   // Check if it's the dark theme
-  const isDarkMode = theme.palette.type === "dark";
+  const isDarkMode = theme.palette.mode === "dark";
   // Return object containing dark mode value and toggle function
   return { value: isDarkMode, toggle: theme.palette.toggle };
 }
