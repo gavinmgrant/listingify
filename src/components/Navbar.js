@@ -115,6 +115,7 @@ function Navbar(props) {
                 <>
                   <Button
                     variant="outlined"
+                    color="inherit"
                     style={{ marginRight: "0.5rem" }}
                     onClick={() => router.push("/pricing")}
                   >
@@ -222,6 +223,7 @@ function Navbar(props) {
             <>
               <Button
                 variant="outlined"
+                color="inherit"
                 style={{
                   marginLeft: "1rem",
                   marginBottom: "0.5rem",
