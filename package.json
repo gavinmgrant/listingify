@@ -30,7 +30,8 @@
     "react-query": "3.32.1",
     "stripe": "8.132.0",
     "typewriter-effect": "^2.19.0",
-    "use-local-storage-state": "9.0.2"
+    "use-local-storage-state": "9.0.2",
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "dev": "next dev",

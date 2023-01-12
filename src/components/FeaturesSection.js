@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -31,6 +31,12 @@ function FeaturesSection(props) {
   const classes = useStyles();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+
+  const [showIcons, setShowIcons] = useState(false);
+
+  useEffect(() => {
+    setTimeout(setShowIcons(true), 1000);
+  }, [showIcons]);
 
   const items = [
     {
@@ -80,17 +86,30 @@ function FeaturesSection(props) {
             >
               <Card variant="outlined">
                 <Box p={isSmall ? 3 : 6}>
-                  {item.icon === "thumb" && (
-                    <ThumbDownOffAltIcon style={{ fontSize: 64 }} color="primary" />
-                  )}
-                  {item.icon === "time" && (
-                    <AccessTimeIcon style={{ fontSize: 64 }} color="primary" />
-                  )}
-                  {item.icon === "money" && (
-                    <PaymentsIcon style={{ fontSize: 64 }} color="primary" />
-                  )}
-                  {item.icon === "social" && (
-                    <TwitterIcon style={{ fontSize: 64 }} color="primary" />
+                  {showIcons && (
+                    <>
+                      {item.icon === "thumb" && (
+                        <ThumbDownOffAltIcon
+                          style={{ fontSize: 64 }}
+                          color="primary"
+                        />
+                      )}
+                      {item.icon === "time" && (
+                        <AccessTimeIcon
+                          style={{ fontSize: 64 }}
+                          color="primary"
+                        />
+                      )}
+                      {item.icon === "money" && (
+                        <PaymentsIcon
+                          style={{ fontSize: 64 }}
+                          color="primary"
+                        />
+                      )}
+                      {item.icon === "social" && (
+                        <TwitterIcon style={{ fontSize: 64 }} color="primary" />
+                      )}
+                    </>
                   )}
                   <Typography variant="h5" gutterBottom={true}>
                     {item.title}

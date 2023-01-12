@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -29,6 +29,12 @@ function CompareSection(props) {
   const classes = useStyles();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+
+  const [showIcons, setShowIcons] = useState(false);
+
+  useEffect(() => {
+    setTimeout(setShowIcons(true), 1000);
+  }, [showIcons]);
 
   const items = [
     {
@@ -74,11 +80,18 @@ function CompareSection(props) {
             >
               <Card variant="outlined">
                 <Box p={isSmall ? 3 : 6}>
-                  {item.icon === "no" && (
-                    <CancelIcon style={{ fontSize: 64 }} color="primary" />
-                  )}
-                  {item.icon === "yes" && (
-                    <CheckCircleIcon style={{ fontSize: 64 }} color="primary" />
+                  {showIcons && (
+                    <>
+                      {item.icon === "no" && (
+                        <CancelIcon style={{ fontSize: 64 }} color="primary" />
+                      )}
+                      {item.icon === "yes" && (
+                        <CheckCircleIcon
+                          style={{ fontSize: 64 }}
+                          color="primary"
+                        />
+                      )}
+                    </>
                   )}
                   <Typography variant="h5" gutterBottom={true}>
                     {item.title}
