@@ -580,7 +580,7 @@ function GenerateSection(props) {
                           .map((opt) => (
                             <Box key={opt.option}>
                               <FormControlLabel
-                                control={<Checkbox />}
+                                control={<Checkbox color={darkMode.value ? "secondary" : "primary"} />}
                                 label={opt.option}
                                 value={opt.option}
                                 style={{ margin: "0.25rem" }}
@@ -626,7 +626,7 @@ function GenerateSection(props) {
                           .map((opt) => (
                             <Box key={opt.option}>
                               <FormControlLabel
-                                control={<Checkbox />}
+                                control={<Checkbox color={darkMode.value ? "secondary" : "primary"} />}
                                 label={opt.option}
                                 value={opt.option}
                                 style={{ margin: "0.25rem" }}
