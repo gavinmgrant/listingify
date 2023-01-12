@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import Typewriter from "typewriter-effect";
+import { motion } from "framer-motion";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,30 +39,41 @@ function SectionHeader(props) {
       {...otherProps}
     >
       {title && (
-        <Typography
-          variant={`h${size}`}
-          gutterBottom={props.subtitle ? true : false}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
         >
-          {title}
-        </Typography>
+          <Typography
+            variant={`h${size}`}
+            gutterBottom={props.subtitle ? true : false}
+          >
+            {title}
+          </Typography>
+        </motion.div>
       )}
 
-      {subtitle &&
-        (typewriter ? (
-          <Typography variant="subtitle1" className={classes.subtitle}>
-            <Typewriter
-              options={{
-                strings: subtitle,
-                autoStart: true,
-                delay: 16,
-              }}
-            />
-          </Typography>
-        ) : (
-          <Typography variant="subtitle1" className={classes.subtitle}>
-            {subtitle}
-          </Typography>
-        ))}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25 }}
+      >
+        {subtitle &&
+          (typewriter ? (
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              <Typewriter
+                options={{
+                  strings: subtitle,
+                  autoStart: true,
+                  delay: 16,
+                }}
+              />
+            </Typography>
+          ) : (
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              {subtitle}
+            </Typography>
+          ))}
+      </motion.div>
     </Box>
   );
 }
