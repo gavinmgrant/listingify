@@ -4,14 +4,13 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { makeStyles } from "@mui/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { useTheme } from "@mui/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
