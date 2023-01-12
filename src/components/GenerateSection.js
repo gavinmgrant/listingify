@@ -118,6 +118,7 @@ function GenerateSection(props) {
   const [bedrooms, setBedrooms] = useState(undefined);
   const [baths, setBaths] = useState(undefined);
   const [parking, setParking] = useState("");
+  const [parkingType, setParkingType] = useState("attached");
   const [yearBuilt, setYearBuilt] = useState(undefined);
   const [floorArea, setFloorArea] = useState(undefined);
   const [lotSize, setLotSize] = useState(undefined);
@@ -158,7 +159,9 @@ function GenerateSection(props) {
             propertyType,
             bedrooms,
             baths,
-            parking,
+            parking: parking.includes("uncovered")
+              ? parking
+              : parkingType + " " + parking,
             yearBuilt,
             floorArea: floorArea ? floorArea.toString() + " sf" : "",
             lotSize: lotSize ? lotSize.toString() + " " + landUnits : "",
@@ -445,13 +448,39 @@ function GenerateSection(props) {
                         variant="outlined"
                         label="Parking"
                         name="parking"
-                        helperText="Please select a parking option"
+                        helperText="Please select a parking option and if attached"
                         margin="normal"
                         value={parking}
                         onChange={(e) => handleInput(e, setParking)}
                         fullWidth
                         disabled={isLand}
                         style={{ margin: 1 }}
+                        InputProps={{
+                          inputProps: { min: 0, step: 0.25 },
+                          endAdornment: !parking.includes("uncovered") && (
+                            <InputAdornment
+                              style={{
+                                cursor: "pointer",
+                                padding: "16px 12px",
+                                border: "1px solid rgb(118, 118, 118)",
+                                color: "rgb(118, 118, 118)",
+                                borderRadius: "32px",
+                                position: "absolute",
+                                right: "2rem",
+                              }}
+                              position="end"
+                              onClick={() => {
+                                if (parkingType === "attached") {
+                                  setParkingType("detached");
+                                } else {
+                                  setParkingType("attached");
+                                }
+                              }}
+                            >
+                              {parkingType}
+                            </InputAdornment>
+                          ),
+                        }}
                       >
                         {parkingOptions.map((option) => (
                           <MenuItem key={option} value={option}>
@@ -580,7 +609,13 @@ function GenerateSection(props) {
                           .map((opt) => (
                             <Box key={opt.option}>
                               <FormControlLabel
-                                control={<Checkbox color={darkMode.value ? "secondary" : "primary"} />}
+                                control={
+                                  <Checkbox
+                                    color={
+                                      darkMode.value ? "secondary" : "primary"
+                                    }
+                                  />
+                                }
                                 label={opt.option}
                                 value={opt.option}
                                 style={{ margin: "0.25rem" }}
@@ -626,7 +661,13 @@ function GenerateSection(props) {
                           .map((opt) => (
                             <Box key={opt.option}>
                               <FormControlLabel
-                                control={<Checkbox color={darkMode.value ? "secondary" : "primary"} />}
+                                control={
+                                  <Checkbox
+                                    color={
+                                      darkMode.value ? "secondary" : "primary"
+                                    }
+                                  />
+                                }
                                 label={opt.option}
                                 value={opt.option}
                                 style={{ margin: "0.25rem" }}
