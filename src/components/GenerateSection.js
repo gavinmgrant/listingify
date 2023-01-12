@@ -187,7 +187,7 @@ function GenerateSection(props) {
       });
     } catch (error) {
       setError(
-        "Sorry, we're having trouble writing your desciption. Try again later."
+        "Sorry, we're having trouble writing your desciption. Please try again later."
       );
       console.log(`Generate error: ${error}`);
     } finally {
@@ -753,9 +753,9 @@ function GenerateSection(props) {
             </Button>
             {error && (
               <Alert
-                variant="outlined"
-                color="error"
-                style={{ marginTop: "2rem", backgroundColor: "#f6eeee" }}
+                variant="filled"
+                severity="warning"
+                style={{ marginTop: "2rem" }}
               >
                 {error}
               </Alert>
