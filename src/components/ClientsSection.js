@@ -6,6 +6,7 @@ import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import { useDarkMode } from "util/theme";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 function ClientsSection(props) {
   const darkMode = useDarkMode();
@@ -49,16 +50,22 @@ function ClientsSection(props) {
           <Grid container={true} justifyContent="center" alignItems="center">
             {items.map((item, index) => (
               <Grid item={true} xs={12} md="auto" key={index}>
-                <Box py={0} px={3}>
-                  <a href={item.url} target="_blank">
-                  <Image
-                    src={item.image}
-                    width={item.width}
-                    height={item.height}
-                    alt={item.name}
-                  />
-                  </a>
-                </Box>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.25 }}
+                >
+                  <Box py={0} px={3}>
+                    <a href={item.url} target="_blank">
+                      <Image
+                        src={item.image}
+                        width={item.width}
+                        height={item.height}
+                        alt={item.name}
+                      />
+                    </a>
+                  </Box>
+                </motion.div>
               </Grid>
             ))}
           </Grid>

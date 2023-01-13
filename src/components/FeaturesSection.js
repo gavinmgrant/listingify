@@ -12,6 +12,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { motion } from "framer-motion";
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
@@ -86,31 +87,39 @@ function FeaturesSection(props) {
             >
               <Card variant="outlined">
                 <Box p={isSmall ? 3 : 6}>
-                  {showIcons && (
-                    <>
-                      {item.icon === "thumb" && (
-                        <ThumbDownOffAltIcon
-                          style={{ fontSize: 64 }}
-                          color="primary"
-                        />
-                      )}
-                      {item.icon === "time" && (
-                        <AccessTimeIcon
-                          style={{ fontSize: 64 }}
-                          color="primary"
-                        />
-                      )}
-                      {item.icon === "money" && (
-                        <PaymentsIcon
-                          style={{ fontSize: 64 }}
-                          color="primary"
-                        />
-                      )}
-                      {item.icon === "social" && (
-                        <TwitterIcon style={{ fontSize: 64 }} color="primary" />
-                      )}
-                    </>
-                  )}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                  >
+                    {showIcons && (
+                      <>
+                        {item.icon === "thumb" && (
+                          <ThumbDownOffAltIcon
+                            style={{ fontSize: 64 }}
+                            color="primary"
+                          />
+                        )}
+                        {item.icon === "time" && (
+                          <AccessTimeIcon
+                            style={{ fontSize: 64 }}
+                            color="primary"
+                          />
+                        )}
+                        {item.icon === "money" && (
+                          <PaymentsIcon
+                            style={{ fontSize: 64 }}
+                            color="primary"
+                          />
+                        )}
+                        {item.icon === "social" && (
+                          <TwitterIcon
+                            style={{ fontSize: 64 }}
+                            color="primary"
+                          />
+                        )}
+                      </>
+                    )}
+                  </motion.div>
                   <Typography variant="h5" gutterBottom={true}>
                     {item.title}
                   </Typography>

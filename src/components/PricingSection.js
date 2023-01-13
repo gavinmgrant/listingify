@@ -12,12 +12,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import CheckIcon from "@mui/icons-material/Check";
 import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
-import Link from "next/link";
 import { makeStyles } from "@mui/styles";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import { useAuth } from "util/auth";
 import { useUser } from "util/db";
+import { motion } from "framer-motion";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -54,16 +54,21 @@ const useStyles = makeStyles((theme) => ({
 function PricingSection(props) {
   const router = useRouter();
 
+  const itemVariants = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 300, damping: 24 },
+    },
+    hidden: { opacity: 0, y: 20, transition: { duration: 0.2 } },
+  };
+
   const allPlans = [
     {
       id: "1",
       name: "1 Free Token",
       price: "0",
-      perks: [
-        "1 description",
-        "Try us for free!",
-        "New customers only",
-      ],
+      perks: ["1 description", "Try us for free!", "New customers only"],
     },
     {
       id: "5",
@@ -134,70 +139,97 @@ function PricingSection(props) {
           size={4}
           textAlign="center"
         />
-        <Grid container={true} justifyContent="center" spacing={2}>
-          {plans.map((plan, index) => (
-            <Grid item={true} xs={12} md={isCustomer ? 4 : 3} key={index}>
-              <Card
-                variant="outlined"
-                className={plan.id === "1" ? classes.cardBorder : classes.card}
-              >
-                <CardContent className={classes.cardContent}>
-                  <Typography variant="h6" component="h2">
-                    {plan.name}
-                  </Typography>
-                  <Box className={classes.price} mt={1}>
-                    <Typography variant="h3">${plan.price}</Typography>
-                  </Box>
-
-                  {plan.description && (
-                    <Box mt={2}>
-                      <Typography component="p" color="textSecondary">
-                        {plan.description}
-                      </Typography>
-                    </Box>
-                  )}
-
-                  {plan.perks && (
-                    <Box mt={1}>
-                      <List aria-label="perks">
-                        {plan.perks.map((perk, index) => (
-                          <ListItem
-                            className={classes.listItem}
-                            disableGutters={true}
-                            key={index}
-                          >
-                            <ListItemIcon className={classes.perkIcon}>
-                              <CheckIcon />
-                            </ListItemIcon>
-                            <ListItemText>{perk}</ListItemText>
-                          </ListItem>
-                        ))}
-                      </List>
-                    </Box>
-                  )}
-
-                  <Box mt="auto" pt={3}>
-                    <Button
-                      variant="contained"
-                      size="large"
-                      color="primary"
-                      fullWidth
-                      onClick={() =>
-                        router.push(
-                          auth.user
-                            ? `/purchase/${plan.id}`
-                            : `/auth/signup?next=/purchase/${plan.id}`
-                        )
+        <motion.div initial="hidden" whileInView="visible">
+          <motion.div
+            variants={{
+              visible: {
+                transition: {
+                  type: "spring",
+                  bounce: 0,
+                  duration: 0.7,
+                  delayChildren: 0.1,
+                  staggerChildren: 0.2,
+                },
+              },
+              hidden: {
+                transition: {
+                  type: "spring",
+                  bounce: 0,
+                  duration: 0.3,
+                },
+              },
+            }}
+          >
+            <Grid container={true} justifyContent="center" spacing={2}>
+              {plans.map((plan, index) => (
+                <Grid item={true} xs={12} md={isCustomer ? 4 : 3} key={index}>
+                  <motion.div variants={itemVariants}>
+                    <Card
+                      variant="outlined"
+                      className={
+                        plan.id === "1" ? classes.cardBorder : classes.card
                       }
                     >
-                      {plan.id === "1" ? "Get" : "Buy"}
-                    </Button>
-                  </Box>
-                </CardContent>
-              </Card>
+                      <CardContent className={classes.cardContent}>
+                        <Typography variant="h6" component="h2">
+                          {plan.name}
+                        </Typography>
+                        <Box className={classes.price} mt={1}>
+                          <Typography variant="h3">${plan.price}</Typography>
+                        </Box>
+
+                        {plan.description && (
+                          <Box mt={2}>
+                            <Typography component="p" color="textSecondary">
+                              {plan.description}
+                            </Typography>
+                          </Box>
+                        )}
+
+                        {plan.perks && (
+                          <Box mt={1}>
+                            <List aria-label="perks">
+                              {plan.perks.map((perk, index) => (
+                                <ListItem
+                                  className={classes.listItem}
+                                  disableGutters={true}
+                                  key={index}
+                                >
+                                  <ListItemIcon className={classes.perkIcon}>
+                                    <CheckIcon />
+                                  </ListItemIcon>
+                                  <ListItemText>{perk}</ListItemText>
+                                </ListItem>
+                              ))}
+                            </List>
+                          </Box>
+                        )}
+
+                        <Box mt="auto" pt={3}>
+                          <Button
+                            variant="contained"
+                            size="large"
+                            color="primary"
+                            fullWidth
+                            onClick={() =>
+                              router.push(
+                                auth.user
+                                  ? `/purchase/${plan.id}`
+                                  : `/auth/signup?next=/purchase/${plan.id}`
+                              )
+                            }
+                          >
+                            {plan.id === "1" ? "Get" : "Buy"}
+                          </Button>
+                        </Box>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
+          </motion.div>
+        </motion.div>
       </Container>
     </Section>
   );

@@ -10,10 +10,11 @@ import SectionHeader from "components/SectionHeader";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { motion } from "framer-motion";
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
-    textAlign: "left",
+    textAlign: "center",
   },
   imageContainer: {
     margin: "0 auto",
@@ -80,24 +81,42 @@ function CompareSection(props) {
             >
               <Card variant="outlined">
                 <Box p={isSmall ? 3 : 6}>
-                  {showIcons && (
-                    <>
-                      {item.icon === "no" && (
-                        <CancelIcon style={{ fontSize: 64 }} color="primary" />
-                      )}
-                      {item.icon === "yes" && (
-                        <CheckCircleIcon
-                          style={{ fontSize: 64 }}
-                          color="primary"
-                        />
-                      )}
-                    </>
-                  )}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                  >
+                    {showIcons && (
+                      <>
+                        {item.icon === "no" && (
+                          <CancelIcon
+                            style={{ fontSize: 64 }}
+                            color="primary"
+                          />
+                        )}
+                        {item.icon === "yes" && (
+                          <CheckCircleIcon
+                            style={{ fontSize: 64 }}
+                            color="primary"
+                          />
+                        )}
+                      </>
+                    )}
+                  </motion.div>
                   <Typography variant="h5" gutterBottom={true}>
                     {item.title}
                   </Typography>
-                  <Typography variant="subtitle1">{item.body1}</Typography>
-                  <Typography variant="subtitle1" style={{ marginTop: "1rem" }}>
+                  <Typography
+                    variant="subtitle1"
+                    textAlign="left"
+                    marginTop="1rem"
+                  >
+                    {item.body1}
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    textAlign="left"
+                    marginTop="1rem"
+                  >
                     {item.body2}
                   </Typography>
                 </Box>
