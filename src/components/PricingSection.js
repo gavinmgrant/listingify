@@ -60,9 +60,9 @@ function PricingSection(props) {
       name: "1 Free Token",
       price: "0",
       perks: [
-        "1 real estate listing descriptions",
-        "Try our generator out for free!",
-        "For new customers only",
+        "1 description",
+        "Try us for free!",
+        "New customers only",
       ],
     },
     {
@@ -70,10 +70,10 @@ function PricingSection(props) {
       name: "5 Tokens",
       price: "10",
       perks: [
-        "5 real estate listing descriptions",
+        "5 descriptions",
         "$2.00 per description",
         "One time cost",
-        "No reoccuring, monthly fee",
+        "No reoccuring fees",
       ],
     },
     {
@@ -81,11 +81,11 @@ function PricingSection(props) {
       name: "10 Tokens",
       price: "15",
       perks: [
-        "10 real estate listing descriptions",
+        "10 descriptions",
         "$1.50 per description",
         "Save 25%!",
         "One time cost",
-        "No reoccuring, monthly fee",
+        "No reoccuring fees",
       ],
     },
     {
@@ -93,11 +93,12 @@ function PricingSection(props) {
       name: "20 Tokens",
       price: "20",
       perks: [
-        "20 real estate listing descriptions",
+        "20 descriptions",
         "$1.00 per description",
         "Save 50%!",
+        "BEST VALUE!",
         "One time cost",
-        "No reoccuring, monthly fee",
+        "No reoccuring fees",
       ],
     },
   ];

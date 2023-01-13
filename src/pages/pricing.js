@@ -12,7 +12,7 @@ function PricingPage(props) {
         bgImage=""
         bgImageOpacity={1}
         title="Pricing"
-        subtitle="Select how many tokens you'd like to buy. 1 token generates 1 description."
+        subtitle="Select how many tokens you'd like to buy. 1 token generates 1 real estate listing description."
       />
     </>
   );
