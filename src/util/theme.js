@@ -43,8 +43,8 @@ const themeConfig = {
         main: colors.orange[800],
       },
       background: {
-        default: colors.grey[900],
-        paper: colors.grey[800],
+        default: "#000",
+        paper: colors.grey[900],
       },
     },
   },
