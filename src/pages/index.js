@@ -27,7 +27,7 @@ function IndexPage(props) {
         size="medium"
         bgImage=""
         bgImageOpacity={1}
-        title="Why use Listingfy?"
+        title="Why use Listingify?"
         subtitle="We're here to help listing agents. Try us out for free!"
       />
       <CompareSection
