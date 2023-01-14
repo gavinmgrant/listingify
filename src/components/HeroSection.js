@@ -26,9 +26,9 @@ function HeroSection(props) {
             typewriter={props.typewriter}
           />
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2 }}
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.75 }}
           >
             <Button
               variant="contained"
