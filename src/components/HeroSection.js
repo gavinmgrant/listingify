@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
+import { motion } from "framer-motion";
 
 function HeroSection(props) {
   const router = useRouter();
@@ -24,14 +25,20 @@ function HeroSection(props) {
             size={3}
             typewriter={props.typewriter}
           />
-          <Button
-            variant="contained"
-            size="large"
-            color={props.buttonColor}
-            onClick={() => router.push(props.buttonPath)}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2 }}
           >
-            {props.buttonText}
-          </Button>
+            <Button
+              variant="contained"
+              size="large"
+              color={props.buttonColor}
+              onClick={() => router.push(props.buttonPath)}
+            >
+              {props.buttonText}
+            </Button>
+          </motion.div>
         </Box>
       </Container>
     </Section>
