@@ -98,7 +98,7 @@ function LegalTerms(props) {
         Service, Promotion rules will apply.
       </p>
 
-      <h2>8. Refunds</h2>
+      <h2>5. Refunds</h2>
       <p>Except when required by law, product purchases are non-refundable.</p>
 
       <p>
@@ -108,7 +108,7 @@ function LegalTerms(props) {
         if you encounter any issues.
       </p>
 
-      <h2>9. Content</h2>
+      <h2>6. Content</h2>
       <p>
         Our Service allows you to post, link, store, share and otherwise make
         available certain information, text, graphics, videos, or other material
@@ -144,7 +144,7 @@ function LegalTerms(props) {
         Content provided by users.
       </p>
 
-      <h2>10. Prohibited Uses</h2>
+      <h2>7. Prohibited Uses</h2>
       <p>
         You may use Service only for lawful purposes and in accordance with
         Terms. You agree not to use Service:
@@ -232,7 +232,7 @@ function LegalTerms(props) {
         (i) Otherwise attempt to interfere with the proper working of Service.
       </p>
 
-      <h2>11. Analytics</h2>
+      <h2>8. Analytics</h2>
 
       <p>
         We may use third-party Service Providers to monitor and analyze the use
@@ -259,7 +259,7 @@ function LegalTerms(props) {
         your data: https://support.google.com/analytics/answer/6004245.
       </p>
 
-      <h2>12. No Use By Minors</h2>
+      <h2>9. No Use By Minors</h2>
       <p>
         Service is intended only for access and use by individuals at least
         eighteen (18) years old. By accessing or using any of Company, you
@@ -270,7 +270,7 @@ function LegalTerms(props) {
         the access and usage of Service.
       </p>
 
-      <h2>13. Accounts</h2>
+      <h2>10. Accounts</h2>
       <p>
         When you create an account with us, you guarantee that you are above the
         age of 18, and that the information you provide us is accurate,
@@ -302,7 +302,7 @@ function LegalTerms(props) {
         edit content, or cancel orders in our sole discretion.
       </p>
 
-      <h2>14. Intellectual Property</h2>
+      <h2>11. Intellectual Property</h2>
       <p>
         Service and its original content (excluding Content provided by users),
         features and functionality are and will remain the exclusive property of
@@ -312,7 +312,7 @@ function LegalTerms(props) {
         the prior written consent of Listingify.
       </p>
 
-      <h2>15. Copyright Policy</h2>
+      <h2>12. Copyright Policy</h2>
       <p>
         We respect the intellectual property rights of others. It is our policy
         to respond to any claim that Content posted on Service infringes on the
@@ -336,7 +336,7 @@ function LegalTerms(props) {
         any Content found on and/or through Service on your copyright.
       </p>
 
-      <h2>16. DMCA Notice and Procedure for Copyright Infringement Claims</h2>
+      <h2>13. DMCA Notice and Procedure for Copyright Infringement Claims</h2>
       <p>
         You may submit a notification pursuant to the Digital Millennium
         Copyright Act (DMCA) by providing our Copyright Agent with the following
@@ -377,7 +377,7 @@ function LegalTerms(props) {
         You can contact our Copyright Agent via email at hello@listingify.com
       </p>
 
-      <h2>17. Error Reporting and Feedback</h2>
+      <h2>14. Error Reporting and Feedback</h2>
       <p>
         You may provide us directly at hello@listingify.com with information and
         feedback concerning errors, suggestions for improvements, ideas,
@@ -397,7 +397,7 @@ function LegalTerms(props) {
         any purpose.
       </p>
 
-      <h2>18. Links To Other Web Sites</h2>
+      <h2>15. Links To Other Web Sites</h2>
       <p>
         Our Service may contain links to third party web sites or services that
         are not owned or controlled by Listingify.
@@ -423,7 +423,7 @@ function LegalTerms(props) {
         OF ANY THIRD PARTY WEB SITES OR SERVICES THAT YOU VISIT.
       </p>
 
-      <h2>19. Disclaimer Of Warranty</h2>
+      <h2>16. Disclaimer Of Warranty</h2>
       <p>
         THESE SERVICES ARE PROVIDED BY COMPANY ON AN “AS IS” AND “AS AVAILABLE”
         BASIS. COMPANY MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND,
@@ -459,7 +459,7 @@ function LegalTerms(props) {
         LIMITED UNDER APPLICABLE LAW.
       </p>
 
-      <h2>20. Limitation Of Liability</h2>
+      <h2>17. Limitation Of Liability</h2>
       <p>
         EXCEPT AS PROHIBITED BY LAW, YOU WILL HOLD US AND OUR OFFICERS,
         DIRECTORS, EMPLOYEES, AND AGENTS HARMLESS FOR ANY INDIRECT, PUNITIVE,
@@ -480,7 +480,7 @@ function LegalTerms(props) {
         DAMAGES, SO THE PRIOR LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.
       </p>
 
-      <h2>21. Termination</h2>
+      <h2>18. Termination</h2>
       <p>
         We may terminate or suspend your account and bar access to Service
         immediately, without prior notice or liability, under our sole
@@ -500,7 +500,7 @@ function LegalTerms(props) {
         liability.
       </p>
 
-      <h2>22. Governing Law</h2>
+      <h2>19. Governing Law</h2>
       <p>
         These Terms shall be governed and construed in accordance with the laws
         of State of California without regard to its conflict of law provisions.
@@ -515,7 +515,7 @@ function LegalTerms(props) {
         prior agreements we might have had between us regarding Service.
       </p>
 
-      <h2>23. Changes To Service</h2>
+      <h2>20. Changes To Service</h2>
       <p>
         We reserve the right to withdraw or amend our Service, and any service
         or material we provide via Service, in our sole discretion without
@@ -525,7 +525,7 @@ function LegalTerms(props) {
         to users, including registered users.
       </p>
 
-      <h2>24. Amendments To Terms</h2>
+      <h2>21. Amendments To Terms</h2>
       <p>
         We may amend Terms at any time by posting the amended terms on this
         site. It is your responsibility to review these Terms periodically.
@@ -544,7 +544,7 @@ function LegalTerms(props) {
         agree to the new terms, you are no longer authorized to use Service.
       </p>
 
-      <h2>25. Waiver And Severability</h2>
+      <h2>22. Waiver And Severability</h2>
       <p>
         No waiver by Company of any term or condition set forth in Terms shall
         be deemed a further or continuing waiver of such term or condition or a
@@ -561,13 +561,13 @@ function LegalTerms(props) {
         force and effect.
       </p>
 
-      <h2>26. Acknowledgement</h2>
+      <h2>23. Acknowledgement</h2>
       <p>
         BY USING SERVICE OR OTHER SERVICES PROVIDED BY US, YOU ACKNOWLEDGE THAT
         YOU HAVE READ THESE TERMS OF SERVICE AND AGREE TO BE BOUND BY THEM.
       </p>
 
-      <h2>27. Contact Us</h2>
+      <h2>24. Contact Us</h2>
       <p>
         Please send your feedback, comments, requests for technical support:
       </p>
