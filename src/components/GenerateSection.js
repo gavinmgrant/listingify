@@ -113,6 +113,7 @@ function GenerateSection(props) {
   const currentYear = new Date().getFullYear();
 
   const [address, setAddress] = useState("");
+  const [cityState, setCityState] = useState("");
   const [neighborhood, setNeighborhood] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [bedrooms, setBedrooms] = useState(undefined);
@@ -146,6 +147,7 @@ function GenerateSection(props) {
       const body = isLand
         ? JSON.stringify({
             address,
+            cityState,
             neighborhood,
             propertyType,
             lotSize: lotSize ? lotSize.toString() + " " + landUnits : "",
@@ -155,11 +157,12 @@ function GenerateSection(props) {
           })
         : JSON.stringify({
             address,
+            cityState,
             neighborhood,
             propertyType,
             bedrooms,
             baths,
-            parking: parking.includes("uncovered")
+            parking: parking.includes("space")
               ? parking
               : parkingType + " " + parking,
             yearBuilt,
@@ -341,13 +344,29 @@ function GenerateSection(props) {
                     type="text"
                     label="Address"
                     name="address"
-                    placeholder="Enter the full address of property"
+                    placeholder="Enter street number and name"
                     margin="normal"
                     value={address}
                     onChange={(e) => handleInput(e, setAddress)}
                     fullWidth
                     style={{ margin: 1 }}
-                    helperText="Enter street number, name, city and state"
+                    helperText="Enter street number and name"
+                    autoComplete="off"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <TextField
+                    variant="outlined"
+                    type="text"
+                    label="City and State"
+                    name="city-state"
+                    placeholder="Enter the city and state names"
+                    margin="normal"
+                    value={cityState}
+                    onChange={(e) => handleInput(e, setCityState)}
+                    fullWidth
+                    style={{ margin: 1 }}
+                    helperText="Enter the city and state names"
                     autoComplete="off"
                   />
                 </Grid>
@@ -416,30 +435,30 @@ function GenerateSection(props) {
                         type="number"
                         label="Bedrooms"
                         name="bedrooms"
-                        placeholder="Enter number of bedrooms"
+                        placeholder="# of bedrooms"
+                        helperText="# of bedrooms"
                         margin="normal"
                         InputProps={{ inputProps: { min: 0 } }}
                         value={bedrooms}
                         onChange={(e) => handleInput(e, setBedrooms)}
                         fullWidth
                         disabled={isLand}
-                        style={{ margin: 1 }}
+                        style={{ margin: 0, marginRight: "4%", width: "48%" }}
                       />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
                       <TextField
                         variant="outlined"
                         type="number"
                         label="Baths"
                         name="baths"
-                        placeholder="Enter number of baths"
+                        placeholder="# of baths"
+                        helperText="# of baths"
                         margin="normal"
                         InputProps={{ inputProps: { min: 0, step: 0.25 } }}
                         value={baths}
                         onChange={(e) => handleInput(e, setBaths)}
                         fullWidth
                         disabled={isLand}
-                        style={{ margin: 1 }}
+                        style={{ margin: 0, width: "48%" }}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
@@ -457,7 +476,7 @@ function GenerateSection(props) {
                         style={{ margin: 1 }}
                         InputProps={{
                           inputProps: { min: 0, step: 0.25 },
-                          endAdornment: !parking.includes("uncovered") && (
+                          endAdornment: !parking.includes("space") && (
                             <InputAdornment
                               style={{
                                 cursor: "pointer",
@@ -496,6 +515,7 @@ function GenerateSection(props) {
                         label="Year Built"
                         name="year-built"
                         placeholder="Enter the year the property was built"
+                        helperText="Enter the year the property was built"
                         margin="normal"
                         InputProps={{
                           inputProps: { min: 1800, max: currentYear },
@@ -513,7 +533,8 @@ function GenerateSection(props) {
                         type="number"
                         label="Floor Area"
                         name="floor-area"
-                        placeholder="Enter floor area"
+                        placeholder="Enter floor area of property"
+                        helperText="Enter floor area of property"
                         margin="normal"
                         InputProps={{
                           inputProps: { min: 0 },
@@ -778,7 +799,7 @@ function GenerateSection(props) {
                   : callGenerateEndpoint(data?.customers?.tokens);
               }}
               style={{ marginTop: "1rem" }}
-              disabled={!isUser || !address || apiOutput}
+              disabled={!isUser || !!address === false || !!apiOutput === true}
             >
               {isUser ? (
                 isGenerating ? (

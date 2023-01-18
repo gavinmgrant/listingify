@@ -66,6 +66,8 @@ export const exteriorOptions = [
   { category: "Exterior Finishes", option: "cement siding" },
   { category: "Exterior Finishes", option: "log exterior finish" },
   { category: "Exterior Finishes", option: "metal siding" },
+  { category: "Exterior Finishes", option: "shake siding" },
+  { category: "Exterior Finishes", option: "shingle siding" },
   { category: "Exterior Finishes", option: "smooth stucco finish" },
   { category: "Exterior Finishes", option: "stone exterior finish" },
   { category: "Exterior Finishes", option: "stucco finish" },

@@ -11,11 +11,11 @@ const basePromptPrefix = `
 Start with an opening statement that will encourage people to keep reading.
 Appeal to the reader's emotions with useful verbs that communicate a strong sense of action.
 Use the exact numbers provided for number of bedrooms, baths, floor area, and lot size.
+If any of the values are empty, ignore that feature in the description.
+If bedrooms is 0, describe it as a studio in the description.
 Use the list of features below to write a compelling story to a potential buyer as to why they would buy this property.
-Explain the benefits of the features listed below.
-If any of the values are 0 or empty ignore that feature in the description.
+Select one of the interior or exterior features and explain its benefits in a single sentence.
 Highlight the unique features early in the description.
-In the end, include why you'd want to live in the neighborhood provided below, such as any notable landmarks nearby or if it's walkable.
 `;
 
 const generateAction = async (req, res) => {
@@ -24,8 +24,8 @@ const generateAction = async (req, res) => {
       req.body.propertyType === "vacant land"
         ? `
     ${basePromptPrefix}
+    In the end, include why you'd want to live in the ${req.body.neighborhood} neighborhood of ${req.body.cityState}, such as any notable landmarks nearby or highlights of the community.
     Address: ${req.body.address}
-    Neighborhood: ${req.body.neighborhood}
     Property Type: ${req.body.propertyType}
     Lot Size: ${req.body.lotSize}
     Vacant Land Features: ${req.body.landFeatures}
@@ -33,8 +33,8 @@ const generateAction = async (req, res) => {
   `
         : `
     ${basePromptPrefix}
+    In the end, include why you'd want to live in the ${req.body.neighborhood} neighborhood of ${req.body.cityState}, such as any notable landmarks nearby, walkability, or highlights of the community.
     Address: ${req.body.address}
-    Neighborhood: ${req.body.neighborhood}
     Property Type: ${req.body.propertyType}
     Bedrooms: ${req.body.bedrooms}
     Baths: ${req.body.baths}
@@ -50,7 +50,7 @@ const generateAction = async (req, res) => {
     const baseCompletion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: `${prompt}\n`,
-      temperature: 0.5,
+      temperature: 0.8,
       max_tokens: 1500,
     });
 
