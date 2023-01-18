@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Alert from "@mui/lab/Alert";
 import { useRouter } from "next/router";
 import AuthForm from "components/AuthForm";
-// import AuthSocial from "components/AuthSocial";
+import AuthSocial from "components/AuthSocial";
 
 function Auth(props) {
   const router = useRouter();
@@ -32,7 +32,7 @@ function Auth(props) {
         onFormAlert={handleFormAlert}
       />
 
-      {/* {["signup", "signin"].includes(props.type) && (
+      {["signup", "signin"].includes(props.type) && (
         <>
           {props.providers && props.providers.length && (
             <>
@@ -54,7 +54,7 @@ function Auth(props) {
             </>
           )}
         </>
-      )} */}
+      )}
     </>
   );
 }

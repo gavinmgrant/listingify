@@ -48,9 +48,6 @@ function AuthSocial(props) {
 
   const providerDisplayNames = {
     google: "Google",
-    facebook: "Facebook",
-    twitter: "Twitter",
-    github: "GitHub",
   };
 
   const onSigninWithProvider = (provider) => {
