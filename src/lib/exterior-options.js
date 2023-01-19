@@ -1,6 +1,12 @@
 export const exteriorOptions = [
-  { category: "Accessory Structures", option: "attached accessory dwelling unit" },
-  { category: "Accessory Structures", option: "detached accessory dwelling unit" },
+  {
+    category: "Accessory Structures",
+    option: "attached accessory dwelling unit",
+  },
+  {
+    category: "Accessory Structures",
+    option: "detached accessory dwelling unit",
+  },
   { category: "Accessory Structures", option: "guest house" },
   { category: "Accessory Structures", option: "pool house" },
   { category: "Accessory Structures", option: "shed" },
@@ -11,6 +17,8 @@ export const exteriorOptions = [
   { category: "Community Features", option: "community golf course" },
   { category: "Community Features", option: "community park" },
   { category: "Community Features", option: "community playground" },
+  { category: "Community Features", option: "community pool" },
+  { category: "Community Features", option: "community tennis courts" },
   { category: "Community Features", option: "gated community" },
   { category: "Community Features", option: "near schools" },
   { category: "Community Features", option: "near shops and restaurants" },
@@ -52,7 +60,7 @@ export const exteriorOptions = [
   { category: "Architectural Design", option: "Ranch-style design" },
   { category: "Architectural Design", option: "Traditional design" },
   { category: "Architectural Design", option: "Tudor design" },
-  { category: "Architectural Design", option: "Victorian design" },  
+  { category: "Architectural Design", option: "Victorian design" },
   { category: "Roof Types", option: "composition roof" },
   { category: "Roof Types", option: "concrete tile roof" },
   { category: "Roof Types", option: "copper roof" },
@@ -89,6 +97,7 @@ export const exteriorOptions = [
   { category: "Outdoor Spaces", option: "balcony" },
   { category: "Outdoor Spaces", option: "courtyard" },
   { category: "Outdoor Spaces", option: "front porch" },
+  { category: "Outdoor Spaces", option: "rooftop deck" },
   { category: "Outdoor Spaces", option: "wrap around balcony" },
   { category: "Outdoor Spaces", option: "wrap around porch" },
 ];

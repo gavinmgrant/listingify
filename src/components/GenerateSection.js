@@ -70,33 +70,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-let interiorCategories = interiorOptions.reduce((acc, option) => {
-  if (!acc[option.category]) {
-    acc[option.category] = option.category;
-  }
-  return acc;
-}, {});
-
-interiorCategories = Object.values(interiorCategories);
-
-let exteriorCategories = exteriorOptions.reduce((acc, option) => {
-  if (!acc[option.category]) {
-    acc[option.category] = option.category;
-  }
-  return acc;
-}, {});
-
-exteriorCategories = Object.values(exteriorCategories);
-
-let landCategories = landOptions.reduce((acc, option) => {
-  if (!acc[option.category]) {
-    acc[option.category] = option.category;
-  }
-  return acc;
-}, {});
-
-landCategories = Object.values(landCategories);
-
 function GenerateSection(props) {
   const router = useRouter();
   const auth = useAuth();
@@ -128,6 +101,10 @@ function GenerateSection(props) {
   const [landFeatures, setLandFeatures] = useState([]);
   const [uniqueFeatures, setUniqueFeatures] = useState("");
   const [editText, setEditText] = useState(false);
+
+  const [interiorCategories, setInteriorCategories] = useState([]);
+  const [exteriorCategories, setExteriorCategories] = useState([]);
+  const [landCategories, setLandCategories] = useState([]);
 
   const [isAttached, setIsAttached] = useState(false);
   const [isLand, setIsLand] = useState(false);
@@ -277,6 +254,59 @@ function GenerateSection(props) {
       router.events.off("routeChangeStart", beforeRouteHandler);
     };
   }, [apiOutput]);
+
+  useEffect(() => {
+    // These statements in this effect hook generate the feature categories
+    let interiorCategories = interiorOptions.reduce((acc, option) => {
+      if (!acc[option.category]) {
+        acc[option.category] = option.category;
+      }
+      return acc;
+    }, {});
+
+    if (propertyType === "condo" || propertyType === "mobile home") {
+      interiorCategories = Object.values(interiorCategories).filter(
+        (opt) => opt !== "Basement"
+      );
+      setInteriorCategories(interiorCategories);
+    } else {
+      interiorCategories = Object.values(interiorCategories);
+      setInteriorCategories(interiorCategories);
+    }
+
+    let exteriorCategories = exteriorOptions.reduce((acc, option) => {
+      if (!acc[option.category]) {
+        acc[option.category] = option.category;
+      }
+      return acc;
+    }, {});
+
+    if (
+      propertyType === "condo" ||
+      propertyType === "mobile home" ||
+      propertyType === "townhouse"
+    ) {
+      exteriorCategories = Object.values(exteriorCategories)
+        .filter((opt) => opt !== "Accessory Structures")
+        .filter((opt) => opt !== "Lot")
+        .filter((opt) => opt !== "Pool")
+        .filter((opt) => opt !== "Roof Types");
+      setExteriorCategories(exteriorCategories);
+    } else {
+      exteriorCategories = Object.values(exteriorCategories);
+      setExteriorCategories(exteriorCategories);
+    }
+
+    let landCategories = landOptions.reduce((acc, option) => {
+      if (!acc[option.category]) {
+        acc[option.category] = option.category;
+      }
+      return acc;
+    }, {});
+
+    landCategories = Object.values(landCategories);
+    setLandCategories(landCategories);
+  }, [propertyType]);
 
   return (
     <Section

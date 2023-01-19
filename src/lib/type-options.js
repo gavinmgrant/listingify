@@ -3,6 +3,5 @@ export const typeOptions = [
   "townhouse",
   "condo",
   "vacant land",
-  "multi-family",
   "mobile home",
 ];
