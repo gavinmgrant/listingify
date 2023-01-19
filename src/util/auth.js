@@ -11,13 +11,9 @@ import { useUser, updateUser, removeToken } from "./db";
 import router from "next/router";
 import PageLoader from "./../components/PageLoader";
 import { getFriendlyPlanId } from "./prices";
-import analytics from "./analytics";
 
 // Whether to merge extra user data from database into `auth.user`
 const MERGE_DB_USER = true;
-
-// Whether to connect analytics session to `user.uid`
-const ANALYTICS_IDENTIFY = true;
 
 // Create a `useAuth` hook and `AuthProvider` that enables
 // any component to subscribe to auth and re-render when it changes.
@@ -43,9 +39,6 @@ function useAuthProvider() {
 
   // Add custom fields and formatting to the `user` object
   finalUser = useFormatUser(finalUser);
-
-  // Connect analytics session to user
-  useIdentifyUser(finalUser, { enabled: ANALYTICS_IDENTIFY });
 
   // Handle response from auth functions (`signup`, `signin`, and `signinWithProvider`)
   const handleAuth = async (response) => {
@@ -258,15 +251,6 @@ function useMergeExtraData(user, { enabled }) {
         return null;
     }
   }, [user, enabled, data, status, error]);
-}
-
-// Connect analytics session to current user
-function useIdentifyUser(user, { enabled }) {
-  useEffect(() => {
-    if (user && enabled) {
-      analytics.identify(user.uid);
-    }
-  }, [user, enabled]);
 }
 
 // A Higher Order Component for requiring authentication

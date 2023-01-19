@@ -1,6 +1,7 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@mui/styles";
+import Script from "next/script";
 
 export default class MyDocument extends Document {
   render() {
@@ -45,6 +46,24 @@ export default class MyDocument extends Document {
           <link
             href="https://fonts.googleapis.com/css2?family=Alata&display=swap"
             rel="stylesheet"
+          />
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          />
+          <Script
+            id="google-analytics"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                  page_path: window.location.pathname,
+                });
+                `,
+            }}
           />
         </Head>
         <body>
