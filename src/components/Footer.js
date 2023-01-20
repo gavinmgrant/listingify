@@ -12,6 +12,8 @@ import { makeStyles } from "@mui/styles";
 import Section from "components/Section";
 import { useDarkMode } from "util/theme";
 import { Logo } from "./Logo";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 const useStyles = makeStyles((theme) => ({
   sticky: {
@@ -20,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
   brand: {
     display: "block",
     height: 32,
+  },
+  listIcon: {
+    padding: 0,
   },
   listItem: {
     paddingTop: 2,
@@ -32,11 +37,16 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     textAlign: "right",
   },
+  social: {
+    display: "flex",
+  },
   socialIcon: {
-    minWidth: 30,
+    marginTop: theme.spacing(2),
+    marginRight: 12,
+    color: "black",
   },
   legal: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(2),
     fontSize: "0.875rem",
     opacity: 0.8,
     "& a": {
@@ -61,7 +71,12 @@ function Footer(props) {
     >
       <Divider />
       <Container>
-        <Grid container justifyContent="space-between" spacing={4} paddingTop="2rem">
+        <Grid
+          container
+          justifyContent="space-between"
+          spacing={4}
+          paddingTop="2rem"
+        >
           <Grid item xs={12} sm={9}>
             <Link href="/" style={{ height: "30px" }}>
               <Logo color={darkMode.value ? "white" : "black"} />
@@ -72,6 +87,25 @@ function Footer(props) {
                 <Typography component="p">{props.description}</Typography>
               </Box>
             )}
+
+            <div className={classes.social}>
+              <Link
+                href="https://twitter.com/listingify"
+                passHref={true}
+                target="_blank"
+                className={classes.socialIcon}
+              >
+                <TwitterIcon />
+              </Link>
+              <Link
+                href="https://www.instagram.com/listingify/"
+                passHref={true}
+                target="_blank"
+                className={classes.socialIcon}
+              >
+                <InstagramIcon />
+              </Link>
+            </div>
 
             <div className={classes.legal}>
               {props.copyright}
