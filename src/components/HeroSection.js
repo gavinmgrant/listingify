@@ -28,7 +28,7 @@ function HeroSection(props) {
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.75 }}
+            transition={{ delay: 0.75 }}
           >
             <Button
               variant="contained"
