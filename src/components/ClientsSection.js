@@ -30,6 +30,15 @@ function ClientsSection(props) {
       height: 147,
       url: "https://www.compass.com/",
     },
+    {
+      name: "Coldwell Banker",
+      image: darkMode.value
+        ? "/images/logo-cb-white.png"
+        : "/images/logo-cb-black.png",
+      width: 175,
+      height: 117,
+      url: "https://www.coldwellbanker.com/",
+    },
   ];
 
   return (
@@ -53,7 +62,7 @@ function ClientsSection(props) {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.25 }}
+                  transition={{ delay: 0.5 }}
                 >
                   <Box py={0} px={3}>
                     <a href={item.url} target="_blank">
