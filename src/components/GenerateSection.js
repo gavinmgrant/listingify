@@ -18,6 +18,7 @@ import {
 import { Alert, Checkbox, FormControlLabel } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import { typeOptions } from "lib/type-options";
@@ -318,14 +319,31 @@ function GenerateSection(props) {
       <Container>
         <Modal
           open={!!router.query.paid}
+          disableAutoFocus
           onClose={() => router.push("/generate")}
         >
           <Box sx={modalStyle}>
-            <Typography variant="h5" component="h5" style={{ marginBottom: 8 }}>
-              Success!
-            </Typography>
+            <Box
+              display="flex"
+              justifyContent="flex-start"
+              alignItems="center"
+              marginBottom={1}
+            >
+              <CheckCircleOutlineIcon fontSize="large" />
+              <Typography
+                variant="h5"
+                component="h5"
+                marginLeft={1}
+              >
+                Success!
+              </Typography>
+            </Box>
             <Typography padding="1rem 0">
-              Tokens have been added to your balance.
+              Tokens have been added to your balance. Your new balance is{" "}
+              <span style={{ fontWeight: "bold" }}>
+                {data?.customers?.tokens}
+              </span>
+              .
             </Typography>
           </Box>
         </Modal>
