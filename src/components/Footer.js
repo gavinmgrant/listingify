@@ -8,55 +8,59 @@ import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import { ListItemButton, Divider } from "@mui/material";
 import ListItemText from "@mui/material/ListItemText";
-import { makeStyles } from "@mui/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import Section from "components/Section";
 import { useDarkMode } from "util/theme";
 import { Logo } from "./Logo";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-
-const useStyles = makeStyles((theme) => ({
-  sticky: {
-    marginTop: "auto",
-  },
-  brand: {
-    display: "block",
-    height: 32,
-  },
-  listIcon: {
-    padding: 0,
-  },
-  listItem: {
-    paddingTop: 2,
-    paddingBottom: 2,
-    paddingLeft: 12,
-    paddingRight: 12,
-    textAlign: "right",
-  },
-  listItemTextHeader: {
-    fontWeight: "bold",
-    textAlign: "right",
-  },
-  social: {
-    display: "flex",
-  },
-  socialIcon: {
-    marginTop: theme.spacing(2),
-    marginRight: 12,
-    color: "black",
-  },
-  legal: {
-    marginTop: theme.spacing(2),
-    fontSize: "0.875rem",
-    opacity: 0.8,
-    "& a": {
-      color: "inherit",
-      marginLeft: "0.8rem",
-    },
-  },
-}));
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Footer(props) {
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const useStyles = makeStyles((theme) => ({
+    sticky: {
+      marginTop: "auto",
+    },
+    brand: {
+      display: "block",
+      height: 32,
+    },
+    listIcon: {
+      padding: 0,
+    },
+    listItem: {
+      paddingTop: 2,
+      paddingBottom: 2,
+      paddingLeft: 12,
+      paddingRight: 12,
+      textAlign: isSmall ? "center" : "right",
+    },
+    grid: {
+      textAlign: isSmall ? "center" : "left",
+    },
+    social: {
+      display: "flex",
+      justifyContent: isSmall ? "center" : "flex-start",
+    },
+    socialIcon: {
+      marginTop: theme.spacing(2),
+      marginRight: 12,
+      color: "black",
+    },
+    legal: {
+      marginTop: theme.spacing(2),
+      fontSize: "0.875rem",
+      opacity: 0.8,
+      "& a": {
+        color: "inherit",
+        marginLeft: "0.8rem",
+      },
+    },
+  }));
+
   const router = useRouter();
   const classes = useStyles();
   const darkMode = useDarkMode();
@@ -73,6 +77,7 @@ function Footer(props) {
       <Container>
         <Grid
           container
+          className={classes.grid}
           justifyContent="space-between"
           spacing={4}
           paddingTop="2rem"
