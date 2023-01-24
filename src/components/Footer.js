@@ -6,7 +6,7 @@ import Link from "next/link";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
-import { ListItemButton, Divider } from "@mui/material";
+import { ListItemButton } from "@mui/material";
 import ListItemText from "@mui/material/ListItemText";
 import { makeStyles, useTheme } from "@mui/styles";
 import Section from "components/Section";
@@ -22,6 +22,9 @@ function Footer(props) {
   const darkMode = useDarkMode();
 
   const useStyles = makeStyles((theme) => ({
+    gridMenu: {
+      marginBottom: 36,
+    },
     sticky: {
       marginTop: "auto",
     },
@@ -34,7 +37,7 @@ function Footer(props) {
     },
     listItem: {
       paddingTop: 2,
-      paddingBottom: 2,
+      paddingBottom: 12,
       paddingLeft: 12,
       paddingRight: 12,
       textAlign: isSmall ? "center" : "right",
@@ -72,7 +75,6 @@ function Footer(props) {
       bgImageOpacity={props.bgImageOpacity}
       className={props.sticky && classes.sticky}
     >
-      <Divider />
       <Container>
         <Grid
           container
@@ -126,7 +128,7 @@ function Footer(props) {
             </div>
           </Grid>
 
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={3} className={classes.gridMenu}>
             <List disablePadding>
               <ListItemButton
                 component="a"
