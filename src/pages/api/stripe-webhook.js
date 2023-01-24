@@ -27,17 +27,17 @@ export default async (req, res) => {
     // Get the object from stripeEvent
     const object = stripeEvent.data.object;
 
-    // Get the customer object
-    const cust = await getCustomerByStripeCid(object.customer);
+    if (stripeEvent.type === "checkout.session.completed") {
+      // Get the customer object
+      const cust = await getCustomerByStripeCid(object.customer);
 
-    if (stripeEvent.type === "charge.succeeded") {
       // Get the number of tokens puchased based on price
       let addedTokens = 0;
-      if (object.amount === 1000) {
+      if (object.amount_total === 1000) {
         addedTokens = 5;
-      } else if (object.amount === 1500) {
+      } else if (object.amount_total === 1500) {
         addedTokens = 10;
-      } else if (object.amount === 2000) {
+      } else if (object.amount_total === 2000) {
         addedTokens = 20;
       }
 
