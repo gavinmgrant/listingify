@@ -19,6 +19,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 function Footer(props) {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+  const darkMode = useDarkMode();
 
   const useStyles = makeStyles((theme) => ({
     sticky: {
@@ -46,9 +47,8 @@ function Footer(props) {
       justifyContent: isSmall ? "center" : "flex-start",
     },
     socialIcon: {
-      marginTop: theme.spacing(2),
-      marginRight: 12,
-      color: "black",
+      margin: isSmall ? "24px 12px 16px" : "24px 16px 16px 0",
+      color: darkMode.value ? "white" : "black",
     },
     legal: {
       marginTop: theme.spacing(2),
@@ -63,7 +63,6 @@ function Footer(props) {
 
   const router = useRouter();
   const classes = useStyles();
-  const darkMode = useDarkMode();
 
   return (
     <Section
@@ -100,7 +99,7 @@ function Footer(props) {
                 target="_blank"
                 className={classes.socialIcon}
               >
-                <TwitterIcon />
+                <TwitterIcon fontSize="large" />
               </Link>
               <Link
                 href="https://www.instagram.com/listingify/"
@@ -108,7 +107,7 @@ function Footer(props) {
                 target="_blank"
                 className={classes.socialIcon}
               >
-                <InstagramIcon />
+                <InstagramIcon fontSize="large" />
               </Link>
             </div>
 
