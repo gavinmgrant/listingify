@@ -80,6 +80,7 @@ function Footer(props) {
           justifyContent="space-between"
           spacing={4}
           paddingTop="2rem"
+          direction={isSmall ? "column-reverse" : "row"}
         >
           <Grid item xs={12} sm={9}>
             <Link href="/" style={{ height: "30px" }}>
