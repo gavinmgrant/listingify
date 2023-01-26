@@ -29,6 +29,7 @@ function HeroSection(props) {
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.75 }}
+            viewport={{ once: true }}
           >
             <Button
               variant="contained"

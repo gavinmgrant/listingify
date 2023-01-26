@@ -42,6 +42,7 @@ function SectionHeader(props) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
         >
           <Typography
             variant={`h${size}`}
@@ -56,6 +57,7 @@ function SectionHeader(props) {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.25 }}
+        viewport={{ once: true }}
       >
         {subtitle &&
           (typewriter ? (

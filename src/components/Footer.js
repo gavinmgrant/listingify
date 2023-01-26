@@ -36,8 +36,8 @@ function Footer(props) {
       padding: 0,
     },
     listItem: {
-      paddingTop: 2,
-      paddingBottom: 12,
+      paddingTop: 6,
+      paddingBottom: 6,
       paddingLeft: 12,
       paddingRight: 12,
       textAlign: isSmall ? "center" : "right",

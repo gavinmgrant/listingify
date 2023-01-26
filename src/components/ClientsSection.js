@@ -62,7 +62,8 @@ function ClientsSection(props) {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5 }}
+                  transition={{ delay: 0.5 + index * 0.2 }}
+                  viewport={{ once: true }}
                 >
                   <Box py={0} px={3}>
                     <a href={item.url} target="_blank">
