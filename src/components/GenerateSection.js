@@ -32,21 +32,6 @@ import { useRouter } from "next/router";
 import Typewriter from "typewriter-effect";
 import { useDarkMode } from "util/theme";
 
-const modalStyle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "white",
-  p: 4,
-};
-
-const featuresGridStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-};
-
 const useStyles = makeStyles((theme) => ({
   accordion: {
     // Remove shadow
@@ -116,6 +101,21 @@ function GenerateSection(props) {
   const [isGenerating, setIsGenerating] = useState(false);
 
   const [error, setError] = useState("");
+
+  const modalStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: darkMode.value ? "black" : "white",
+    p: 4,
+  };
+  
+  const featuresGridStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+  };
 
   const callGenerateEndpoint = async (currentTokens) => {
     setIsGenerating(true);
