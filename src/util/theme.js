@@ -9,6 +9,8 @@ import * as colors from "@mui/material/colors";
 import CssBaseline from "@mui/material/CssBaseline";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { createLocalStorageStateHook } from "use-local-storage-state";
+import "@fontsource/alata";
+import "@fontsource/roboto";
 
 const headingFont = "'Alata', sans-serif";
 
@@ -54,8 +56,7 @@ const themeConfig = {
     typography: {
       fontSize: 15,
       fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-      // Uncomment to make button lowercase
-      // button: { textTransform: "none" },
+      button: { fontWeight: 700 },
       h1: {
         fontFamily: headingFont,
         fontWeight: 700,

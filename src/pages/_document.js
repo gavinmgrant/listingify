@@ -32,21 +32,6 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#cfd8dc" />
           <meta name="theme-color" content="#cfd8dc" />
 
-          {/* Google Fonts */}
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin="true"
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;900&display=swap"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Alata&display=swap"
-            rel="stylesheet"
-          />
           <Script
             strategy="afterInteractive"
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
