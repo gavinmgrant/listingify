@@ -11,7 +11,7 @@ function Meta(props) {
     // Site name
     siteName: "Listingify",
     // Your production domain (example: https://myapp.com)
-    domain: "https://listingify.com",
+    domain: "https://www.listingify.com",
     // Your Twitter handle (example: @divjoy)
     twitterHandle: "@listingify",
   };

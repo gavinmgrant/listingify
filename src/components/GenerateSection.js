@@ -110,7 +110,7 @@ function GenerateSection(props) {
     bgcolor: darkMode.value ? "black" : "white",
     p: 4,
   };
-  
+
   const featuresGridStyle = {
     display: "flex",
     flexDirection: "column",
@@ -330,11 +330,7 @@ function GenerateSection(props) {
               marginBottom={1}
             >
               <CheckCircleOutlineIcon fontSize="large" />
-              <Typography
-                variant="h5"
-                component="h5"
-                marginLeft={1}
-              >
+              <Typography variant="h5" component="h5" marginLeft={1}>
                 Success!
               </Typography>
             </Box>
