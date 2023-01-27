@@ -356,7 +356,7 @@ function GenerateSection(props) {
             <Button
               variant="contained"
               size="large"
-              color="primary"
+              color={darkMode.value ? "secondary" : "primary"}
               onClick={() => router.push("/auth/signup")}
             >
               Create an account
@@ -836,7 +836,7 @@ function GenerateSection(props) {
             <Button
               variant="contained"
               size="large"
-              color="primary"
+              color={darkMode.value ? "secondary" : "primary"}
               onClick={() => {
                 noTokens
                   ? router.push("/pricing")
@@ -950,7 +950,7 @@ function GenerateSection(props) {
             <Button
               variant="contained"
               size="large"
-              color="primary"
+              color={darkMode.value ? "secondary" : "primary"}
               disabled={!apiOutput}
               onClick={() => {
                 navigator.clipboard.writeText(apiOutput);
