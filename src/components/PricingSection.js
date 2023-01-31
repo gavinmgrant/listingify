@@ -195,7 +195,11 @@ function PricingSection(props) {
                         )
                       }
                     >
-                      {plan.id === "1" ? "Get" : "Buy"}
+                      {plan.id === "1"
+                        ? uid
+                          ? "Get"
+                          : "Create an account"
+                        : "Buy"}
                     </Button>
                   </Box>
                 </CardContent>
