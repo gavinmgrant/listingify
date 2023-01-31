@@ -14,6 +14,7 @@ import {
   Box,
   Typography,
   Modal,
+  Slider,
 } from "@mui/material";
 import { Alert, Checkbox, FormControlLabel } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -21,6 +22,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
+import TemperatureModal from "./TemperatureModal";
 import { typeOptions } from "lib/type-options";
 import { parkingOptions } from "lib/parking-options";
 import { interiorOptions } from "lib/interior-options";
@@ -55,6 +57,11 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 !important",
   },
 }));
+
+let temperatureMarks = [];
+for (let i = 0; i <= 10; i++) {
+  temperatureMarks = temperatureMarks.concat({ value: i / 10, label: i });
+}
 
 function GenerateSection(props) {
   const router = useRouter();
@@ -96,6 +103,8 @@ function GenerateSection(props) {
   const [isLand, setIsLand] = useState(false);
   const [landUnits, setLandUnits] = useState("sf");
 
+  const [isTempModalOpen, setIsTempModalOpen] = useState(false);
+  const [apiTemperature, setApiTemperature] = useState(0.7);
   const [apiOutput, setApiOutput] = useState("");
   const [copied, setCopied] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -124,6 +133,7 @@ function GenerateSection(props) {
     try {
       const body = isLand
         ? JSON.stringify({
+            apiTemperature,
             address,
             cityState,
             neighborhood,
@@ -134,6 +144,7 @@ function GenerateSection(props) {
             uniqueFeatures,
           })
         : JSON.stringify({
+            apiTemperature,
             address,
             cityState,
             neighborhood,
@@ -317,6 +328,10 @@ function GenerateSection(props) {
       bgImageOpacity={props.bgImageOpacity}
     >
       <Container>
+        <TemperatureModal
+          isOpen={isTempModalOpen}
+          handleOpen={() => setIsTempModalOpen(!isTempModalOpen)}
+        />
         <Modal
           open={!!router.query.paid}
           disableAutoFocus
@@ -386,7 +401,7 @@ function GenerateSection(props) {
                   <TextField
                     variant="outlined"
                     type="text"
-                    label="Address"
+                    label="Street Address"
                     name="address"
                     placeholder="Enter street number and name"
                     margin="normal"
@@ -826,6 +841,57 @@ function GenerateSection(props) {
             </AccordionDetails>
           </Accordion>
 
+          <Accordion
+            classes={{
+              root: classes.accordion,
+              expanded: classes.expanded,
+            }}
+          >
+            <AccordionSummary
+              classes={{
+                root: classes.summary,
+                content: classes.summaryContent,
+              }}
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography variant="h5">Creativity</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignItems="center"
+                margin="1rem"
+              >
+                <Typography textAlign="center">
+                  Select how creative you want us to be when writing your
+                  description.
+                </Typography>
+                <Typography textAlign="center" marginBottom="1rem">
+                  From 0 (not creative) and 10 (very creative). To read
+                  examples,{" "}
+                  <span
+                    style={{ cursor: "pointer", fontWeight: "bold" }}
+                    onClick={() => setIsTempModalOpen(true)}
+                  >
+                    click here
+                  </span>
+                  .
+                </Typography>
+                <Slider
+                  value={apiTemperature}
+                  onChange={(e) => handleInput(e, setApiTemperature)}
+                  step={0.1}
+                  marks={temperatureMarks}
+                  min={0}
+                  max={1}
+                  color={darkMode.value ? "secondary" : "primary"}
+                />
+              </Box>
+            </AccordionDetails>
+          </Accordion>
+
           <Box
             display="flex"
             flexDirection="column"
@@ -934,7 +1000,11 @@ function GenerateSection(props) {
               >
                 <Typewriter
                   options={{
-                    strings: apiOutput || "Waiting for your information above.",
+                    strings:
+                      apiOutput ||
+                      (isGenerating
+                        ? "Writing your description!"
+                        : "Waiting for your information above."),
                     autoStart: true,
                     delay: apiOutput ? 10 : 40,
                     loop: apiOutput ? false : true,
