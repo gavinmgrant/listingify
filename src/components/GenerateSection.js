@@ -116,8 +116,12 @@ function GenerateSection(props) {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    bgcolor: darkMode.value ? "black" : "white",
-    p: 4,
+    bgcolor: darkMode.value ? "#000" : "#fff",
+    p: 3,
+    maxHeight: "100vh",
+    maxWidth: "100vw",
+    borderRadius: "7px",
+    border: "1px solid #fff",
   };
 
   const featuresGridStyle = {
@@ -356,6 +360,16 @@ function GenerateSection(props) {
               </span>
               .
             </Typography>
+            <Box marginTop="1rem" textAlign="center">
+              <Button
+                variant="contained"
+                size="large"
+                color={darkMode.value ? "secondary" : "primary"}
+                onClick={() => router.push("/generate")}
+              >
+                Close
+              </Button>
+            </Box>
           </Box>
         </Modal>
 
