@@ -187,6 +187,7 @@ function PricingSection(props) {
                       size="large"
                       color="primary"
                       fullWidth
+                      disabled={!uid && plan.id !== "1"}
                       onClick={() =>
                         router.push(
                           auth.user
