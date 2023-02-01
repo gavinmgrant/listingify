@@ -69,93 +69,128 @@ function TemperatureModal({ isOpen, handleOpen }) {
 
           <TabPanel value="1" sx={tabStyle}>
             <Typography paddingTop="1rem">
-              Welcome to 702 W Upas St, a stunning single-family home located in
+              Welcome to 702 W Upas St, a charming single-family home located in
               the desirable South Mission Hills neighborhood of San Diego, CA.
-              This turn-key property features 3 bedrooms, 2 baths, and a
-              spacious 1380 sf of living space. The open floor plan is perfect
-              for entertaining, with recessed lighting, hardwood flooring, and
-              tile flooring in the bathrooms. The kitchen boasts quartz
-              countertops, shaker cabinets, and stainless steel appliances. The
-              exterior of the home is equally impressive, with an attached
-              accessory dwelling unit, a cul-de-sac lot, drought-tolerant
-              landscaping, and a stucco finish. Enjoy city skyline views from
-              the backyard, and modern farmhouse design throughout. The attached
-              2-car garage provides plenty of parking. South Mission Hills is a
-              vibrant community with easy access to local restaurants, shops,
-              and parks. Don't miss out on this incredible opportunity to own a
-              piece of San Diego paradise!
+              This 1940-built property offers 3 bedrooms, 2 bathrooms, and a
+              spacious 1380 sq. ft. of living space. The home is situated on a
+              5227 sq. ft. cul-de-sac lot, with a large attached 2-car garage
+              and an attached accessory dwelling unit with its own entrance and
+              kitchenette.
+              <br />
+              <br />
+              Inside, you'll find a bright and airy open floor plan with
+              hardwood flooring, recessed lighting, and ceiling fans throughout.
+              The kitchen is equipped with quartz countertops, stainless steel
+              appliances, and a double vanity in the primary bathroom. The home
+              has been recently renovated and is turn-key ready, with updated
+              fixtures, appliances, and finishes, as well as any necessary
+              repairs, so you can move in without any additional work or effort
+              required.
+              <br />
+              <br />
+              Outside, you'll find a large back porch with city skyline views,
+              as well as drought-tolerant landscaping and a stucco finish. South
+              Mission Hills is a vibrant and walkable neighborhood, with plenty
+              of local restaurants, shops, and parks nearby. It's also close to
+              the San Diego Zoo, Balboa Park, and the San Diego International
+              Airport. This is the perfect place to call home!
             </Typography>
           </TabPanel>
 
           <TabPanel value="4" sx={tabStyle}>
             <Typography paddingTop="1rem">
-              This stunning single-family home offers a unique modern farmhouse
-              design with a turn-key interior and city skyline views. Located in
-              the desirable South Mission Hills neighborhood of San Diego, this
-              1940-built property is situated on a cul-de-sac lot and boasts a
-              spacious open floor plan with 1380 square feet of living space.
-              Enjoy the convenience of an attached 2-car garage, as well as an
-              attached accessory dwelling unit. The interior features recessed
-              lighting, hardwood flooring, and tile flooring in the bathrooms.
-              The kitchen is equipped with quartz countertops, shaker cabinets,
-              and stainless steel appliances. The exterior features stucco
-              finish and drought-tolerant landscaping. <br />
+              Step inside this beautiful 1940s single-family home and you'll be
+              immediately impressed by its turn-key interior. With its open
+              floor plan, recessed lighting, and hardwood flooring throughout,
+              this home is truly a sight to behold. The kitchen features quartz
+              countertops, stainless steel appliances, and a dining room to host
+              family dinners. The primary bathroom has a double vanity,
+              providing convenience and storage for toiletries and beauty
+              products. Three bedrooms, two bathrooms, and a two-car attached
+              garage complete the interior.
               <br />
-              South Mission Hills is a vibrant and diverse neighborhood with a
-              variety of amenities and attractions. Enjoy easy access to the
-              freeway, local parks, and the San Diego Zoo. Explore the shops and
-              restaurants of Old Town, or take a stroll along the picturesque
-              San Diego Bay. With its convenient location, modern amenities, and
-              unique features, this property is sure to be a prized possession
-              for the lucky buyer.
+              <br />
+              Outside, you'll find a large cul-de-sac lot with drought-tolerant
+              landscaping and a stucco finish. A back porch offers city skyline
+              views, and an attached accessory dwelling unit with its own
+              entrance and kitchenette adds a unique touch.
+              <br />
+              <br />
+              Located in the South Mission Hills neighborhood of San Diego, CA,
+              this home is conveniently close to local restaurants, shops, and
+              attractions. With its beautiful interior and exterior features,
+              this home is the perfect place to call your own.
             </Typography>
           </TabPanel>
 
           <TabPanel value="7" sx={tabStyle}>
             <Typography paddingTop="1rem">
-              Welcome to 702 W Upas St, a recently renovated and turn-key
-              3-bedroom, 2-bath single-family home in the desirable South
-              Mission Hills neighborhood of San Diego. Boasting a modern
-              farmhouse design, this 1380 square foot home is situated on a 5227
-              square foot cul-de-sac lot with a fully landscaped and
-              drought-resistant yard, stucco finish, and stunning city skyline
-              views. Inside, you'll find an open floor plan with recessed
-              lighting, hardwood and tile flooring, quartz countertops in the
-              kitchen, shaker cabinets, and stainless steel appliances. There is
-              also an attached accessory dwelling unit, providing extra living
-              space and income potential. Plus, an attached 2-car garage for
-              your convenience. <br />
+              Welcome to 702 W Upas St, a stunning single-family home located in
+              the desirable South Mission Hills neighborhood of San Diego, CA.
+              Boasting 3 bedrooms and 2 bathrooms, this turn-key abode is the
+              perfect place to call home. The 1380 square foot floor plan is
+              sure to impress, featuring a double vanity in the primary bath, an
+              open floor plan, recessed lighting, and hardwood flooring
+              throughout. The quartz countertops and stainless steel appliances
+              in the kitchen are sure to please the home chef. Enjoy
+              California's beautiful weather on the back porch, with city
+              skyline views, or create your own oasis in the 5227 square foot
+              lot with drought-tolerant landscaping. An attached accessory
+              dwelling unit with its own entrance and kitchenette provides extra
+              living space and added value.
               <br />
-              South Mission Hills is a vibrant, walkable community with many
-              nearby parks, shops, restaurants, and landmarks. Enjoy easy access
-              to the San Diego-Coronado Bridge, Balboa Park, Mission Hills Park,
-              and more. With its unique features and convenient location, this
-              is the perfect home for anyone looking to live in San Diego.
-              Schedule a showing today to view this beautiful property.
+              <br />
+              Not only does this home offer modern amenities, but it also has a
+              classic charm. Built in 1940, the stucco finish and attached
+              two-car garage give this home its character. Plus, its cul-de-sac
+              lot provides a quiet neighborhood for you and your family.
+              <br />
+              <br />
+              This is the perfect home for a family, or anyone looking for the
+              combination of modern luxury and classic elegance. Located in the
+              heart of South Mission Hills, you're just a short drive from the
+              best of San Diego. Enjoy the iconic Balboa Park, just minutes
+              away, or explore the many restaurants, shops, and other
+              attractions that this vibrant community has to offer. With its
+              perfect combination of modern luxury and classic charm, 702 W Upas
+              St is the perfect place to call home.
             </Typography>
           </TabPanel>
 
           <TabPanel value="10" sx={tabStyle}>
             <Typography paddingTop="1rem">
-              This modern farmhouse in the idyllic South Mission Hills
-              neighborhood of San Diego is warm and inviting. Meticulously
-              renovated, the turn-key 3-bedroom, 2-bath home boasts an open
-              floor plan with plenty of natural light, recessed lighting,
-              ceiling fans, hardwood flooring, and gorgeous tile flooring in the
-              bathrooms. The stylish kitchen features quartz countertops, shaker
-              cabinets, and stainless steel appliances. The exterior of the home
-              includes a unique attached accessory dwelling unit,
-              drought-tolerant landscaping, stucco finish on a cul-de-sac lot,
-              and city skyline views. This property also includes a two-car
-              attached garage. <br />
+              Welcome home to 702 W Upas Street in South Mission Hills, San
+              Diego! This amazing single-family home has something for everyone
+              in the family. With 3 bedrooms, 2 bathrooms, and a generous 1380
+              square feet of living space, this residence is the perfect size
+              for families on the go. The interior has been professionally
+              renovated to be turn-key. All the main living areas boast lush
+              hardwood flooring, custom ceiling fans, and recessed lighting for
+              that modern aesthetic. The kitchen is beautifully updated with
+              quartz countertops, stainless steel appliances and a double vanity
+              in the primary bath. Homeowners will love the ease of upkeep and
+              durability that comes with hardwood flooring, making it both
+              aesthetically pleasing and a practical choice.
               <br />
-              With this home, you'll enjoy an unparalleled quality of life.
-              Explore all that South Mission Hills has to offer, from its
-              vibrant arts and culinary communities to its variety of local
-              shops and open spaces. You'll also be conveniently close to Balboa
-              Park, the San Diego Zoo, and the Gaslamp Quarter. Contact us today
-              for a private tour of this stunning home and fall in love with the
-              South Mission Hills lifestyle.
+              <br />
+              The benefits extend beyond the interior of 702 W Upas. This
+              5227-square-foot lot size comes with a unique feature - an
+              attached, separate unit with its own kitchenette and entrance. The
+              home is finished off with a drought-tolerant landscaping, gleaming
+              stucco finish, and a back porch offering beautiful city skyline
+              views.
+              <br />
+              <br />
+              If location is important to you, this is the perfect spot. South
+              Mission Hills offers easy access to highways and freeways,
+              comprehensive shopping, great restaurants, and activities for the
+              whole family. Surrounded by many notable landmarks and parks, it's
+              a perfect place to live and experience all that San Diego has to
+              offer.
+              <br />
+              <br />
+              Don’t miss out on this great opportunity to own this amazing
+              residence!
             </Typography>
           </TabPanel>
         </TabContext>

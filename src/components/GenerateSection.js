@@ -134,6 +134,13 @@ function GenerateSection(props) {
     setIsGenerating(true);
     setError("");
 
+    const randomIndex = Math.floor(
+      Math.random() * (isLand ? landFeatures.length : interiorFeatures.length)
+    );
+    const highlightedFeature = isLand
+      ? landFeatures[randomIndex]
+      : interiorFeatures[randomIndex];
+
     try {
       const body = isLand
         ? JSON.stringify({
@@ -146,6 +153,7 @@ function GenerateSection(props) {
             landFeatures:
               landFeatures.length > 0 ? landFeatures.join(", ") : "",
             uniqueFeatures,
+            highlightedFeature,
           })
         : JSON.stringify({
             apiTemperature,
@@ -166,6 +174,7 @@ function GenerateSection(props) {
             exteriorFeatures:
               exteriorFeatures.length > 0 ? exteriorFeatures.join(", ") : "",
             uniqueFeatures,
+            highlightedFeature,
           });
 
       const response = await fetch("/api/generate", {
@@ -883,7 +892,7 @@ function GenerateSection(props) {
                   description.
                 </Typography>
                 <Typography textAlign="center" marginBottom="1rem">
-                  From 0 (not creative) and 10 (very creative). To read
+                  From 0 (not so creative) and 10 (very creative). To read
                   examples,{" "}
                   <span
                     style={{ cursor: "pointer", fontWeight: "bold" }}
@@ -973,6 +982,7 @@ function GenerateSection(props) {
           >
             <Button
               variant="outlined"
+              color={darkMode.value ? "secondary" : "primary"}
               disabled={!apiOutput}
               onClick={() => {
                 setApiOutput("");
