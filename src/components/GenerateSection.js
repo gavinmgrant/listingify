@@ -685,6 +685,7 @@ function GenerateSection(props) {
                   root: classes.accordion,
                   expanded: classes.expanded,
                 }}
+                defaultExpanded
               >
                 <AccordionSummary
                   classes={{
@@ -737,6 +738,7 @@ function GenerateSection(props) {
                   root: classes.accordion,
                   expanded: classes.expanded,
                 }}
+                defaultExpanded
               >
                 <AccordionSummary
                   classes={{
@@ -790,6 +792,7 @@ function GenerateSection(props) {
                 root: classes.accordion,
                 expanded: classes.expanded,
               }}
+              defaultExpanded
             >
               <AccordionSummary
                 classes={{
@@ -837,6 +840,7 @@ function GenerateSection(props) {
               root: classes.accordion,
               expanded: classes.expanded,
             }}
+            defaultExpanded
           >
             <AccordionSummary
               classes={{
@@ -869,6 +873,7 @@ function GenerateSection(props) {
               root: classes.accordion,
               expanded: classes.expanded,
             }}
+            defaultExpanded
           >
             <AccordionSummary
               classes={{
