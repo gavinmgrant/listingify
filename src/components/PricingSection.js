@@ -18,6 +18,7 @@ import SectionHeader from "components/SectionHeader";
 import { useAuth } from "util/auth";
 import { useUser } from "util/db";
 import { motion } from "framer-motion";
+import { useDarkMode } from "util/theme";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -53,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 function PricingSection(props) {
   const router = useRouter();
+  const darkMode = useDarkMode();
 
   const allPlans = [
     {
@@ -185,7 +187,7 @@ function PricingSection(props) {
                     <Button
                       variant="contained"
                       size="large"
-                      color="primary"
+                      color={darkMode.value ? "secondary" : "primary"}
                       fullWidth
                       disabled={!uid && plan.id !== "1"}
                       onClick={() =>

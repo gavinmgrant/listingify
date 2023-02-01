@@ -24,7 +24,7 @@ function FaqPage(props) {
         subtitle=""
         buttonText="Get Started"
         buttonColor="secondary"
-        buttonPath="/pricing"
+        buttonPath="/generate"
       />
     </>
   );

@@ -1,10 +1,12 @@
 import React from "react";
-// import Link from "next/link";
 import { Button, Box } from "@mui/material";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
+import { useDarkMode } from "util/theme";
 
 function ContactSection(props) {
+  const darkMode = useDarkMode();
+ 
   return (
     <Section
       bgColor={props.bgColor}
@@ -23,7 +25,7 @@ function ContactSection(props) {
           <Button
             variant="contained"
             size="large"
-            color="primary"
+            color={darkMode.value ? "secondary" : "primary"}
             href="mailto:hello@listingify.com"
           >
             hello@listingify.com
