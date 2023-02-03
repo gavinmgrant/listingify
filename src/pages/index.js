@@ -6,8 +6,13 @@ import ClientsSection from "components/ClientsSection";
 // import TestimonialsSection from "components/TestimonialsSection";
 // import NewsletterSection from "components/NewsletterSection";
 import CtaSection from "components/CtaSection";
+import { useTheme } from "@mui/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function IndexPage(props) {
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <>
       <HeroSection
@@ -20,7 +25,7 @@ function IndexPage(props) {
         buttonText="Get Started"
         buttonColor="secondary"
         buttonPath="/generate"
-        typewriter
+        typewriter={!isSmall}
       />
       <FeaturesSection
         bgColor="default"
