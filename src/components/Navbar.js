@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
-import Link from "next/link";
 import Hidden from "@mui/material/Hidden";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -73,7 +72,7 @@ function Navbar(props) {
 
   return (
     <Section bgColor={props.color} size="auto">
-      <AppBar position="static" color="transparent" elevation={0}>
+      <AppBar position="fixed" color="inherit" elevation={4}>
         <Container disableGutters={true}>
           <Toolbar>
             <Box
@@ -200,7 +199,7 @@ function Navbar(props) {
           </Toolbar>
         </Container>
       </AppBar>
-      <Divider />
+      <Toolbar />
       <Drawer
         anchor="right"
         open={drawerOpen}
