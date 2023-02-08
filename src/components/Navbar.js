@@ -109,6 +109,14 @@ function Navbar(props) {
                   >
                     Sign in
                   </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    sx={{ margin: "0 0.5rem 0 0.75rem" }}
+                    onClick={() => router.push("/auth/signup")}
+                  >
+                    Sign up
+                  </Button>
                 </>
               )}
               {auth.user && (
@@ -216,6 +224,14 @@ function Navbar(props) {
               >
                 <ListItemText>Sign in</ListItemText>
               </ListItemButton>
+              <Button
+                variant="contained"
+                color="secondary"
+                sx={{ margin: "1rem 0 0.5rem 1rem" }}
+                onClick={() => router.push("/auth/signup")}
+              >
+                <ListItemText>Sign up</ListItemText>
+              </Button>
             </>
           )}
 
