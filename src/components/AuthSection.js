@@ -28,7 +28,7 @@ function AuthSection(props) {
       buttonAction: "Sign in",
       showFooter: true,
       signupAction: "Create an account",
-      signupPath: "/auth/signup",
+      signupPath: "/auth/signup?next=/purchase/1",
       forgotPassAction: "Forgot Password?",
       forgotPassPath: "/auth/forgotpass",
     },
