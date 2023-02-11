@@ -15,9 +15,10 @@ import {
   Typography,
   Modal,
   Slider,
+  useMediaQuery,
 } from "@mui/material";
 import { Alert, Checkbox, FormControlLabel } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Section from "components/Section";
@@ -67,8 +68,16 @@ function GenerateSection(props) {
   const router = useRouter();
   const auth = useAuth();
   const descriptionRef = useRef(null);
+  const generalRef = useRef(null);
+  const landRef = useRef(null);
+  const interiorRef = useRef(null);
+  const exteriorRef = useRef(null);
+  const uniqueRef = useRef(null);
+  const creativityRef = useRef(null);
   const classes = useStyles();
   const darkMode = useDarkMode();
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
   const uid = auth.user ? auth.user.uid : undefined;
   const { data } = useUser(uid);
@@ -250,6 +259,16 @@ function GenerateSection(props) {
     setApiOutput(event.target.value);
   };
 
+  const handleScroll = (ref) => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: ref.current.offsetTop + (isSmall ? 320 : 200),
+        left: 0,
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+
   useEffect(() => {
     if (isGenerating) {
       window.scrollTo({
@@ -411,6 +430,7 @@ function GenerateSection(props) {
         )}
         <FormControl variant="standard" fullWidth autoComplete="off">
           <Accordion
+            ref={generalRef}
             classes={{
               root: classes.accordion,
               expanded: classes.expanded,
@@ -423,6 +443,7 @@ function GenerateSection(props) {
                 content: classes.summaryContent,
               }}
               expandIcon={<ExpandMoreIcon />}
+              onClick={() => handleScroll(generalRef)}
             >
               <Typography variant="h5">General Information</Typography>
             </AccordionSummary>
@@ -689,6 +710,7 @@ function GenerateSection(props) {
           {!isLand ? (
             <>
               <Accordion
+                ref={interiorRef}
                 classes={{
                   root: classes.accordion,
                   expanded: classes.expanded,
@@ -700,6 +722,7 @@ function GenerateSection(props) {
                     content: classes.summaryContent,
                   }}
                   expandIcon={<ExpandMoreIcon />}
+                  onClick={() => handleScroll(interiorRef)}
                 >
                   <Typography variant="h5">Interior Features</Typography>
                 </AccordionSummary>
@@ -741,6 +764,7 @@ function GenerateSection(props) {
               </Accordion>
 
               <Accordion
+                ref={exteriorRef}
                 classes={{
                   root: classes.accordion,
                   expanded: classes.expanded,
@@ -752,6 +776,7 @@ function GenerateSection(props) {
                     content: classes.summaryContent,
                   }}
                   expandIcon={<ExpandMoreIcon />}
+                  onClick={() => handleScroll(exteriorRef)}
                 >
                   <Typography variant="h5">Exterior Features</Typography>
                 </AccordionSummary>
@@ -794,6 +819,7 @@ function GenerateSection(props) {
             </>
           ) : (
             <Accordion
+              ref={landRef}
               classes={{
                 root: classes.accordion,
                 expanded: classes.expanded,
@@ -805,6 +831,7 @@ function GenerateSection(props) {
                   content: classes.summaryContent,
                 }}
                 expandIcon={<ExpandMoreIcon />}
+                onClick={() => handleScroll(landRef)}
               >
                 <Typography variant="h5">Land Features</Typography>
               </AccordionSummary>
@@ -841,6 +868,7 @@ function GenerateSection(props) {
           )}
 
           <Accordion
+            ref={uniqueRef}
             classes={{
               root: classes.accordion,
               expanded: classes.expanded,
@@ -853,6 +881,7 @@ function GenerateSection(props) {
                 content: classes.summaryContent,
               }}
               expandIcon={<ExpandMoreIcon />}
+              onClick={() => handleScroll(uniqueRef)}
             >
               <Typography variant="h5">Unique Features</Typography>
             </AccordionSummary>
@@ -874,6 +903,7 @@ function GenerateSection(props) {
           </Accordion>
 
           <Accordion
+            ref={creativityRef}
             classes={{
               root: classes.accordion,
               expanded: classes.expanded,
@@ -886,6 +916,7 @@ function GenerateSection(props) {
                 content: classes.summaryContent,
               }}
               expandIcon={<ExpandMoreIcon />}
+              onClick={() => handleScroll(creativityRef)}
             >
               <Typography variant="h5">Creativity</Typography>
             </AccordionSummary>
