@@ -185,10 +185,18 @@ function GenerateSection(props) {
         body,
       });
 
-      const data = await response.json();
-      const { output } = data;
+      const data = response.body;
+      if (!data) return;
+      const reader = data.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
 
-      setApiOutput(`${output.text}`);
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunkValue = decoder.decode(value);
+        setApiOutput((prev) => prev + chunkValue);
+      }
 
       await updateCustomer(auth.user.id, {
         tokens: currentTokens - 1,
@@ -243,14 +251,14 @@ function GenerateSection(props) {
   };
 
   useEffect(() => {
-    if (apiOutput) {
+    if (isGenerating) {
       window.scrollTo({
         top: descriptionRef.current.offsetTop + 80,
         left: 0,
         behavior: "smooth",
       });
     }
-  }, [descriptionRef.current, apiOutput]);
+  }, [descriptionRef.current, isGenerating]);
 
   useEffect(() => {
     const confirmationMessage =
@@ -1016,10 +1024,15 @@ function GenerateSection(props) {
                   if (copied) setCopied(false);
                 }}
               />
+            ) : isGenerating ? (
+              <Box textAlign="center">
+                <CircularProgress color="primary" />
+              </Box>
             ) : (
               <Typography
                 variant="subtitle1"
                 onClick={() => apiOutput && setEditText(true)}
+                textAlign={isGenerating ? "center" : "left"}
                 style={{
                   cursor: "pointer",
                   border: darkMode.value ? "1px solid #fff" : "1px solid #000",
@@ -1029,13 +1042,9 @@ function GenerateSection(props) {
               >
                 <Typewriter
                   options={{
-                    strings:
-                      apiOutput ||
-                      (isGenerating
-                        ? "Writing your description!"
-                        : "Waiting for your information above."),
+                    strings: apiOutput || "Waiting for your information above.",
                     autoStart: true,
-                    delay: apiOutput ? 10 : 40,
+                    delay: apiOutput ? 5 : 40,
                     loop: apiOutput ? false : true,
                     style: {
                       color: "red",

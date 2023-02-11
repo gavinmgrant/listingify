@@ -1,80 +1,71 @@
-import { Configuration, OpenAIApi } from "openai";
+import { openAIStream } from "util/openaistream";
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-const openai = new OpenAIApi(configuration);
+export const config = {
+  runtime: "edge",
+};
 
 const generateAction = async (req, res) => {
-  try {
-    const prompt =
-      req.body.propertyType === "vacant land"
-        ? `
-      Write a sentence that explains in detail why someone would want vacant land with this feature: ${req.body.highlightedFeature}.
-      `
-        : `
-      Write a sentence that explains in detail why a homeowner would want this interior feature in their home: ${req.body.highlightedFeature}.
-    `;
+  const {
+    apiTemperature,
+    address,
+    cityState,
+    neighborhood,
+    propertyType,
+    bedrooms,
+    baths,
+    parking,
+    yearBuilt,
+    floorArea,
+    lotSize,
+    interiorFeatures,
+    exteriorFeatures,
+    landFeatures,
+    uniqueFeatures,
+    highlightedFeature,
+  } = await req.json();
 
-    const baseCompletion = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `${prompt}\n`,
-      temperature: req.body.apiTemperature,
-      max_tokens: 1500,
-    });
-
-    const basePromptOutput = baseCompletion.data.choices.pop();
-
-    const promptPrefix = `
-      ​​Write a detailed MLS real estate listing description that is between 175 words and 300 words.
-      Start with an opening statement that will encourage people to keep reading.
-      Appeal to the reader's emotions with useful verbs that communicate a strong sense of action.
-      Use the exact numbers provided for number of bedrooms, baths, floor area, and lot size.
-      If any of the values are empty, ignore that feature in the description.
-      If bedrooms is 0, describe it as a studio in the description.
-      Use the list of features below to write a compelling story to a potential buyer as to why they would buy this property.
-    `;
-
-    const finalPrompt =
-      req.body.propertyType === "vacant land"
-        ? `
-    ${promptPrefix}
-      You must incorporate this description of a feature of the lot for sale - with the same level of detail - into the description after writing about the features: ${basePromptOutput.text}.
-      In the end, include why you'd want to live in the ${req.body.neighborhood} neighborhood of ${req.body.cityState}, such as any notable landmarks nearby or highlights of the community.
-      Address: ${req.body.address}
-      Property Type: ${req.body.propertyType}
-      Lot Size: ${req.body.lotSize}
-      Vacant Land Features: ${req.body.landFeatures}
-      Unique Features: ${req.body.uniqueFeatures}
+  const prompt =
+    propertyType === "vacant land"
+      ? `
+      Write a three paragraph real estate listing description for vacant land using the structure explained below.
+      The first paragraph will start with an opening statement that will encourage people to keep reading and reference these details of the property:
+      Address: ${address}
+      Lot Size: ${lotSize}
+      The second paragraph will describe in detail why a buy would want the following land features:
+      Vacant Land Features: ${landFeatures}
+      Unique Features: ${uniqueFeatures}
+      Write about why a landowner would want this one vacant land feature: ${highlightedFeature}
+      The third paragraph will explain why you'd want to live in the ${neighborhood} neighborhood of ${cityState}, such as any notable landmarks nearby or highlights of the community.
     `
       : `
-    ${promptPrefix}
-      You must incorporate this description of a feature in this home - with the same level of detail - into the description after writing about the interior features and before the exterior features: ${basePromptOutput.text}.
-      In the end, include why you'd want to live in the ${req.body.neighborhood} neighborhood of ${req.body.cityState}, such as any notable landmarks nearby, walkability, or highlights of the community.
-      Address: ${req.body.address}
-      Property Type: ${req.body.propertyType}
-      Bedrooms: ${req.body.bedrooms}
-      Baths: ${req.body.baths}
-      Parking: ${req.body.parking}
-      Year Built: ${req.body.yearBuilt}
-      Floor Area: ${req.body.floorArea}
-      Lot Size: ${req.body.lotSize}
-      Interior Features: ${req.body.interiorFeatures}
-      Exterior Features: ${req.body.exteriorFeatures}
-      Unique Features: ${req.body.uniqueFeatures}
+      Write a three paragraph residential real estate listing description using the structure explained below.
+      The first paragraph will start with an opening statement that will encourage people to keep reading and reference these details of the property:
+      Address: ${address}
+      Property Type: ${propertyType}
+      Bedrooms: ${bedrooms}
+      Baths: ${baths}
+      Parking: ${parking}
+      Year Built: ${yearBuilt}
+      Floor Area: ${floorArea}
+      Lot Size: ${lotSize}
+      The second paragraph will describe in detail why a buy would want the following land features:
+      Interior Features: ${interiorFeatures}
+      Exterior Features: ${exteriorFeatures}
+      Unique Features: ${uniqueFeatures}
+      Write about why a homeowner would want this one feature in a home: ${highlightedFeature}
+      The third paragraph will explain why you'd want to live in the ${neighborhood} neighborhood of ${cityState}, such as any notable landmarks nearby, walkability, or highlights of the community.
     `;
 
-    const finalCompletion = await openai.createCompletion({
+  try {
+    const payload = {
       model: "text-davinci-003",
-      prompt: `${finalPrompt}\n`,
-      temperature: req.body.apiTemperature,
+      prompt,
+      temperature: apiTemperature,
       max_tokens: 1500,
-    });
-
-    const finalPromptOutput = finalCompletion.data.choices.pop();
-
-    res.status(200).json({ output: finalPromptOutput });
+      stream: true,
+    };
+    const stream = await openAIStream(payload);
+    return new Response(stream);
   } catch (error) {
     if (error.status === 504) {
       return res.status(504).json({ error: "Gateway Timeout" });
