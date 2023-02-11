@@ -262,7 +262,7 @@ function GenerateSection(props) {
   const handleScroll = (ref) => {
     setTimeout(() => {
       window.scrollTo({
-        top: ref.current.offsetTop + (isSmall ? 320 : 200),
+        top: ref.current.offsetTop + (isSmall ? 400 : 200),
         left: 0,
         behavior: "smooth",
       });
