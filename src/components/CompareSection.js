@@ -43,14 +43,17 @@ function CompareSection(props) {
       body1:
         "MULWOOD beautiful one story mid-century home. This lovely and well cared for home offers 4 bedrooms and 2 baths with open floor plan and vaulted ceilings. The backyard is wonderful for entertaining with great patio and overhang, spacious and private with plenty of room for a pool. Located in the highly sought after LVUSD school district and in close proximity to all three schools: Chapparral Elementary, A. C. Stelle Middle School, and Calabasas High. Enjoy shopping and dining at The Commons of Calabasas and weekly farmers market in Old Town.",
       body2: "",
+      body3: "",
       icon: "no",
     },
     {
       title: "This is what Listingify wrote.",
       body1:
-        "Welcome to 22389 Liberty Bell Rd, a 4 bed, 2 bath single family house located in the desirable Calabasas neighborhood. Built in 1964, this home has 2124 sqft of living space and sits on a 10059 sqft lot. With its vaulted ceilings, stainless steel appliances, and flat panel cabinets, this home feels bright, airy, and modern. The tile and hardwood flooring throughout the entire home add a touch of luxury. Enjoy the convenience of central air conditioning and central heat. The wood siding and stone exterior finish along with the large lot and concrete back patio, provide a beautiful outdoor living area perfect for entertaining. This property is also located in the LVUSD school district and is close to Chapparral Elementary, A. C. Stelle Middle School, and Calabasas High.",
+        "Welcome to 22389 Liberty Bell Rd, a beautiful single-family home located in Mulwood, a sought-after neighborhood in Calabasas, CA. This 4-bedroom, 2-bathroom home includes an attached 2-car garage and was built in 1964. With 2,124 square feet of interior space and a 10,057 square foot lot, this home is perfect for your growing family.",
       body2:
-        "Calabasas is a great place to live. It’s conveniently located near the 101 freeway, shopping and dining. It’s also close to the Malibu beaches and the Santa Monica mountains. There are plenty of parks and trails in the area as well. Whether you’re looking for a place to relax and unwind or a place to explore and have fun, 22389 Liberty Bell Rd has something for everyone. Don't miss out on this great opportunity for a beautiful family home in a great neighborhood!",
+        "Inside the home, you'll find luxurious tile and hardwood flooring, stainless steel appliances, vaulted ceiling, ceiling fans, a wood-burning fireplace, and a double vanity in the primary bathroom. Outside, the large lot features a concrete back patio and a shingle roof. Additionally, this home is located in the highly sought after LVUSD school district. The double vanity in the primary bathroom is an especially desirable feature, as it provides ample space for couples to get ready in the morning as well as a luxurious feel.",
+      body3:
+        "Lastly, the Greater Mulwood neighborhood of Calabasas is a great place to call home. With its convenient location near world-class shopping and entertainment, as well as the nearby Calabasas Country Club and Topanga State Park, there's plenty to do and see in the area. Plus, with its quiet, family-friendly atmosphere, Mulwood is the perfect place to raise a family.",
       icon: "yes",
     },
   ];
@@ -119,6 +122,13 @@ function CompareSection(props) {
                     marginTop="1rem"
                   >
                     {item.body2}
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    textAlign="left"
+                    marginTop="1rem"
+                  >
+                    {item.body3}
                   </Typography>
                 </Box>
               </Card>
