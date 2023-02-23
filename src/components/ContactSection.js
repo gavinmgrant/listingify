@@ -14,7 +14,7 @@ function ContactSection(props) {
       bgImage={props.bgImage}
       bgImageOpacity={props.bgImageOpacity}
     >
-      <Box>
+      <Box margin="3rem 1rem 4rem 1rem">
         <SectionHeader
           title={props.title}
           subtitle={props.subtitle}
