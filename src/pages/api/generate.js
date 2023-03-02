@@ -54,12 +54,13 @@ const generateAction = async (req, res) => {
       Unique Features: ${uniqueFeatures}
       Write about why a homeowner would want this one feature in a home: ${highlightedFeature}
       The third paragraph will explain why you'd want to live in the ${neighborhood} neighborhood of ${cityState}, such as any notable landmarks nearby, walkability, or highlights of the community.
+      The last sentence should be a call to action to schedule a tour or see the home today and encourage buyers to see the property before it is sold.
     `;
 
   try {
     const payload = {
-      model: "text-davinci-003",
-      prompt,
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: prompt }],
       temperature: apiTemperature,
       max_tokens: 1500,
       stream: true,
