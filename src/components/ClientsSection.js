@@ -39,6 +39,15 @@ function ClientsSection(props) {
       height: 117,
       url: "https://www.coldwellbanker.com/",
     },
+    {
+      name: "Christie's",
+      image: darkMode.value
+        ? "/images/logo-christies-white.png"
+        : "/images/logo-christies-black.png",
+      width: 207,
+      height: 38,
+      url: "https://www.christiesrealestate.com/",
+    },
   ];
 
   return (
@@ -62,6 +71,7 @@ function ClientsSection(props) {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.1 }}
                   transition={{ delay: 0.5 + index * 0.2 }}
                   viewport={{ once: true }}
                 >
