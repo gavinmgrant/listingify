@@ -39,7 +39,7 @@ function BewareSection(props) {
 
   const items = [
     {
-      title: "This is an actual free description at listingdescription.com.",
+      title: "This is an actual free description written by listingdescription.com.",
       body1:
         "The impressive living space is created by a beautifully maintained interior and comprises a separate dining room. Enjoy cooking again in this charming recently updated kitchen, that comprises stainless-steel appliances and laminate countertops. Relax in the good-sized suburban getaway that features a large patio. The perfect location for outdoor fun. Featuring just the suburban atmosphere you are looking for. Conveniently set in a desirable Riverside County neighborhood. In close proximity to great shopping. All the conveniences you could possibly need are a short distance away. A rare opportunity. We love this home. You will too. Call today.",
       body2: "",
