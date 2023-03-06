@@ -1,6 +1,7 @@
 import React from "react";
 import HeroSection from "components/HeroSection";
 import FeaturesSection from "components/FeaturesSection";
+import BewareSection from "components/BewareSection";
 import CompareSection from "components/CompareSection";
 import ClientsSection from "components/ClientsSection";
 // import TestimonialsSection from "components/TestimonialsSection";
@@ -34,6 +35,14 @@ function IndexPage(props) {
         bgImageOpacity={1}
         title="Why use Listingify?"
         subtitle="We're here to help listing agents. Try us out for free!"
+      />
+      <BewareSection
+        bgColor="default"
+        size="medium"
+        bgImage=""
+        bgImageOpacity={1}
+        title='Beware of "free" listing description generators!'
+        subtitle="You get what you pay for, which at listingdesciption.com is a generic description. They are really just fishing for leads and hoping you subscribe to Agently. We don't sell subscriptions, pay once for well-writting descriptions now. Our detailed descriptions highlight the specific place, features, and help you actually sell the property. Just compare what we write vs. them."
       />
       <CompareSection
         bgColor="default"

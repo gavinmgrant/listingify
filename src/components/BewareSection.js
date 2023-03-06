@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CompareSection(props) {
+function BewareSection(props) {
   const classes = useStyles();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
@@ -39,21 +39,24 @@ function CompareSection(props) {
 
   const items = [
     {
-      title: "This is what was on the MLS.",
+      title: "This is an actual free description at listingdescription.com.",
       body1:
-        "MULWOOD beautiful one story mid-century home. This lovely and well cared for home offers 4 bedrooms and 2 baths with open floor plan and vaulted ceilings. The backyard is wonderful for entertaining with great patio and overhang, spacious and private with plenty of room for a pool. Located in the highly sought after LVUSD school district and in close proximity to all three schools: Chapparral Elementary, A. C. Stelle Middle School, and Calabasas High. Enjoy shopping and dining at The Commons of Calabasas and weekly farmers market in Old Town.",
+        "The impressive living space is created by a beautifully maintained interior and comprises a separate dining room. Enjoy cooking again in this charming recently updated kitchen, that comprises stainless-steel appliances and laminate countertops. Relax in the good-sized suburban getaway that features a large patio. The perfect location for outdoor fun. Featuring just the suburban atmosphere you are looking for. Conveniently set in a desirable Riverside County neighborhood. In close proximity to great shopping. All the conveniences you could possibly need are a short distance away. A rare opportunity. We love this home. You will too. Call today.",
       body2: "",
       body3: "",
+      body4: "",
       icon: "no",
     },
     {
       title: "This is what Listingify wrote.",
       body1:
-        "Welcome to 22389 Liberty Bell Rd, a beautiful single-family home located in Mulwood, a sought-after neighborhood in Calabasas, CA. This 4-bedroom, 2-bathroom home includes an attached 2-car garage and was built in 1964. With 2,124 square feet of interior space and a 10,057 square foot lot, this home is perfect for your growing family.",
+        "Welcome to 74460 Goleta Ave, a single-family home offering 3 bedrooms and 2 baths, with an attached 2-car garage. Built in 1973, this property boasts a floor area of 1200 sq ft and sits on a spacious lot of 8276 sq ft. This home showcases an open floor plan, shaker cabinets, stainless steel appliances, and vaulted ceilings, among other features that make it a dream come true for anyone looking for a comfortable and inviting living space.",
       body2:
-        "Inside the home, you'll find luxurious tile and hardwood flooring, stainless steel appliances, vaulted ceiling, ceiling fans, a wood-burning fireplace, and a double vanity in the primary bathroom. Outside, the large lot features a concrete back patio and a shingle roof. Additionally, this home is located in the highly sought after LVUSD school district. The double vanity in the primary bathroom is an especially desirable feature, as it provides ample space for couples to get ready in the morning as well as a luxurious feel.",
+        "This property's exterior features are just as impressive, with a Ranch-style design, a beautiful pool, and a back porch that provides the perfect setting for entertaining guests. Enjoy the stunning mountain views and fruit trees that surround the property. The home is located near shops and restaurants, as well as schools, which is perfect for families. Additionally, it has a unique feature that separates it from the rest: room on the side yard for your RV or boat.",
       body3:
-        "Lastly, the Greater Mulwood neighborhood of Calabasas is a great place to call home. With its convenient location near world-class shopping and entertainment, as well as the nearby Calabasas Country Club and Topanga State Park, there's plenty to do and see in the area. Plus, with its quiet, family-friendly atmosphere, Mulwood is the perfect place to raise a family.",
+        "One of the best features of this home is its central air conditioning. Living in Palm Desert, CA, can be quite hot, particularly during the summer months. Having an efficient air conditioning system is a must, and this home has it all. You can enjoy cool and comfortable indoor living, no matter how hot it is outside.",
+      body4:
+        "Palm Desert is a beautiful neighborhood that has a wide range of notable landmarks and exciting places to explore. You can enjoy the fantastic walkability of the area, with plenty of parks and shopping centers within walking distance. The community also has many highlights, such as the Palm Springs Art Museum and the Living Desert Zoo & Gardens. With so much to see and do, Palm Desert is the perfect place to call home. Don't miss your chance to see this amazing property before it's sold. Schedule a tour today and see for yourself what makes this home so special.",
       icon: "yes",
     },
   ];
@@ -130,6 +133,13 @@ function CompareSection(props) {
                   >
                     {item.body3}
                   </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    textAlign="left"
+                    marginTop="1rem"
+                  >
+                    {item.body4}
+                  </Typography>
                 </Box>
               </Card>
             </Grid>
@@ -140,4 +150,4 @@ function CompareSection(props) {
   );
 }
 
-export default CompareSection;
+export default BewareSection;
