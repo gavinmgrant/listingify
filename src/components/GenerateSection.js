@@ -461,8 +461,9 @@ function GenerateSection(props) {
                     onChange={(e) => handleInput(e, setAddress)}
                     fullWidth
                     style={{ margin: 1 }}
-                    helperText="Enter street number and name"
+                    helperText="Enter street number and name (required)"
                     autoComplete="off"
+                    required
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
