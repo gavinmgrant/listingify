@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useForm } from "react-hook-form";
 import { useAuth } from "util/auth";
+import newsletter from "util/newsletter";
 
 function AuthForm(props) {
   const auth = useAuth();

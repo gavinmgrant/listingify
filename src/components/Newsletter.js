@@ -67,7 +67,6 @@ function Newsletter(props) {
             <Box
               display="flex"
               alignItems="stretch"
-              clone={true}
               marginLeft={2}
             >
               <Grid item={true} xs="auto">
