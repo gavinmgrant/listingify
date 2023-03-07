@@ -3,12 +3,10 @@ import { apiRequestExternal } from "./util.js";
 const endpoint = `https://app.convertkit.com/forms/${process.env.NEXT_PUBLIC_CONVERTKIT_FORM_ID}/subscriptions`;
 
 function subscribe(data) {
-  const { email, ...fields } = data;
+  const { email } = data;
 
   return apiRequestExternal(endpoint, "POST", {
     email_address: email,
-    // Pass custom fields, such as "first_name"
-    fields: fields,
   }).then((response) => {
     if (response.status === "success") {
       return response;

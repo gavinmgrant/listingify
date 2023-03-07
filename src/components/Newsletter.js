@@ -1,10 +1,34 @@
 import React, { useState } from "react";
+import { alpha, styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import newsletter from "util/newsletter";
+
+const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "white",
+  },
+  "& label": {
+    color: "white",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "white",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "white",
+    },
+    "&:hover fieldset": {
+      borderColor: "white",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "white",
+    },
+  },
+});
 
 function Newsletter(props) {
   const [subscribed, setSubscribed] = useState(false);
@@ -24,9 +48,9 @@ function Newsletter(props) {
     <>
       {subscribed === false && (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container={true} spacing={2}>
+          <Grid container={true} alignItems="center" justifyContent="center">
             <Grid item={true} xs={true}>
-              <TextField
+              <CssTextField
                 variant="outlined"
                 type="email"
                 label="Email"
@@ -37,9 +61,15 @@ function Newsletter(props) {
                 inputRef={register({
                   required: "Please enter an email address",
                 })}
+                inputProps={{ style: { color: "white" } }}
               />
             </Grid>
-            <Box display="flex" alignItems="stretch" clone={true}>
+            <Box
+              display="flex"
+              alignItems="stretch"
+              clone={true}
+              marginLeft={2}
+            >
               <Grid item={true} xs="auto">
                 <Button
                   variant="contained"

@@ -5,7 +5,7 @@ import BewareSection from "components/BewareSection";
 import CompareSection from "components/CompareSection";
 import ClientsSection from "components/ClientsSection";
 // import TestimonialsSection from "components/TestimonialsSection";
-// import NewsletterSection from "components/NewsletterSection";
+import NewsletterSection from "components/NewsletterSection";
 import CtaSection from "components/CtaSection";
 import { useTheme } from "@mui/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -35,6 +35,18 @@ function IndexPage(props) {
         bgImageOpacity={1}
         title="Why use Listingify?"
         subtitle="We're here to help listing agents. Try us out for free!"
+      />
+      <NewsletterSection
+        bgColor="primary"
+        size="medium"
+        bgImage=""
+        bgImageOpacity={1}
+        title="Stay in the know"
+        subtitle="Receive product updates and promotions"
+        buttonText="Subscribe"
+        buttonColor="secondary"
+        inputPlaceholder="Enter your email"
+        subscribedMessage="Success! Now check your email to confirm your subscription."
       />
       <BewareSection
         bgColor="default"
@@ -67,18 +79,6 @@ function IndexPage(props) {
         bgImageOpacity={1}
         title="Here's what people are saying"
         subtitle=""
-      /> */}
-      {/* <NewsletterSection
-        bgColor="light"
-        size="medium"
-        bgImage=""
-        bgImageOpacity={1}
-        title="Stay in the know"
-        subtitle="Receive our latest articles and feature updates"
-        buttonText="Subscribe"
-        buttonColor="primary"
-        inputPlaceholder="Enter your email"
-        subscribedMessage="You are now subscribed!"
       /> */}
       <CtaSection
         bgColor="primary"
