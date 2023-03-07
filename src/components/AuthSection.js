@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material";
 import Container from "@mui/material/Container";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import Auth from "components/Auth";
 import AuthFooter from "components/AuthFooter";
+import { useDarkMode } from "util/theme";
 
 function AuthSection(props) {
+  const darkMode = useDarkMode();
+
+  const [subscribeToNewsletter, setSubscribeToNewsletter] = useState(true);
+
+  const handleCheckbox = () => {
+    setSubscribeToNewsletter(!subscribeToNewsletter);
+  };
+
   // Options by auth type
   const optionsByType = {
     signup: {
@@ -72,7 +82,27 @@ function AuthSection(props) {
           providers={props.providers}
           afterAuthPath={props.afterAuthPath}
           key={type}
+          subscribeToNewsletter={subscribeToNewsletter}
         />
+        {type === "signup" && (
+          <Box display="flex" justifyContent="center" alignItems="center" marginTop={2}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  color={darkMode.value ? "secondary" : "primary"}
+                  checked={subscribeToNewsletter}
+                />
+              }
+              label=""
+              style={{ margin: "0.25rem" }}
+              onChange={handleCheckbox}
+            />
+
+            <Typography fontSize="14px">
+              Subscribe for product updates and promotions
+            </Typography>
+          </Box>
+        )}
 
         {options.showFooter && <AuthFooter type={type} {...options} />}
       </Container>

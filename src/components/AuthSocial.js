@@ -4,6 +4,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { makeStyles } from "@mui/styles";
 import { useAuth } from "util/auth";
 import { useDarkMode } from "util/theme";
+import newsletter from "util/newsletter";
 
 function AuthSocial(props) {
   const darkMode = useDarkMode();
@@ -57,6 +58,10 @@ function AuthSocial(props) {
 
   const onSigninWithProvider = (provider) => {
     setPending(provider);
+    // If checkbox is selected, subscribe to newsletter
+    if (props.subscribeToNewsletter) {
+      newsletter.subscribe({ email });
+    }
     auth
       .signinWithProvider(provider)
       .then((user) => {

@@ -22,6 +22,10 @@ function AuthForm(props) {
       return auth.signup(email, pass).then((user) => {
         // Call auth complete handler
         props.onAuth(user);
+        // If checkbox is selected, subscribe to newsletter
+        if (props.subscribeToNewsletter) {
+          newsletter.subscribe({ email });
+        }
       });
     },
     forgotpass: ({ email }) => {

@@ -30,6 +30,7 @@ function Auth(props) {
         buttonAction={props.buttonAction}
         onAuth={handleAuth}
         onFormAlert={handleFormAlert}
+        subscribeToNewsletter={props.subscribeToNewsletter}
       />
 
       {["signup", "signin"].includes(props.type) && (
@@ -50,6 +51,7 @@ function Auth(props) {
                     message: message,
                   });
                 }}
+                subscribeToNewsletter={props.subscribeToNewsletter}
               />
             </>
           )}
