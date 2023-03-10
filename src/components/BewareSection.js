@@ -39,7 +39,7 @@ function BewareSection(props) {
 
   const items = [
     {
-      title: "This is an actual free description written by listingdescription.com.",
+      title: "What listingdescription.com wrote.",
       body1:
         "The impressive living space is created by a beautifully maintained interior and comprises a separate dining room. Enjoy cooking again in this charming recently updated kitchen, that comprises stainless-steel appliances and laminate countertops. Relax in the good-sized suburban getaway that features a large patio. The perfect location for outdoor fun. Featuring just the suburban atmosphere you are looking for. Conveniently set in a desirable Riverside County neighborhood. In close proximity to great shopping. All the conveniences you could possibly need are a short distance away. A rare opportunity. We love this home. You will too. Call today.",
       body2: "",
@@ -48,7 +48,7 @@ function BewareSection(props) {
       icon: "no",
     },
     {
-      title: "This is what Listingify wrote.",
+      title: "What we wrote.",
       body1:
         "Welcome to 74460 Goleta Ave, a single-family home offering 3 bedrooms and 2 baths, with an attached 2-car garage. Built in 1973, this property boasts a floor area of 1200 sq ft and sits on a spacious lot of 8276 sq ft. This home showcases an open floor plan, shaker cabinets, stainless steel appliances, and vaulted ceilings, among other features that make it a dream come true for anyone looking for a comfortable and inviting living space.",
       body2:

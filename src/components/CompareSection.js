@@ -39,7 +39,7 @@ function CompareSection(props) {
 
   const items = [
     {
-      title: "This is what was on the MLS.",
+      title: "What an agent wrote on the MLS.",
       body1:
         "Renovated 3 Bedrooms and 2 bathrooms home with a swimming pool, 2 car attached garage, and plenty of room on the side yard for your RV or boat, in a non through street. Open floor plan and beam ceilings, the kitchen has newer cabinets, laminate counters, stone backsplash and stainless steel appliances; main bathroom is completely remodeled with tile and marble shower. The backyard offers amazing mountain views with a beautiful pool , fruit trees and a covered patio. Conveniently located off Deep Canyon Road between Highway 111 and Fred Waring Drive, this home is just minutes away from upscale El Paseo, McCallum Theatre, College of the Desert, Westfield Shopping Mall, dining, shopping, banks, and entertainment.",
       body2: "",
@@ -48,7 +48,7 @@ function CompareSection(props) {
       icon: "no",
     },
     {
-      title: "This is what Listingify wrote.",
+      title: "What we wrote.",
       body1:
         "Welcome to 74460 Goleta Ave, a single-family home offering 3 bedrooms and 2 baths, with an attached 2-car garage. Built in 1973, this property boasts a floor area of 1200 sq ft and sits on a spacious lot of 8276 sq ft. This home showcases an open floor plan, shaker cabinets, stainless steel appliances, and vaulted ceilings, among other features that make it a dream come true for anyone looking for a comfortable and inviting living space.",
       body2:

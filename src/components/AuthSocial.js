@@ -58,15 +58,17 @@ function AuthSocial(props) {
 
   const onSigninWithProvider = (provider) => {
     setPending(provider);
-    // If checkbox is selected, subscribe to newsletter
-    if (props.subscribeToNewsletter) {
-      newsletter.subscribe({ email });
-    }
     auth
       .signinWithProvider(provider)
       .then((user) => {
+        console.log({user})
+        // If checkbox is selected, subscribe to newsletter
+        if (props.subscribeToNewsletter) {
+          // TODO - get email address to pass into subscribe method
+          newsletter.subscribe({ email: user.email });
+        }
         localStorage.setItem("lastUsedAuthProvider", provider);
-        props.onAuth(user);
+        // props.onAuth(user);
       })
       .catch((error) => {
         setPending(null);
