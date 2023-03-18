@@ -14,6 +14,7 @@ import { useDarkMode } from "util/theme";
 import { Logo } from "./Logo";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from '@mui/icons-material/Facebook';
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Footer(props) {
@@ -97,7 +98,7 @@ function Footer(props) {
 
             <div className={classes.social}>
               <Link
-                href="https://twitter.com/listingify"
+                href="https://twitter.com/listingify/"
                 passHref={true}
                 target="_blank"
                 className={classes.socialIcon}
@@ -111,6 +112,14 @@ function Footer(props) {
                 className={classes.socialIcon}
               >
                 <InstagramIcon fontSize="large" />
+              </Link>
+              <Link
+                href="https://www.facebook.com/listingify/"
+                passHref={true}
+                target="_blank"
+                className={classes.socialIcon}
+              >
+                <FacebookIcon fontSize="large" />
               </Link>
             </div>
 
