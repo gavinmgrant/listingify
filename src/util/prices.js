@@ -3,6 +3,7 @@ const stripePriceIds = {
   "5": process.env.NEXT_PUBLIC_STRIPE_PRICE_5,
   "10": process.env.NEXT_PUBLIC_STRIPE_PRICE_10,
   "20": process.env.NEXT_PUBLIC_STRIPE_PRICE_20,
+  "promo": "promo",
 };
 
 // Get Stripe priceId

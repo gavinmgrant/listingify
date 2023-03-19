@@ -13,7 +13,7 @@ function PurchasePage(props) {
   useEffect(() => {
     redirectToCheckout(router.query.plan)
       .catch((error) => {
-        if (router.query.plan !== "1") {
+        if (router.query.plan !== "1" && router.query.plan !== "promo") {
           setFormAlert({
             type: "error",
             message: error.message,

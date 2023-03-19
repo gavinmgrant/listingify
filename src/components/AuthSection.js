@@ -6,8 +6,10 @@ import SectionHeader from "components/SectionHeader";
 import Auth from "components/Auth";
 import AuthFooter from "components/AuthFooter";
 import { useDarkMode } from "util/theme";
+import { useRouter } from "next/router";
 
 function AuthSection(props) {
+  const router = useRouter();
   const darkMode = useDarkMode();
 
   const [subscribeToNewsletter, setSubscribeToNewsletter] = useState(true);
@@ -16,11 +18,15 @@ function AuthSection(props) {
     setSubscribeToNewsletter(!subscribeToNewsletter);
   };
 
+  const isPromo = router.pathname.includes("kw");
+
   // Options by auth type
   const optionsByType = {
     signup: {
       // Top Title
-      title: "Create an account, get one free token",
+      title: isPromo ? "Welcome KW agents!" : "Create an account",
+      // Subtitle
+      subtitle: isPromo ? "As a preferred brokerage, Keller Williams agents get 3 free tokens when they sign up!" : "Sign up and get a free token!",
       // Button text
       buttonAction: "Sign up",
       // Footer text and links
@@ -35,6 +41,7 @@ function AuthSection(props) {
     },
     signin: {
       title: "Welcome back",
+      subtitle: "",
       buttonAction: "Sign in",
       showFooter: true,
       signupAction: "Create an account",
@@ -44,6 +51,7 @@ function AuthSection(props) {
     },
     forgotpass: {
       title: "Get a new password",
+      subtitle: "",
       buttonAction: "Reset password",
       showFooter: true,
       signinText: "Remember it after all?",
@@ -52,6 +60,7 @@ function AuthSection(props) {
     },
     changepass: {
       title: "Choose a new password",
+      subtitle: "",
       buttonAction: "Change password",
     },
   };
@@ -72,7 +81,7 @@ function AuthSection(props) {
       <Container maxWidth="xs">
         <SectionHeader
           title={options.title}
-          subtitle=""
+          subtitle={options.subtitle || ""}
           size={4}
           textAlign="center"
         />

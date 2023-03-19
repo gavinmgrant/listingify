@@ -422,7 +422,7 @@ function GenerateSection(props) {
               variant="contained"
               size="large"
               color={darkMode.value ? "secondary" : "primary"}
-              onClick={() => router.push("/auth/signup?next=/purchase/1")}
+              onClick={() => router.push("/auth/signup")}
             >
               Create an account
             </Button>

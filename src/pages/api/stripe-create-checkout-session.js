@@ -48,6 +48,20 @@ export default requireAuth(async (req, res) => {
         .send({ status: "success", message: "Free token sent!" });
     }
 
+    // If new customer is using a promotional sign up portal
+    if (body.priceId === "promo") {
+      const cust = await getCustomerByStripeCid(stripeCustomerId);
+
+      // Add free token
+      await updateCustomerByStripeCid(stripeCustomerId, {
+        tokens: cust.tokens + 3,
+      });
+
+      return res
+        .status(200)
+        .send({ status: "success", message: "Free tokens sent!" });
+    }
+
     // Create a checkout session
     const session = await stripe.checkout.sessions.create({
       customer: stripeCustomerId,
