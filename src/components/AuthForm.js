@@ -21,12 +21,12 @@ function AuthForm(props) {
     },
     signup: ({ email, pass }) => {
       return auth.signup(email, pass).then((user) => {
-        // Call auth complete handler
-        props.onAuth(user);
         // If checkbox is selected, subscribe to newsletter
         if (props.subscribeToNewsletter) {
           newsletter.subscribe({ email });
         }
+        // Call auth complete handler
+        props.onAuth(user);
       });
     },
     forgotpass: ({ email }) => {

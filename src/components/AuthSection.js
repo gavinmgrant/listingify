@@ -38,7 +38,7 @@ function AuthSection(props) {
       buttonAction: "Sign in",
       showFooter: true,
       signupAction: "Create an account",
-      signupPath: "/auth/signup?next=/purchase/1",
+      signupPath: "/auth/signup",
       forgotPassAction: "Forgot Password?",
       forgotPassPath: "/auth/forgotpass",
     },
@@ -85,7 +85,12 @@ function AuthSection(props) {
           subscribeToNewsletter={subscribeToNewsletter}
         />
         {type === "signup" && (
-          <Box display="flex" justifyContent="center" alignItems="center" marginTop={2}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            marginTop={2}
+          >
             <FormControlLabel
               control={
                 <Checkbox
@@ -98,9 +103,12 @@ function AuthSection(props) {
               onChange={handleCheckbox}
             />
 
-            <Typography fontSize="14px">
-              Subscribe for product updates and promotions
-            </Typography>
+            <div>
+              <Typography fontSize="14px">
+                Subscribe for product updates and promotions
+              </Typography>
+              <Typography fontSize="14px">(if email provided above)</Typography>
+            </div>
           </Box>
         )}
 

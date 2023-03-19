@@ -17,9 +17,7 @@ function AuthPage(props) {
         type={router.query.type}
         providers={["google"]}
         afterAuthPath={
-          router.query.next || router.query.type === "signup"
-            ? "/pricing"
-            : "/generate"
+          router.query.type === "signup" ? "/purchase/1" : "/generate"
         }
       />
     </>

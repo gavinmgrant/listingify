@@ -112,7 +112,7 @@ function Navbar(props) {
                     variant="contained"
                     color="secondary"
                     sx={{ margin: "0 0.5rem 0 0.75rem" }}
-                    onClick={() => router.push("/auth/signup?next=/purchase/1")}
+                    onClick={() => router.push("/auth/signup")}
                   >
                     Sign up
                   </Button>
