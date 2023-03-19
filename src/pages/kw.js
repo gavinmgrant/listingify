@@ -7,8 +7,11 @@ function KWPage() {
   const auth = useAuth();
 
   useEffect(() => {
-    auth.signout();
-  }, []);
+    // only sign out if a user is logged in
+    if (auth.user) {
+      auth.signout();
+    }
+  }, [auth.user]);
 
   return (
     <>
