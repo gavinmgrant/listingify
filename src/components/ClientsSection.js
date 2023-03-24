@@ -44,8 +44,8 @@ function ClientsSection(props) {
       image: darkMode.value
         ? "/images/logo-christies-white.png"
         : "/images/logo-christies-black.png",
-      width: 207,
-      height: 38,
+      width: 220,
+      height: 144,
       url: "https://www.christiesrealestate.com/",
     },
   ];
