@@ -5,8 +5,11 @@ import GenerateSection from "components/GenerateSection";
 function GeneratePage(props) {
   return (
     <>
-      <Meta title="Generate Listing Description" />
-      <GenerateSection 
+      <Meta
+        title="Generate your real estate listing description"
+        description="Best, affordable real estate copywriter powered by AI"
+      />
+      <GenerateSection
         bgColor="default"
         size="medium"
         bgImage=""

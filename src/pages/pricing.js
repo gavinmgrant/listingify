@@ -9,7 +9,10 @@ function PricingPage(props) {
 
   return (
     <>
-      <Meta title={isUser ? "Buy More Tokens" : "Pricing"} />
+      <Meta
+        title={isUser ? "Buy More Tokens" : "Pricing"}
+        description="Affordable real estate listing descriptions written, starting at $1 per description."
+      />
       <PricingSection
         bgColor="default"
         size="medium"

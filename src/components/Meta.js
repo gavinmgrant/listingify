@@ -19,7 +19,7 @@ function Meta(props) {
   // Default meta values for current page (override with props)
   const defaultPageMeta = {
     // Page title
-    title: "Listingify",
+    title: "Listingify | Real estate listing description copywriter",
     // Page description
     description: "AI-powered real estate listing descriptions",
     // Social share image (create this file in /public/images/)
