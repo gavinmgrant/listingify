@@ -11,10 +11,11 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { motion } from "framer-motion";
+import { useDarkMode } from "util/theme";
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
-    textAlign: "center",
+    textAlign: "left",
   },
   imageContainer: {
     margin: "0 auto",
@@ -29,9 +30,12 @@ const useStyles = makeStyles((theme) => ({
 function BewareSection(props) {
   const classes = useStyles();
   const theme = useTheme();
+  const darkMode = useDarkMode();
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
   const [showIcons, setShowIcons] = useState(false);
+
+  const green = darkMode.value ? "#66bb6a" : "#2e7d32";
 
   useEffect(() => {
     setTimeout(setShowIcons(true), 1000);
@@ -39,7 +43,7 @@ function BewareSection(props) {
 
   const items = [
     {
-      title: "What listingdescription.com wrote.",
+      title: "What they wrote.",
       body1:
         "The impressive living space is created by a beautifully maintained interior and comprises a separate dining room. Enjoy cooking again in this charming recently updated kitchen, that comprises stainless-steel appliances and laminate countertops. Relax in the good-sized suburban getaway that features a large patio. The perfect location for outdoor fun. Featuring just the suburban atmosphere you are looking for. Conveniently set in a desirable Riverside County neighborhood. In close proximity to great shopping. All the conveniences you could possibly need are a short distance away. A rare opportunity. We love this home. You will too. Call today.",
       body2: "",
@@ -87,31 +91,42 @@ function BewareSection(props) {
             >
               <Card variant="outlined">
                 <Box p={isSmall ? 3 : 6}>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                  <Box
+                    display="flex"
+                    justifyContent="flex-start"
+                    alignItems="center"
                   >
-                    {showIcons && (
-                      <>
-                        {item.icon === "no" && (
-                          <CancelIcon
-                            style={{ fontSize: 64 }}
-                            color="error"
-                          />
-                        )}
-                        {item.icon === "yes" && (
-                          <CheckCircleIcon
-                            style={{ fontSize: 64 }}
-                            color="success"
-                          />
-                        )}
-                      </>
-                    )}
-                  </motion.div>
-                  <Typography variant="h5" gutterBottom={true}>
-                    {item.title}
-                  </Typography>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                    >
+                      {showIcons && (
+                        <>
+                          {item.icon === "no" && (
+                            <CancelIcon
+                              style={{ fontSize: 64 }}
+                              color="error"
+                            />
+                          )}
+                          {item.icon === "yes" && (
+                            <CheckCircleIcon
+                              style={{ fontSize: 64 }}
+                              color="success"
+                            />
+                          )}
+                        </>
+                      )}
+                    </motion.div>
+                    <Typography
+                      variant="h5"
+                      gutterBottom={true}
+                      marginLeft="1rem"
+                      color={item.icon === "no" ? "error" : green}
+                    >
+                      {item.title}
+                    </Typography>
+                  </Box>
                   <Typography
                     variant="subtitle1"
                     textAlign="left"

@@ -11,10 +11,11 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { motion } from "framer-motion";
+import { useDarkMode } from "util/theme";
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
-    textAlign: "center",
+    textAlign: "left",
   },
   imageContainer: {
     margin: "0 auto",
@@ -29,9 +30,12 @@ const useStyles = makeStyles((theme) => ({
 function CompareSection(props) {
   const classes = useStyles();
   const theme = useTheme();
+  const darkMode = useDarkMode();
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
   const [showIcons, setShowIcons] = useState(false);
+
+  const green = darkMode.value ? "#66bb6a" : "#2e7d32";
 
   useEffect(() => {
     setTimeout(setShowIcons(true), 1000);
@@ -39,7 +43,7 @@ function CompareSection(props) {
 
   const items = [
     {
-      title: "What an agent wrote on the MLS.",
+      title: "What was on the MLS.",
       body1:
         "Renovated 3 Bedrooms and 2 bathrooms home with a swimming pool, 2 car attached garage, and plenty of room on the side yard for your RV or boat, in a non through street. Open floor plan and beam ceilings, the kitchen has newer cabinets, laminate counters, stone backsplash and stainless steel appliances; main bathroom is completely remodeled with tile and marble shower. The backyard offers amazing mountain views with a beautiful pool , fruit trees and a covered patio. Conveniently located off Deep Canyon Road between Highway 111 and Fred Waring Drive, this home is just minutes away from upscale El Paseo, McCallum Theatre, College of the Desert, Westfield Shopping Mall, dining, shopping, banks, and entertainment.",
       body2: "",
@@ -87,31 +91,42 @@ function CompareSection(props) {
             >
               <Card variant="outlined">
                 <Box p={isSmall ? 3 : 6}>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                  <Box
+                    display="flex"
+                    justifyContent="flex-start"
+                    alignItems="center"
                   >
-                    {showIcons && (
-                      <>
-                        {item.icon === "no" && (
-                          <CancelIcon
-                            style={{ fontSize: 64 }}
-                            color="error"
-                          />
-                        )}
-                        {item.icon === "yes" && (
-                          <CheckCircleIcon
-                            style={{ fontSize: 64 }}
-                            color="success"
-                          />
-                        )}
-                      </>
-                    )}
-                  </motion.div>
-                  <Typography variant="h5" gutterBottom={true}>
-                    {item.title}
-                  </Typography>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                    >
+                      {showIcons && (
+                        <>
+                          {item.icon === "no" && (
+                            <CancelIcon
+                              style={{ fontSize: 64 }}
+                              color="error"
+                            />
+                          )}
+                          {item.icon === "yes" && (
+                            <CheckCircleIcon
+                              style={{ fontSize: 64 }}
+                              color="success"
+                            />
+                          )}
+                        </>
+                      )}
+                    </motion.div>
+                    <Typography
+                      variant="h5"
+                      gutterBottom={true}
+                      marginLeft="1rem"
+                      color={item.icon === "no" ? "error" : green}
+                    >
+                      {item.title}
+                    </Typography>
+                  </Box>
                   <Typography
                     variant="subtitle1"
                     textAlign="left"

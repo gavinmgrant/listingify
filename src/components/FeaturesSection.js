@@ -13,10 +13,11 @@ import PaymentsIcon from "@mui/icons-material/Payments";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { motion } from "framer-motion";
+import { useDarkMode } from "util/theme";
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
-    textAlign: "center",
+    textAlign: "left",
   },
   imageContainer: {
     margin: "0 auto",
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 function FeaturesSection(props) {
   const classes = useStyles();
   const theme = useTheme();
+  const darkMode = useDarkMode();
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
   const [showIcons, setShowIcons] = useState(false);
@@ -87,43 +89,54 @@ function FeaturesSection(props) {
             >
               <Card variant="outlined">
                 <Box p={isSmall ? 3 : 6}>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                  <Box
+                    display="flex"
+                    justifyContent="flex-start"
+                    alignItems="center"
                   >
-                    {showIcons && (
-                      <>
-                        {item.icon === "thumb" && (
-                          <ThumbDownOffAltIcon
-                            style={{ fontSize: 64 }}
-                            color="primary"
-                          />
-                        )}
-                        {item.icon === "time" && (
-                          <AccessTimeIcon
-                            style={{ fontSize: 64 }}
-                            color="primary"
-                          />
-                        )}
-                        {item.icon === "money" && (
-                          <PaymentsIcon
-                            style={{ fontSize: 64 }}
-                            color="primary"
-                          />
-                        )}
-                        {item.icon === "social" && (
-                          <TwitterIcon
-                            style={{ fontSize: 64 }}
-                            color="primary"
-                          />
-                        )}
-                      </>
-                    )}
-                  </motion.div>
-                  <Typography variant="h5" gutterBottom={true}>
-                    {item.title}
-                  </Typography>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                    >
+                      {showIcons && (
+                        <>
+                          {item.icon === "thumb" && (
+                            <ThumbDownOffAltIcon
+                              style={{ fontSize: 64 }}
+                              color={darkMode.value ? "white" : "primary"}
+                            />
+                          )}
+                          {item.icon === "time" && (
+                            <AccessTimeIcon
+                              style={{ fontSize: 64 }}
+                              color={darkMode.value ? "white" : "primary"}
+                            />
+                          )}
+                          {item.icon === "money" && (
+                            <PaymentsIcon
+                              style={{ fontSize: 64 }}
+                              color={darkMode.value ? "white" : "primary"}
+                            />
+                          )}
+                          {item.icon === "social" && (
+                            <TwitterIcon
+                              style={{ fontSize: 64 }}
+                              color={darkMode.value ? "white" : "primary"}
+                            />
+                          )}
+                        </>
+                      )}
+                    </motion.div>
+                    <Typography
+                      variant="h5"
+                      gutterBottom={true}
+                      marginLeft="1rem"
+                      color={darkMode.value ? "white" : "primary"}
+                    >
+                      {item.title}
+                    </Typography>
+                  </Box>
                   <Typography variant="subtitle1">{item.body}</Typography>
                 </Box>
               </Card>
