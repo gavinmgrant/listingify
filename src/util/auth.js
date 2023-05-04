@@ -42,7 +42,9 @@ function useAuthProvider() {
 
   // Handle response from auth functions (`signup`, `signin`, and `signinWithProvider`)
   const handleAuth = async (response) => {
-    const { user } = response;
+    const {
+      data: { user },
+    } = response;
 
     // If email is unconfirmed throw error to be displayed in UI
     // The user will be confirmed automatically if email confirmation is disabled in Supabase settings
@@ -66,7 +68,7 @@ function useAuthProvider() {
 
   const signin = (email, password) => {
     return supabase.auth
-      .signIn({ email, password })
+      .signInWithPassword({ email, password })
       .then(handleError)
       .then(handleAuth);
   };
@@ -74,14 +76,14 @@ function useAuthProvider() {
   const signinWithProvider = (name) => {
     return (
       supabase.auth
-        .signIn(
-          { provider: name },
-          {
-            redirectTo: `${window.location.origin}/generate`,
-          }
-        )
+        .signInWithOAuth({
+          provider: name,
+          options: {
+            redirectTo: `${window.location.origin}/dashboard`,
+          },
+        })
         .then(handleError)
-        // Because `supabase.auth.signIn` resolves immediately we need to add this so
+        // Because `signInWithOAuth` resolves immediately we need to add this so
         // it never resolves (component will display loading indicator indefinitely).
         // Once social signin is completed the page will redirect to value of `redirectTo`.
         .then(() => {
@@ -91,7 +93,14 @@ function useAuthProvider() {
   };
 
   const signinWithMagicLink = (email) => {
-    return supabase.auth.signIn({ email }).then(handleError);
+    return supabase.auth
+      .signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: `${window.location.origin}/dashboard`,
+        },
+      })
+      .then(handleError);
   };
 
   const signout = () => {
@@ -99,7 +108,7 @@ function useAuthProvider() {
   };
 
   const sendPasswordResetEmail = (email) => {
-    return supabase.auth.api
+    return supabase.auth
       .resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/auth/changepass`,
       })
@@ -112,7 +121,7 @@ function useAuthProvider() {
   };
 
   const updatePassword = (password) => {
-    return supabase.auth.update({ password }).then(handleError);
+    return supabase.auth.updateUser({ password }).then(handleError);
   };
 
   // Update auth user and persist data to database
@@ -145,17 +154,21 @@ function useAuthProvider() {
     // Otherwise, a redirect to a protected page after social auth will redirect
     // right back to login due to cached session indicating they are logged out.
     if (!window.lastHash.access_token) {
-      // Get current user and set in state
-      const session = supabase.auth.session();
-      if (session) {
-        setUser(session.user);
-      } else {
-        setUser(false);
-      }
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session) {
+          setUser(session.user);
+        } else {
+          setUser(false);
+        }
+      });
     }
 
     // Subscribe to user on mount
-    const { data } = supabase.auth.onAuthStateChange((event, session) => {
+    const {
+      data: {
+        subscription: { unsubscribe },
+      },
+    } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
         setUser(session.user);
       } else {
@@ -164,7 +177,7 @@ function useAuthProvider() {
     });
 
     // Unsubscribe on cleanup
-    return () => data.unsubscribe();
+    return () => unsubscribe();
   }, []);
 
   return {
@@ -215,7 +228,7 @@ function useFormatUser(user) {
         customer.stripeSubscriptionStatus
       ),
       // Number of tokens
-      tokens: customer.tokens
+      tokens: customer.tokens,
     };
   }, [user]);
 }

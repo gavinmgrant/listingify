@@ -2,9 +2,13 @@ import { useRef, useEffect } from "react";
 import supabase from "./supabase";
 
 // Make an API request to `/api/{path}`
-export function apiRequest(path, method = "GET", data) {
-  const session = supabase.auth.session();
+export async function apiRequest(path, method = "GET", data) {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
   const accessToken = session ? session.access_token : undefined;
+
   return fetch(`/api/${path}`, {
     method: method,
     headers: {

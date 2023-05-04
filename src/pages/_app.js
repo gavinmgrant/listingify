@@ -29,11 +29,7 @@ function MyApp({ Component, pageProps }) {
           <AuthProvider>
             <Meta />
             <>
-              <Navbar
-                color="default"
-                logo="https://uploads.divjoy.com/logo.svg"
-                logoInverted="https://uploads.divjoy.com/logo-white.svg"
-              />
+              <Navbar color="default" />
 
               <Component {...pageProps} />
 
@@ -44,8 +40,6 @@ function MyApp({ Component, pageProps }) {
                 bgImageOpacity={1}
                 description="AI-powered real estate listing descriptions"
                 copyright={`© ${new Date().getFullYear()} Listingify`}
-                logo="https://uploads.divjoy.com/logo.svg"
-                logoInverted="https://uploads.divjoy.com/logo-white.svg"
                 sticky={true}
               />
             </>

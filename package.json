@@ -17,7 +17,7 @@
     "@mui/material": "^5.11.4",
     "@mui/styles": "^5.11.2",
     "@stripe/stripe-js": "1.11.0",
-    "@supabase/supabase-js": "1.35.6",
+    "@supabase/supabase-js": "^2.15.0",
     "analytics": "0.3.1",
     "aws-sdk": "^2.1267.0",
     "eslint-config-next": "^13.1.1",
