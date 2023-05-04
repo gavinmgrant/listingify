@@ -79,7 +79,7 @@ function useAuthProvider() {
         .signInWithOAuth({
           provider: name,
           options: {
-            redirectTo: `${window.location.origin}/dashboard`,
+            redirectTo: `${window.location.origin}/generate`,
           },
         })
         .then(handleError)
@@ -97,7 +97,7 @@ function useAuthProvider() {
       .signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/dashboard`,
+          emailRedirectTo: `${window.location.origin}/generate`,
         },
       })
       .then(handleError);
