@@ -1,8 +1,13 @@
-import React from "react";
-import Meta from "components/Meta";
-import GenerateSection from "components/GenerateSection";
+import React from "react"
+import Meta from "components/Meta"
+import GenerateSection from "components/GenerateSection"
+import { useAuth } from "util/auth"
 
 function GeneratePage(props) {
+  const auth = useAuth()
+
+  const { name } = auth.user || {}
+  const firstName = name?.split(" ")[0] || ""
   return (
     <>
       <Meta
@@ -14,11 +19,17 @@ function GeneratePage(props) {
         size="medium"
         bgImage=""
         bgImageOpacity={1}
-        title="Generate your listing description"
+        title={
+          auth.user
+            ? firstName
+              ? `Hi ${firstName}, generate your listing description`
+              : "Welcome back! Generate your listing description"
+            : "Generate your listing description"
+        }
         subtitle="We'll write a detailed real estate listing description based on the information below. Focus on the key features you want in the description. This does not need to be an exhaustive list of every feature."
       />
     </>
-  );
+  )
 }
 
-export default GeneratePage;
+export default GeneratePage

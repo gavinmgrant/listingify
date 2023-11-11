@@ -21,6 +21,12 @@ import { Alert, Checkbox, FormControlLabel } from "@mui/material";
 import { makeStyles, useTheme } from "@mui/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import PlayCircleFilledWhiteRoundedIcon from "@mui/icons-material/PlayCircleFilledWhiteRounded";
+import CountertopsRoundedIcon from "@mui/icons-material/CountertopsRounded";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import LandscapeRoundedIcon from "@mui/icons-material/LandscapeRounded";
+import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
+import AutoFixHighRoundedIcon from "@mui/icons-material/AutoFixHighRounded";
 import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import TemperatureModal from "./TemperatureModal";
@@ -56,6 +62,9 @@ const useStyles = makeStyles((theme) => ({
   },
   summaryContent: {
     margin: "0 !important",
+    display: "flex",
+    alignItems: "center",
+    spacing: "8px",
   },
 }));
 
@@ -445,7 +454,10 @@ function GenerateSection(props) {
               expandIcon={<ExpandMoreIcon />}
               onClick={() => handleScroll(generalRef)}
             >
-              <Typography variant="h5">General Information</Typography>
+              <PlayCircleFilledWhiteRoundedIcon />
+              <Typography variant="h5" style={{ marginLeft: "8px" }}>
+                General Information
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Grid container spacing={2} columns={12}>
@@ -725,7 +737,10 @@ function GenerateSection(props) {
                   expandIcon={<ExpandMoreIcon />}
                   onClick={() => handleScroll(interiorRef)}
                 >
-                  <Typography variant="h5">Interior Features</Typography>
+                  <CountertopsRoundedIcon />
+                  <Typography variant="h5" style={{ marginLeft: "8px" }}>
+                    Interior Features
+                  </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Grid container spacing={2} columns={12}>
@@ -779,7 +794,10 @@ function GenerateSection(props) {
                   expandIcon={<ExpandMoreIcon />}
                   onClick={() => handleScroll(exteriorRef)}
                 >
-                  <Typography variant="h5">Exterior Features</Typography>
+                  <HomeRoundedIcon />
+                  <Typography variant="h5" style={{ marginLeft: "8px" }}>
+                    Exterior Features
+                  </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Grid container spacing={2} columns={12}>
@@ -834,7 +852,10 @@ function GenerateSection(props) {
                 expandIcon={<ExpandMoreIcon />}
                 onClick={() => handleScroll(landRef)}
               >
-                <Typography variant="h5">Land Features</Typography>
+                <LandscapeRoundedIcon />
+                <Typography variant="h5" style={{ marginLeft: "8px" }}>
+                  Land Features
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Grid container spacing={2} columns={12}>
@@ -884,7 +905,10 @@ function GenerateSection(props) {
               expandIcon={<ExpandMoreIcon />}
               onClick={() => handleScroll(uniqueRef)}
             >
-              <Typography variant="h5">Unique Features</Typography>
+              <AutoAwesomeRoundedIcon />
+              <Typography variant="h5" style={{ marginLeft: "8px" }}>
+                Unique Features
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <TextField
@@ -919,7 +943,10 @@ function GenerateSection(props) {
               expandIcon={<ExpandMoreIcon />}
               onClick={() => handleScroll(creativityRef)}
             >
-              <Typography variant="h5">Creativity</Typography>
+              <AutoFixHighRoundedIcon />
+              <Typography variant="h5" style={{ marginLeft: "8px" }}>
+                Creativity
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Box
