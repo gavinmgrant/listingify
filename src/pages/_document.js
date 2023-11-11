@@ -31,6 +31,10 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#546e7a" />
           <meta name="msapplication-TileColor" content="#cfd8dc" />
           <meta name="theme-color" content="#cfd8dc" />
+          <meta
+            name="google-adsense-account"
+            content="ca-pub-9582285765017644"
+          />
 
           <Script
             strategy="afterInteractive"
