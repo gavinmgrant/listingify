@@ -54,7 +54,7 @@ function IndexPage(props) {
         bgImage=""
         bgImageOpacity={1}
         title='Beware of "free" listing description generators!'
-        subtitle="You get what you pay for. At listingdesciption.com, a free description isn't worth your time. They are really just fishing for leads and hoping you subscribe to Agently. We don't sell subscriptions. Buy only what you need when you need it. Our detailed descriptions highlight the specific place, features, and help you actually sell the property. Just compare what we wrote vs. them."
+        subtitle="You get what you pay for. At listingdescription.com, a free description isn't worth your time. They are really just fishing for leads and hoping you subscribe to Agently. We don't sell subscriptions. Buy only what you need when you need it. Our detailed descriptions highlight the specific place, features, and help you actually sell the property. Just compare what we wrote vs. them."
       />
       <CompareSection
         bgColor="default"
