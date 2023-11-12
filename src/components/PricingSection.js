@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     top: 24,
     right: 24,
-    color: theme.palette.primary.main,
     width: 72,
     height: 72,
   },
@@ -162,7 +161,12 @@ function PricingSection(props) {
                   <Typography variant="h6" component="h2">
                     {plan.name}
                   </Typography>
-                  {index === plans.length - 1 && <WorkspacePremiumIcon className={classes.medal} />}
+                  {index === plans.length - 1 && (
+                    <WorkspacePremiumIcon
+                      className={classes.medal}
+                      color={darkMode.value ? "secondary" : "primary"}
+                    />
+                  )}
                   <Box className={classes.price} mt={1}>
                     <Typography variant="h3">${plan.price}</Typography>
                   </Box>
