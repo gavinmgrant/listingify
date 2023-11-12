@@ -26,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     top: 24,
     right: 24,
-    color: theme.palette.success.main,
-    width: 64,
-    height: 64,
+    color: theme.palette.primary.main,
+    width: 72,
+    height: 72,
   },
   card: {
     display: "flex",
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
   perkIcon: {
     minWidth: 34,
-    color: theme.palette.success.main,
+    color: theme.palette.primary.main,
   },
 }));
 
