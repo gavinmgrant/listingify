@@ -10,6 +10,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import CheckIcon from "@mui/icons-material/Check";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
@@ -21,6 +22,14 @@ import { motion } from "framer-motion";
 import { useDarkMode } from "util/theme";
 
 const useStyles = makeStyles((theme) => ({
+  medal: {
+    position: "absolute",
+    top: 24,
+    right: 24,
+    color: theme.palette.success.main,
+    width: 64,
+    height: 64,
+  },
   card: {
     display: "flex",
     flexDirection: "column",
@@ -33,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     border: "3px solid #546e74",
   },
   cardContent: {
+    position: "relative",
     display: "flex",
     flexDirection: "column",
     height: "100%",
@@ -152,6 +162,7 @@ function PricingSection(props) {
                   <Typography variant="h6" component="h2">
                     {plan.name}
                   </Typography>
+                  {index === 3 && <WorkspacePremiumIcon className={classes.medal} />}
                   <Box className={classes.price} mt={1}>
                     <Typography variant="h3">${plan.price}</Typography>
                   </Box>
