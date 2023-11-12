@@ -162,7 +162,7 @@ function PricingSection(props) {
                   <Typography variant="h6" component="h2">
                     {plan.name}
                   </Typography>
-                  {index === 3 && <WorkspacePremiumIcon className={classes.medal} />}
+                  {index === plans.length - 1 && <WorkspacePremiumIcon className={classes.medal} />}
                   <Box className={classes.price} mt={1}>
                     <Typography variant="h3">${plan.price}</Typography>
                   </Box>
