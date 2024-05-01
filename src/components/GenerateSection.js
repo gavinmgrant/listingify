@@ -377,6 +377,16 @@ function GenerateSection(props) {
       bgImageOpacity={props.bgImageOpacity}
     >
       <Container>
+        <Alert severity="error" style={{ marginBottom: "2rem" }}>
+          <Typography>
+            We are experiencing issues with our service and cannot currently
+            generate any descriptions. We are working on a fix as soon as
+            possible. Our apologies for the inconvenience.
+          </Typography>
+        </Alert>
+      </Container>
+
+      <Container>
         <TemperatureModal
           isOpen={isTempModalOpen}
           handleOpen={() => setIsTempModalOpen(!isTempModalOpen)}
@@ -437,7 +447,8 @@ function GenerateSection(props) {
             </Button>
           </Box>
         )}
-        <FormControl variant="standard" fullWidth autoComplete="off">
+
+        {/* <FormControl variant="standard" fullWidth autoComplete="off">
           <Accordion
             ref={generalRef}
             classes={{
@@ -1025,9 +1036,9 @@ function GenerateSection(props) {
               </Alert>
             )}
           </Box>
-        </FormControl>
+        </FormControl> */}
 
-        <Container
+        {/* <Container
           ref={descriptionRef}
           style={{ marginTop: "5rem", padding: 0 }}
         >
@@ -1127,7 +1138,7 @@ function GenerateSection(props) {
               {copied ? "Copied!" : "Copy to clipboard"}
             </Button>
           </Box>
-        </Container>
+        </Container> */}
       </Container>
     </Section>
   );
