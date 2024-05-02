@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Alert from "@mui/material/Alert";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -135,6 +136,15 @@ function PricingSection(props) {
       bgImageOpacity={props.bgImageOpacity}
     >
       <Container>
+        <Alert severity="error" style={{ marginBottom: "2rem" }}>
+          <Typography>
+            We are experiencing issues with our service and cannot currently
+            generate any descriptions. We are working on a fix as soon as
+            possible. Our apologies for the inconvenience.
+          </Typography>
+        </Alert>
+      </Container>
+      <Container>
         <SectionHeader
           title={props.title}
           subtitle={props.subtitle}
@@ -199,7 +209,7 @@ function PricingSection(props) {
                   )}
 
                   <Box mt="auto" pt={3}>
-                    <Button
+                    {/* <Button
                       variant="contained"
                       size="large"
                       color={darkMode.value ? "secondary" : "primary"}
@@ -218,7 +228,7 @@ function PricingSection(props) {
                           ? "Get"
                           : "Create an account"
                         : "Buy"}
-                    </Button>
+                    </Button> */}
                   </Box>
                 </CardContent>
               </Card>
