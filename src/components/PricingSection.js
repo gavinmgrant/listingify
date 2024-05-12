@@ -135,7 +135,7 @@ function PricingSection(props) {
       bgImage={props.bgImage}
       bgImageOpacity={props.bgImageOpacity}
     >
-      <Container>
+      {/* <Container>
         <Alert severity="error" style={{ marginBottom: "2rem" }}>
           <Typography>
             We are experiencing issues with our service and cannot currently
@@ -143,7 +143,8 @@ function PricingSection(props) {
             possible. Our apologies for the inconvenience.
           </Typography>
         </Alert>
-      </Container>
+      </Container> */}
+
       <Container>
         <SectionHeader
           title={props.title}
@@ -209,7 +210,7 @@ function PricingSection(props) {
                   )}
 
                   <Box mt="auto" pt={3}>
-                    {/* <Button
+                    <Button
                       variant="contained"
                       size="large"
                       color={darkMode.value ? "secondary" : "primary"}
@@ -228,7 +229,7 @@ function PricingSection(props) {
                           ? "Get"
                           : "Create an account"
                         : "Buy"}
-                    </Button> */}
+                    </Button>
                   </Box>
                 </CardContent>
               </Card>
