@@ -60,7 +60,7 @@ function FaqSection(props) {
     {
       question: "What AI technology do you use?",
       answer:
-        "We use gpt-3.5-turbo, OpenAI's most advanced language model. It is the same model used in ChatGPT and the best model for non-chat use cases.",
+        "We use GPT-4o (“o” for “omni”), OpenAI's most advanced model.",
     },
   ];
 

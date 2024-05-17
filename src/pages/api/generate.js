@@ -59,7 +59,7 @@ const generateAction = async (req, res) => {
 
   try {
     const payload = {
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o",
       messages: [{ role: "user", content: prompt }],
       temperature: apiTemperature,
       max_tokens: 1500,
