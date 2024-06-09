@@ -6,7 +6,7 @@ import { useAuth } from "util/auth";
 function GeneratePage(props) {
   const auth = useAuth();
 
-  const { name } = auth.user || {};
+  const { name } = auth?.user || {};
   const firstName = name?.split(" ")[0] || "";
   return (
     <>
