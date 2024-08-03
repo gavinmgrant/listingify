@@ -12,10 +12,11 @@ import { makeStyles, useTheme } from "@mui/styles";
 import Section from "components/Section";
 import { useDarkMode } from "util/theme";
 import { Logo } from "./Logo";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThreads } from '@fortawesome/free-brands-svg-icons'
 
 function Footer(props) {
   const theme = useTheme();
@@ -52,6 +53,10 @@ function Footer(props) {
     },
     socialIcon: {
       margin: isSmall ? "24px 12px 16px" : "24px 16px 16px 0",
+      color: darkMode.value ? "white" : "black",
+    },
+    socialIconThreads: {
+      margin: isSmall ? "24px 12px 16px" : "26px 16px 16px 0",
       color: darkMode.value ? "white" : "black",
     },
     legal: {
@@ -98,12 +103,12 @@ function Footer(props) {
 
             <div className={classes.social}>
               <Link
-                href="https://twitter.com/listingify/"
+                href="https://www.threads.net/@listingify"
                 passHref={true}
                 target="_blank"
-                className={classes.socialIcon}
+                className={classes.socialIconThreads}
               >
-                <TwitterIcon fontSize="large" />
+                <FontAwesomeIcon icon={faThreads} size="2xl" />
               </Link>
               <Link
                 href="https://www.instagram.com/listingify/"
