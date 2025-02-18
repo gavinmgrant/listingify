@@ -6,6 +6,7 @@ import Script from "next/script";
 export default class MyDocument extends Document {
   render() {
     const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+    const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
     return (
       <Html lang="en">
@@ -40,14 +41,27 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           {/* Google Tag Manger */}
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-            />
-          </noscript>
+          {GTM_ID && (
+            <noscript>
+              <iframe
+                src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+                height="0"
+                width="0"
+                style={{ display: "none", visibility: "hidden" }}
+              />
+            </noscript>
+          )}
+          {/* Meta Pixel */}
+          {META_PIXEL_ID && (
+            <noscript>
+              <img
+                height="1"
+                width="1"
+                style={{ display: "none" }}
+                src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+              />
+            </noscript>
+          )}
           <Main />
           <NextScript />
         </body>
