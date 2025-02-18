@@ -5,6 +5,8 @@ import Script from "next/script";
 
 export default class MyDocument extends Document {
   render() {
+    const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+
     return (
       <Html lang="en">
         <Head>
@@ -35,27 +37,17 @@ export default class MyDocument extends Document {
             name="google-adsense-account"
             content="ca-pub-9582285765017644"
           />
-
-          <Script
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-          />
-          <Script
-            id="google-analytics"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-                  page_path: window.location.pathname,
-                });
-                `,
-            }}
-          />
         </Head>
         <body>
+          {/* Google Tag Manger */}
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
           <Main />
           <NextScript />
         </body>
