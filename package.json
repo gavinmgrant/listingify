@@ -27,7 +27,7 @@
     "eventsource-parser": "^0.1.0",
     "framer-motion": "^8.4.2",
     "next": "^13.1.6",
-    "openai": "^3.1.0",
+    "openai": "^4.86.2",
     "query-string": "6.13.8",
     "raw-body": "2.4.1",
     "react": "^18.2.0",
